@@ -1,0 +1,36 @@
+{% set html %}
+    <div id='notes-tabs'>
+    <ul class='nav nav-tabs' >
+        <li class='nav-item '>
+            <a class='nav-link active' data-toggle='tab' href='#notes-tabs-tab-1' aria-expanded='true'>{{'action.create' | trans}}</a>
+        </li>
+        <li class='nav-item'>
+            <a class='nav-link' data-toggle='tab' href='#notes-tabs-tab-2' aria-expanded='false'>{{'action.list' | trans}}</a>
+        </li>
+    </ul>
+    <div class='tab-content'>
+        <div id='notes-tabs-tab-1' class='tab-pane active'>
+        <form action='{{path('notes_save') }}' action='POST' class='form-live form-notes' data-callback='notes' data-target='#notes-list'>
+            <textarea name='note' class='form-control' data-session='{{path('notes_session')}}' rows='5' data-tab='true' data-session-id='note_tmp' autofocus='true'>{{app.session.get('note_tmp','')}}</textarea>
+            <button type='submit' class='btn btn-sm btn-default w-100 m-c-t'><i class='fa fa-floppy-o'></i></button>
+        </form>
+        </div>
+        <div id='notes-tabs-tab-2' class='tab-pane'>
+        <dl id='notes-list'>
+            {% for note in notes %}
+                {% include 'RBCoreBundle:Notes:note.html.twig'  with {note:note}  %}
+            {% endfor %}
+        </dl>
+        <a href='{{path('notes_index') }}' class='small c-3' >{{'route.notes_index.title' | trans}}</a>
+        </div>
+    </div>
+</div>
+{% endset %}
+
+{% set template %}<div id='popover-notes' class='popover popover-notes' role='tooltip'><div class='popover-arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>{% endset %}
+
+<button class="btn c-5 bg-transparent btn-notes btn-circle btn-lg" data-template="{{template}}" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="{{html | raw}}">
+    <i class="fa fa-pencil"></i>
+    {{ counter_me('notes', notes | length, 'warning') }}
+  {#   <span id="notes-count" class="label label-pill label-warning">{{notes | length}}</span> #}
+</button>

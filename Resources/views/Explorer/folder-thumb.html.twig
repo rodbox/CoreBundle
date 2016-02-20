@@ -1,0 +1,9 @@
+<div class="folder-thumb">
+{% for folder in folders %}
+{{ explorer_me(folder,src,folder) }}
+{% endfor %}
+{% for file in files %}
+<div class="explorer-thumb">
+    {{ editor_me(file,src,folder) }}
+</div>
+{% endfor %}</div>

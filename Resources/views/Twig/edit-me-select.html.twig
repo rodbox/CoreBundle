@@ -1,0 +1,25 @@
+<div id="{{idInput}}_group" class="edit_me_group">
+    <a id="{{idInput}}_value" href="#{{idInput}}_group" class="btn-edit-me-toggle edit_me_value">
+        <span class="input-value">
+            <ul>
+                {% for itemValue in value %}
+                    <li>{{value}}</li>
+                {% endfor %}
+            </ul>
+        </span>
+    <span class="i-edit-me"><i class="fa fa-pencil"></i></span>
+    </a>
+    <div class="input-group edit_me_input">
+
+    <select id="{{idInput}}" name="{{name}}" class="selectpicker c-select {{class}} form-control" {% if multiple %}multiple{% endif %}>
+        {% for itemValue in value %}
+            <option value="{{value}}">{{value}}</option>
+        {% endfor %}
+    </select>
+    <span class="input-group-btn">
+        <a  href="{{path('edit_me',{id:id,entityName:entity,field:field}) }}" data-src="#{{idInput}}" data-target="#{{idInput}}_value" class="btn btn-secondary btn-edit-me" data-callback="setEditMe"> <i class="fa fa-floppy-o"></i></a>
+    </span>
+    <div class="clearfix"></div>
+    <a href="#" class="btn-edit-me-toggle small-2 block">annuler</a>
+    </div>
+</div>

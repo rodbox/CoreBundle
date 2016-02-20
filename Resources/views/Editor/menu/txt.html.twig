@@ -1,0 +1,14 @@
+{% extends 'RBCoreBundle:Editor:menu/default.html.twig'  %}
+{% block editorForce -%}
+    <li class="nav-item">
+       <a href="#" class="nav-link btn-clip" data-clipboard-target="#{{id}}" title="copied" ><i class="fa fa-clipboard"></i></a>
+    </li>
+    <form class="form-inline pull-right">
+        <div class="input-group">
+              <input type="text" class="form-control" name="name">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="fa fa-floppy-o"></i></button>
+              </span>
+            </div>
+    </form>
+{% endblock %}

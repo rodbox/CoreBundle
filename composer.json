@@ -1,0 +1,21 @@
+{
+    "name": "rodbox/rodboxcore",
+    "version": "0.1",
+    "description": "core pour RB en version Alpha",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "keywords": ["rodbox","core","symfony"],
+    "homepage": "https://github.com/rodbox/corebundle",
+    "require": {
+        "symfony/symfony": "3.0.*"
+    },
+    "authors": [
+        {
+            "name": "Jacquemin Rodolphe",
+            "email": "jacquemin.rodolphe@hotmail.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "RB\\CoreBundle\\": "" }
+    }
+}

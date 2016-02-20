@@ -1,0 +1,57 @@
+{% extends app.request.isxmlhttprequest ? '::base.html.twig' : 'RBFrontBundle::index.html.twig' %}
+
+{% block title %}{% endblock %}
+{% block bodyClass %}{% endblock %}
+
+
+{% block body %}
+    <form action="{{path('upload_exec') }}" id="{{id | default('upload-default')}}" data-index="{{index | default('/')}}" class="plupload-form" data-dest="{{dest}}" data-callback="upload_file" data-filter="{{filter}}">
+    <div class="input-group image-preview m-c-t p-c-t">
+        <input placeholder="" type="text" class="form-control image-preview-filename" disabled="disabled">
+        <!-- don't give a name === doesn't send on POST/GET -->
+        <span class="input-group-btn">
+            <!-- image-preview-clear button -->
+            <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <i class="fa fa-remove"></i> {{"action.clear" | trans}} </button>
+            <!-- image-preview-input -->
+            <div class="btn btn-default image-preview-input"> <i class="fa fa-folder-o"></i> <span class="image-preview-input-title">{{"action.browse" | trans}}</span>
+            <input type="file" accept="image/png, image/jpeg, image/gif" class="plupload-browse" name="input-file-preview"/>
+            <!-- rename it -->
+           
+        </div>
+         {{ form_helper_addon('label.filter.'~filter) }}
+        {# <button type="button" class="btn btn-default"> {{"action.upload" | trans}}</button> #}
+    </span> </div>
+    <!-- /input-group image-preview [TO HERE]-->
+    <br />
+    {# <!-- Drop Zone -->
+    <div class="upload-drop-zone" id="drop-zone"> {{"action.drag_file" | trans}} </div>
+    <br />
+    <div id="file-title"></div>
+    <!-- Progress Bar -->
+<progress id="file-progress" class="progress" value="0" max="100">0%</progress>
+<br /> #}
+<!-- Upload Finished -->
+<!-- BEGIN NAVTABS : title  -->
+<ul class="nav nav-tabs" id="upload-files">
+    <li class="nav-item ">
+        <a class="nav-link active" data-toggle="tab" href="#upload-files-tab-1" aria-expanded="true">{{"label.upload_wait" | trans}}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#upload-files-tab-2" aria-expanded="false">{{"label.history" | trans}} </a>
+    </li>
+</ul>
+<!-- END NAVTABS : title  -->
+<!-- BEGIN TABSCONTENT  -->
+<div class="tab-content">
+    <div id="upload-files-tab-1" class="tab-pane active">
+    <div id="file-wait" class="list-group plupload-list"></div>
+    </div>
+    <div id="upload-files-tab-2" class="tab-pane">
+    <div id="file-history" class="list-group plupload-list-history"></div>
+    </div>
+    
+</div>
+<!-- END TABSCONTENT  -->
+
+</div></form>
+{% endblock %}

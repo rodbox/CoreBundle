@@ -1,0 +1,65 @@
+services:
+    rb.scan:
+        class: RB\CoreBundle\Services\RBScanService
+        arguments: ["@service_container"]
+
+    rb.templates:
+        class: RB\CoreBundle\Services\RBTemplatesService
+        arguments: ["@service_container"]
+
+    rb.helper.service:
+        class: RB\CoreBundle\Services\RBHelperService
+        arguments: ["@service_container","@twig"]
+
+    rb.counter:
+        class: RB\CoreBundle\Services\RBCounterService
+        arguments: ["@service_container"]
+
+    rb.editor:
+        class: RB\CoreBundle\Services\RBEditorService
+        arguments: ["@service_container","@twig"]
+
+    rb.image:
+        class: RB\CoreBundle\Services\RBImageService
+        arguments: ["@service_container","@twig"]
+
+    rb.helper.extension:
+        class: RB\CoreBundle\Twig\RBHelperExtension
+        arguments: ["@service_container","@twig"]
+        tags:
+            - { name: twig.extension }
+    rb.core.extension:
+        class: RB\CoreBundle\Twig\RBCoreExtension
+        arguments: ["@service_container","@twig","@session","@router"]
+        tags:
+            - { name: twig.extension }
+
+    rb.crud.extension:
+        class: RB\CoreBundle\Twig\RBCrudExtension
+        arguments: ["@service_container","@twig"]
+        tags:
+            - { name: twig.extension }
+
+    rb.upload.extension:
+        class: RB\CoreBundle\Twig\RBUploadExtension
+        arguments: ["@service_container","@twig"]
+        tags:
+            - { name: twig.extension }
+
+    rb.proto.extension:
+        class: RB\CoreBundle\Twig\RBProtoExtension
+        arguments: ["@service_container","@twig"]
+        tags:
+            - { name: twig.extension }
+
+    rb.bootstrap.extension:
+        class: RB\CoreBundle\Twig\RBBootstrapExtension
+        arguments: ["@service_container","@twig"]
+        tags:
+            - { name: twig.extension }
+
+    rb.explorer.extension:
+        class: RB\CoreBundle\Twig\RBExplorerExtension
+        arguments: ["@service_container","@twig"]
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,3 @@
+{% set sessionUi = app.session.get('ui') %}
+
+<label class="btn btn-default {% if sessionUi[context] | default('') == value %}active{% endif %}" ><input type="{{type | default('checkbox')}}" id="context-{{context}}-{{value}}" name="context-{{context}}" value="{{value}}" class="context-me" autocomplete="off" data-context="{{context}}" {% if sessionUi[context] | default('') == value %}checked="checked"{% endif %} > {{content | raw}}</label>

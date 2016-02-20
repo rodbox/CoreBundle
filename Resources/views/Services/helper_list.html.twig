@@ -1,0 +1,16 @@
+{% set content  %}{% spaceless %}
+        <table class="table w-100 table-sm">
+        <tbody>
+            {% for key, item in list %}
+                <tr>
+                    <th class="w-15">{{key}} : </th>
+                    <td  class="w-85">{{item}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  {% endspaceless %}{% endset  %}
+
+{% set template %}<div  class='popover {{popover.color | default('popover-inverse')}} {{popover.size | default('popover-md')}} {{popover.pad | default('popover-pad-3')}}' role='tooltip'><div class='popover-arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>{% endset %}
+
+<button class="btn btn-helper hl-helper btn-sm" data-placement="top" data-template="{{template}}" data-content="{{content | raw | replace({'"':'\''}) }}"><i class="fa fa-question-circle"></i></button>

@@ -1,0 +1,1 @@
+<iframe src="{{pdf}}" class="w-100 page"></iframe>

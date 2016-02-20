@@ -1,0 +1,128 @@
+<?php
+
+namespace RB\CoreBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+class CoreController extends Controller
+{
+        /**
+        * @Route("/c",name="input_me")
+        */
+        public function input_meAction(Request $request)
+            {
+                $action = $request->request->get("action");
+
+                $pos    = strpos($action, "fix");
+
+                if($pos === 0){
+                    // $msg = "status fix - ok";
+                    /* SERVICE : rb.fix */
+                    $msg      = $this->get('rb.fix')->setStatus($action);
+                    $callback = 'setFixStatus';
+                    /* END SERVICE :  rb.fix */
+                }
+                else{
+                    $msg      = "recherche un produit";
+                    $callback = '';
+                }
+
+                $list = [];
+
+                $r    = [
+                    'infotype' => 'success',
+                    'msg'      => $msg,
+                    'cb'       => $callback,
+                    'app'      => $this->renderView('::base.html.twig', [
+                        'list' => $list
+                    ])
+                ];
+
+                return new JsonResponse($r);
+            }
+
+
+
+        /**
+        * @Route("/ct",name="ct")
+        */
+        public function ctAction(Request $request)
+        {
+
+            /* SERVICE : rb.counter */
+            $counter = $this->get('rb.counter');
+            /* END SERVICE :  rb.counter */
+
+            $list = [];
+            $r    = [
+                'infotype' => 'success',
+                'msg'      => 'action : ok',
+                'callback' => 'setCounter',
+                'counter'  => $counter->getCounter(),
+                'app'      => $this->renderView('::base.html.twig', [
+                'list'     => $list
+                ])
+            ];
+            return new JsonResponse($r);
+        }
+
+
+    /**
+    * @Route("/data", name="data")
+    * charge toute les données d'une entité
+    */
+    public function dataAction(Request $request)
+        {
+            $entityName = $request->request->get("entityName");
+            $field = "name";
+
+
+            $em         = $this->getDoctrine()->getManager();
+            $entities   = $em
+              ->getRepository($entityName)
+              ->findAll();
+
+            $list = [];
+            $r    = [
+                'infotype' => 'success',
+                'cb'       => 'setDataOption',
+                'msg'      => 'action : ok',
+                'list'     => $entities,
+                'app'      => $this->renderView(':list:option.html.twig', [
+                    'field'    => $field,
+                    'list'     => $entities
+                ])
+            ];
+            return new JsonResponse($r);
+    }
+
+    /**
+    * @Route("/session",name="session", options={"expose"=true})
+    */
+    public function sessionAction(Request $request)
+    {
+        $all     = $request->query->all();
+
+        $context[$all['key']] = ($all['checked']=="true")?$all['value']:false;
+
+        $session = $request->getSession();
+
+        $ui      = $session->get('ui',[]);
+        $uiMerge = array_merge($ui,$context);
+
+        $session->set('ui',$uiMerge);
+
+        $r = array(
+            'infotype' => 'success',
+            'msg'      => 'ok',
+            'session'  => $session->get('ui')
+        );
+
+        return new JsonResponse($r);
+    }
+
+}

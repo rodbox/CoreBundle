@@ -1,0 +1,5 @@
+{% set rand %}popover-{{random()}}{% endset %}
+{% set template %}<div id='{{popover.id | default(rand)}}' class='popover {{popover.color | default('popover-transparent')}} {{popover.size | default('popover-sm')}} {{popover.pad | default('popover-pad')}}' role='tooltip'><div class='popover-arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>{% endset %}
+<button data-content="{{content | replace({'"':'\''})}}" type="button" data-html="true" data-placement="{{popover.placement | default('bottom')}}" data-toggle="popover"  data-template="{{template}}" class="btn btn-circle {{popover.class |default('btn-transparent')}}" data-original-title="" title="" data-callback="{{popover.callback | default('btn_popover_default')}}">
+  <i class="fa fa-cog"></i>
+</button>

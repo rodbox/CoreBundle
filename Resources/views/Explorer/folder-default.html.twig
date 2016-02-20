@@ -1,0 +1,8 @@
+<ul class="tree">
+{% for folder in folders %}
+    <li>{{ explorer_me(folder,src,folder) }}</li>
+{% endfor %}
+{% for file in files %}
+    <li>{{ editor_me(file,src,folder) }}</li>
+{% endfor %}
+</ul>

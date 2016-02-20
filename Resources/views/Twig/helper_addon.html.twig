@@ -1,0 +1,4 @@
+{% set helper %}helper.{{index}}{% endset %}
+{% set helperID %}helper_{{index}}{% endset %}
+<a href="#" id="{{helperID}}" class="input-group-addon rb-helper" data-toggle="popover" data-placement="top" data-content="<strong>{{index | trans}}</strong><hr/>{{helper|trans | raw}}" data-html="true" data-trigger="hover" data-title="" title="" ><i class="fa fa-question-circle"></i>
+</a>

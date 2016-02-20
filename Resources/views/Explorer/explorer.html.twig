@@ -1,0 +1,7 @@
+{% extends app.request.isxmlhttprequest ? '::base.html.twig' : 'RBShopBundle::index.html.twig' %}
+
+{% block title %}RBCoreBundle:Explorer:explorer{% endblock %}
+
+{% block body %}
+    {{ explorer_src('media') }}
+{% endblock %}

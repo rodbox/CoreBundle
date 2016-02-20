@@ -1,0 +1,18 @@
+<div class="task-config-btn btn-group">
+    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-xs default">
+        <i class="fa fa-angle-down"></i>
+    </a>
+    <div class="dropdown-menu pull-left">
+        {# <a href="{{ path('fix_new') }}" class="dropdown-item">Create</a> #}
+        <a href="#" data-batch="{{target}}" class="dropdown-item toggle-batch-all">{{"action.select_all" | trans}}
+        </a>
+        <div class="dropdown-item">
+            <div class="input-group">
+                <input type="text" id="play-select{{suffix}}" class="form-control" name="play-select">
+                <span class="input-group-btn">
+                    <button class="btn btn-default btn-play-select" data-src="#play-select{{suffix}}" data-suffix="{{suffix}}" data-target="{{target}}" type="button"><i class="fa fa-play"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

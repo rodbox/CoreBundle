@@ -1,0 +1,7 @@
+<div class="material-switch">
+<input type="checkbox" title="{{"label."~field | trans}}" {% if value == 1 %}checked{% endif %} {% if disabled | default(false) %}disabled=""{% endif %} data-toggle="toggle" value="1" name="{{name}}" id="{{id}}" class="check-setter-me" data-enityName="{{entity}}" data-url="{{ path('edit_me', {id:id, entityName:entity, field:field, }) }}" data-on="{{on | default('on')}}" data-off="{{off | default('off')}}"  /><label for="{{id}}"  title="{{"label."~field | trans}}" class="forcheckbox label-success"></label>
+
+{#
+                            <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess" class="label-success"></label> #}
+                        </div>

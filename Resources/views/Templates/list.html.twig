@@ -1,0 +1,44 @@
+{% extends "RBShopBundle::index.html.twig" %}
+
+{% block title %}RBCoreBundle:Templates:list{% endblock %}
+
+{% block body %}
+<form action="{{path("templates_create")}}" class="form-live form-inline">
+    <select id="file" name="file" class="c-select form-control" >
+        <option disabled selected>{{"label.file"|trans}}</option>
+        {% for item in list['files'] %}
+            <option value="{{item}}">{{item}}</option>
+        {% endfor %}
+    </select>
+    <select id="folder" name="folder" class="c-select form-control">
+        <option disabled selected>{{"label.folder"|trans}}</option>
+        {% for item in list['folders'] %}
+            <option value="{{item}}">{{item}}</option>
+        {% endfor %}
+    </select>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="c-input c-radio ">
+            <input type="radio" name="src" value="file" id="option1" autocomplete="off" checked />
+            <span class="c-indicator"></span>
+            {{"label.file"|trans}}
+        </label>
+        <label class="c-input c-radio">
+            <input type="radio" name="src" value="folder" id="option2" autocomplete="off" />
+            <span class="c-indicator"></span>
+            {{"label.dir"|trans}}
+        </label>
+    </div>
+    <select id="dir" name="dir" class="c-select form-control"  required="required" >
+        <option disabled selected>{{"label.dir"|trans}}</option>
+        <option value="dir_users">dir_users</option>
+        <option value="dir_media">dir_media</option>
+        <option value="dir_upload">dir_upload</option>
+
+    </select>
+    <input type="text" name="target" class="form-control"  placeholder="target" />
+    <input type="text" name="name" class="form-control" placeholder="new filename"   required="required" />
+    <button type="submit" class="btn btn-primary">{{"action.create"|trans}}</button>
+</form>
+
+
+{% endblock %}

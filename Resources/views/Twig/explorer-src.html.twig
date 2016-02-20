@@ -1,0 +1,33 @@
+
+<div class="input-group">
+    <select id="{{id}}_explorer_src" name="src" data-target="#{{id}}_explorer_src_container" data-url="{{path('folder') }}" class="form-control c-select on-change" data-callback="getFolder" data-view="default">
+        {% for item in list %}
+            <option value="{{item}}" {% if src == item %}selected="selected"{% endif %}>{{item}}</option>
+        {% endfor %}
+    </select>
+
+    <div class="input-group-btn">
+        <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+            {% for view in views %}
+            <li class="dropdown-item">{# <a href="#" class="btn-cb" data-target="{{id}}_explorer_src" data-callback="setExplorerView" data-value="{{view}}">{{ view }}</a> #}
+                {{ context_me_radio('V',view, view) }}
+            </li>
+            {% endfor %}
+        </ul>
+      </div><!-- /btn-group -->
+    </div>
+</div>
+
+
+<div id="{{id}}_explorer_src_container">
+    <ul  class="tree tree-src">
+    {% for folder in folders %}
+        <li>{{ explorer_me(folder,src) }}</li>
+    {% endfor %}
+    {% for file in files %}
+        <li>{{ explorer_me(file,src) }}</li>
+    {% endfor %}
+    </ul>
+</div>

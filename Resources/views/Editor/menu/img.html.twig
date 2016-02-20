@@ -1,0 +1,50 @@
+{% extends 'RBCoreBundle:Editor:menu/default.html.twig'  %}
+{% block editorForce -%}
+    <li class="nav-item">
+        <div class="btn-group">
+            <button type="button" class="btn btn-crop-init" data-callback="getCrop" data-target="#{{id}}"><i class="fa fa-crop"></i></button>
+        </div>
+        <div class="btn-group">
+            {% for size in cropper.size %}
+            <button type="button" class="btn btn-crop" data-option="aspectRatio" data-value="{{size[0] / size[1]}}" data-w="{{size[0]}}" data-h="{{size[1]}}" data-target="#suffix_{{ id }}" data-callback="setSizePreview">{{ size[0] }}x{{ size[1] }}</button>
+            {% endfor %}
+             <button type="button" class="btn btn-crop" data-option="aspectRatio" data-callback="setSizePreview" data-value="1.333333" >4/3</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-crop" data-option="rotate"  data-value="-1"><i class="fa fa-undo"></i></button>
+          <button type="button" class="btn btn-crop" data-option="rotate"  data-value="1"><i class="fa fa-repeat"></i></button>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-crop" data-option="viewMode" type="button" data-value="1" data-callback="setName">1</button>
+          <button class="btn btn-crop" data-option="viewMode" type="button" data-value="2" data-callback="setName">2</button>
+        </div>
+    </li>
+    <form id="form_{{ id }}" action="{{path('editor_save',{ext:ext}) }}" class="form-editor form-inline pull-right">
+        <input type="hidden" class="form-control img_src" name="src" value="{{ src }}" />
+        <input type="hidden" class="form-control img_ext" name="ext" value="{{ ext }}" />
+        <input type="hidden" class="form-control img_folder" name="folder" value="{{ folder }}" />
+
+
+
+        <input type="hidden" class="form-control editor" name="editor" value="{{ editor }}" />
+        <div class="input-group">
+            <input id="file_{{ id }}" type="text" class="form-control img_file" name="file" value="{{ file }}" />
+        </div>
+        <div class="input-group">
+            <input id="suffix_{{ id }}" type="text" class="form-control img_suffix" name="suffix" value="" />
+            <span class="input-group-btn">
+                <button  id="cropValid" type="submit" class="btn btn-default" data-src="#form_{{ id }}"><i class="fa fa-floppy-o"></i></button>
+            </span>
+        </div>
+    </form>
+{% endblock %}
+{% block editorContent %}
+    {% set bottomPos = 0  %}
+
+    {% for size in cropper.size %}
+    <div class="preview" style="width:{{size[0]}}px; height:{{size[1]}}px; bottom:{{bottomPos}}"></div>
+    {% set bottomPos = bottomPos + size[1] + 10  %}
+    {% endfor %}
+
+
+{% endblock %}
