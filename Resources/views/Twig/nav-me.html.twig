@@ -1,11 +1,12 @@
 <form action="#" class="form-inline pull-xs-right m-c p-c">
 	<select name="nav_me" id="nav_me" class="select2 form-control bg-transparent">
+        <option></option>
 		{% for route in routes %}
 			{% set routeTitle %}route.{{route.name}}.title{% endset %}
 		    <option value="{{route.path}}">{{routeTitle|trans}} {{route.reqStr}}</option>
 		{% endfor %}
 	</select>
 	<span class="nav_me_param">
-		
+
 	</span>
 </form>
