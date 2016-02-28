@@ -7,7 +7,7 @@
     "keywords": ["rodbox","core","symfony"],
     "homepage": "https://github.com/rodbox/corebundle",
     "require": {
-        "symfony/symfony": "3.0.*"
+        "symfony/symfony": ">=3.0.*"
     },
     "authors": [
         {
