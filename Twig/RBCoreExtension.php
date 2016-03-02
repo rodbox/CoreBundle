@@ -158,6 +158,20 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
+    /**
+     * [curl_me description]
+     * @return [type] [description]
+     */
+    public function curl_me($target="#product_img",$dir="products",$folder="/123")
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:curl-me.html.twig',[
+            'target' => $target,
+            'dir'    => $dir,
+            'folder' => $folder
+        ]);
+    }
+
+
     public function getName(){
         return 'rb_core_extension';
     }
@@ -178,7 +192,8 @@ class RBCoreExtension  extends \Twig_Extension{
             "nav_me"              => new \Twig_Function_Method($this, 'nav_me',               ['is_safe' => ['html']]),
             "pane_me"             => new \Twig_Function_Method($this, 'pane_me',              ['is_safe' => ['html']]),
             "pane_me_lazy"        => new \Twig_Function_Method($this, 'pane_me_lazy',         ['is_safe' => ['html']]),
-            "crop_me"             => new \Twig_Function_Method($this, 'crop_me',              ['is_safe' => ['html']])
+            "crop_me"             => new \Twig_Function_Method($this, 'crop_me',              ['is_safe' => ['html']]),
+            "curl_me"             => new \Twig_Function_Method($this, 'curl_me',              ['is_safe' => ['html']])
         );
     }
 }

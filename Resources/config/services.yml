@@ -23,6 +23,10 @@ services:
         class: RB\CoreBundle\Services\RBImageService
         arguments: ["@service_container","@twig"]
 
+    rb.curl:
+        class: RB\CoreBundle\Services\RBCurlService
+        arguments: ["@service_container"]
+
     rb.helper.extension:
         class: RB\CoreBundle\Twig\RBHelperExtension
         arguments: ["@service_container","@twig"]

@@ -125,4 +125,48 @@ class CoreController extends Controller
         return new JsonResponse($r);
     }
 
+    /**
+    * @Route("/curl",name="rb_curl")
+    */
+    public function curlAction(Request $request){
+        $url          = $request->request->get("url");
+
+        $dir          = $request->request->get("dir");
+        $folder       = $request->request->get("folder");
+
+        $dir_dest = $this->container->getParameter('dir_'.$dir);
+        $web_dest = $this->container->getParameter('web_'.$dir);
+        $info         = parse_url($url);
+
+        $path         = explode('.',$info['path']);
+        $ext          = end($path);
+        // $extension    = $path[$ext];
+        $file         = $dir_dest.'/'.$folder.'.'.$ext;
+        $web_file     = $web_dest.'/'.$folder.'.'.$ext;
+
+        $curl         = $this->get('rb.curl')->save($url, $file);
+
+
+        if($curl){
+            $r            = [
+                'infotype'=> 'success',
+                'msg'     => 'curl : ok',
+                'url'     => $web_file,
+                'img'    => $this->renderView('RBCoreBundle:Twig:img.html.twig',[
+                    "url"      => $web_file,
+                    "format"   => "A",
+                    "cssClass" => ""
+                ])
+            ];
+        }
+        else{
+            $r            = [
+                'infotype'=> 'error',
+                'msg'     => 'problème de chargement'
+            ];
+        }
+
+        return new JsonResponse($r);
+    }
+
 }
