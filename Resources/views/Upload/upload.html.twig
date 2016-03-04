@@ -16,9 +16,10 @@
             <div class="btn btn-default image-preview-input"> <i class="fa fa-folder-o"></i> <span class="image-preview-input-title">{{"action.browse" | trans}}</span>
             <input type="file" accept="image/png, image/jpeg, image/gif" class="plupload-browse" name="input-file-preview"/>
             <!-- rename it -->
-           
+
         </div>
-         {{ form_helper_addon('label.filter.'~filter) }}
+         {{ form_helper('label.filter.'~filter) }}
+
         {# <button type="button" class="btn btn-default"> {{"action.upload" | trans}}</button> #}
     </span> </div>
     <!-- /input-group image-preview [TO HERE]-->
@@ -49,7 +50,7 @@
     <div id="upload-files-tab-2" class="tab-pane">
     <div id="file-history" class="list-group plupload-list-history"></div>
     </div>
-    
+
 </div>
 <!-- END TABSCONTENT  -->
 

@@ -125,6 +125,32 @@ class CoreController extends Controller
         return new JsonResponse($r);
     }
 
+
+    /**
+    * @Route("/session_view/{route}/{view}",name="session_view")
+    */
+    public function sessionViewAction($route,$view,Request $request)
+    {
+        $session      = $request->getSession();
+        $view         = $session->get('view',[]);
+        $view[$route] = $view;
+
+        // $viewMerge    = array_merge($view, $context);
+        $session->set('view', $view);
+
+        $list    = [];
+
+        $r       = [
+            'infotype' => 'success',
+            'msg'      => 'action : ok',
+            'app'      => $this->renderView('::base.html.twig', [
+            'list' => $list
+            ])
+        ];
+        return new JsonResponse($r);
+    }
+
+
     /**
     * @Route("/curl",name="rb_curl")
     */

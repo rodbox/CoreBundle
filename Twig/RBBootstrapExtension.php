@@ -20,11 +20,22 @@ class RBBootstrapExtension  extends \Twig_Extension{
      * @param  [type] $content     [description]
      * @return [type]              [description]
      */
-    public function btn_popover($popoverMeta,$content)
+    public function btn_popover($btnContent,$popoverContent,$btnClass="")
     {
         echo $this->twig->render('RBCoreBundle:Twig:btn-popover.html.twig',[
-            'popover'  => $popoverMeta,
-            'content'  => $content
+            'btnContent'     => $btnContent,
+            'btnClass'       => $btnClass,
+            'popoverContent' => $popoverContent
+        ]);
+    }
+
+
+    public function btn_popover_live($btnContent,$url,$btnClass="")
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:btn-popover-live.html.twig',[
+            'url'        => $url,
+            'btnClass'   => $btnClass,
+            'btnContent' => $btnContent
         ]);
     }
 
@@ -36,7 +47,8 @@ class RBBootstrapExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            "btn_popover"   => new \Twig_Function_Method($this, 'btn_popover',            ['is_safe' => ['html']])
+            "btn_popover"      => new \Twig_Function_Method($this, 'btn_popover',            ['is_safe' => ['html']]),
+            "btn_popover_live" => new \Twig_Function_Method($this, 'btn_popover_live',       ['is_safe' => ['html']])
         );
     }
 }

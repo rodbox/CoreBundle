@@ -76,6 +76,15 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
+    public function view_me($route = 'default')
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:view-me.html.twig',[
+            'route' => $route
+        ]);
+    }
+
+
+
     public function counter_me($id='', $value=0, $color='default')
     {
         echo $this->twig->render('RBCoreBundle:Twig:counter-me.html.twig',[
@@ -193,7 +202,8 @@ class RBCoreExtension  extends \Twig_Extension{
             "pane_me"             => new \Twig_Function_Method($this, 'pane_me',              ['is_safe' => ['html']]),
             "pane_me_lazy"        => new \Twig_Function_Method($this, 'pane_me_lazy',         ['is_safe' => ['html']]),
             "crop_me"             => new \Twig_Function_Method($this, 'crop_me',              ['is_safe' => ['html']]),
-            "curl_me"             => new \Twig_Function_Method($this, 'curl_me',              ['is_safe' => ['html']])
+            "curl_me"             => new \Twig_Function_Method($this, 'curl_me',              ['is_safe' => ['html']]),
+            "view_me"             => new \Twig_Function_Method($this, 'view_me',              ['is_safe' => ['html']])
         );
     }
 }
