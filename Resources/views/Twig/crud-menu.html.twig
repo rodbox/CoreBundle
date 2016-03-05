@@ -1,14 +1,12 @@
 <!-- BEGIN DROPDOWN HOVER  -->
-<div class="btn-group">
+<div class="btn-group crud-menu">
     <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn ">
     <i class="fa fa-angle-down"></i>
     </a>
     <div class="dropdown-menu pull-right">
-        <a href="{{path(entitySuffix~'_new') }}" class="dropdown-item"><i class="fa fa-plus"></i> {{'action.create'|trans}}</a>
+        <a href="{{path(entitySuffix~'_new') }}" class="dropdown-item " title="{{'route.'~entitySuffix~'_new.title'|trans}}"><i class="fa fa-plus"></i> {{'action.create'|trans}}</a>
         {# <div class="dropdown-divider"></div> #}
-        <a href="#" data-batch="{{target}}" class="dropdown-item toggle-batch-all"><i class="fa fa-check-square-o"></i>
- {{"action.select_all" | trans}}
-        </a>
+        <a href="#" data-batch="{{target}}" class="dropdown-item toggle-batch-all"><i class="fa fa-check-square-o"></i> {{"action.select_all"|trans}}</a>
         {# <div class="dropdown-divider"></div> #}
         <div class="dropdown-item">
             <div class="input-group">
