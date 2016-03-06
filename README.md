@@ -22,4 +22,8 @@ rb_core:
         $bundles = [
            ...
             new RB\CoreBundle\RBCoreBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 ```
+
+configuration knpPaginator :
+[https://github.com/KnpLabs/KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
