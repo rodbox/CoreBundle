@@ -1,6 +1,6 @@
 {% set rand %}popover-{{random()}}{% endset %}
 {% set template %}<div id='{{rand}}' class='popover {{color|default('default')}}'></div><h3 class='popover-title'></h3><div class='popover-content'>popoverContent</div></div>{% endset %}
-<button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="top" data-content="{{popoverContent}}" data-html="true"
+<a href="#" class="{{btnClass|default('btn btn-secondary')}}" data-container="body" data-toggle="popover" data-placement="top" data-content="{{popoverContent}}" data-html="true"
 data-original-title="" title="">
   {{btnContent}}
-</button>
+</a>

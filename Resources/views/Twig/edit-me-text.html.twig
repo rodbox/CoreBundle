@@ -1,12 +1,27 @@
-<div id="{{idInput}}_group" class="edit_me_group">
+{# <div id="{{idInput}}_group" class="edit_me_group">
     <a id="{{idInput}}_value" href="#{{idInput}}_group" class="btn-edit-me-toggle edit_me_value"><span class="input-value">{{value}}</span> <span class="i-edit-me"><i class="fa fa-pencil"></i></span></a>
     <div class="input-group edit_me_input">
          <span class="input-group-btn">
-            <a  href="{{path('edit_me',{id:id,entityName:entity,field:field}) }}" data-src="#{{idInput}}" data-target="#{{idInput}}_value" class="btn btn-secondary btn-edit-me" data-callback="setEditMe"> <i class="fa fa-floppy-o"></i></a>
+            <a  href="{{ path('edit_me',{id:id,entityName:entity,field:field}) }}" data-src="#{{idInput}}" data-target="#{{idInput}}_value" class="btn btn-secondary btn-edit-me" data-callback="setEditMe"> <i class="fa fa-floppy-o"></i></a>
         </span>
         <input id="{{idInput}}" type="text" value="{{value}}" name="{{name}}" class="form-control" />
         <span class="input-group-btn">
             <a href="#" class="btn-edit-me-toggle btn btn-secondary"><i class="fa fa-remove"></i></a>
         </span>
     </div>
-</div>
+</div> #}
+{% set contentPopover %}
+<form action='{{ path('edit_me',{id:id,entityName:entity,field:field}) }}' class='form-inline form-live editableform' data-callback='setEditMe'>
+    <div class='control-group input-group'>
+            <input name='value' type='text' class='form-control ' autofocus='yes' value='{{value}}' />
+            <div class='input-group-btn'>
+                <button class='btn btn-primary btn-sm editable-submit' type='submit'><i class='fa fa-check'></i></button>
+                <button class='btn btn-default btn-sm editable-cancel' type='button'><i class='fa fa-remove'></i></button>
+            </div>
+        <div class='editable-error-block help-block' style='display: none;'>
+        </div>
+    </div>
+</form>
+{% endset %}
+{% set btnContent %}<span class='i-edit-me'><i class='fa fa-pencil'></i></span>{{value}}{% endset %}
+{{ btn_popover(btnContent, contentPopover, ' ') }}

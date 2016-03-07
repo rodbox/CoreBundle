@@ -26,4 +26,19 @@ rb_core:
 ```
 
 configuration knpPaginator :
+
 [https://github.com/KnpLabs/KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
+
+Si a l'update de composer :
+```
+[RuntimeException]
+  Failed to execute git status --porcelain --untracked-files=no
+  xcrun: error: invalid active developer path (/Library/Developer/CommandLineTool
+  s), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+```
+
+installer :
+
+```
+sudo xcode-select --install
+```
