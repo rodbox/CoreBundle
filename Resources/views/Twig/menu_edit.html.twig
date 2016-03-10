@@ -3,14 +3,15 @@
     <!-- BEGIN DROPDOWN HOVER  -->
     {% if delete_form %}
     <div class="btn-group pull-right">
-        <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-sm ">
+        <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-inverse btn-sm ">
         <i class="fa fa-cog"></i> <i class="fa fa-angle-down"></i>
         </a>
         <div class="dropdown-menu pull-right">
-            <a class=" nav-back dropdown-item" href="{{path(prefix~'_index') }}"><i class="fa fa-long-arrow-left "></i> {{ 'route.'~prefix~'_index.title'|trans }}</a>
+            {% set routeTitle %}route.{{prefix}}_index.title{% endset %}
+            <a class=" nav-back dropdown-item" href="{{path(prefix~'_index') }}"><i class="fa fa-long-arrow-left "></i> {{ routeTitle|trans }}</a>
             <div class="dropdown-item">
                 {{ form_start(delete_form) }}
-                    <input type="submit" value="Delete" data-msg="{{"ask.product.del"|trans}}" class="dropdown-item">
+                    <input type="submit" value="{{"action.del"|trans}}" data-msg="{{"ask.product.del"|trans}}" class="dropdown-item">
                 {{ form_end(delete_form) }}
                 {# {{ form(delete_form,{attr:{"data-msg":"Souhaitez vous supprimer ce produit ?"}})}} #}
             </div>

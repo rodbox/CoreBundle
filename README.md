@@ -23,11 +23,20 @@ rb_core:
            ...
             new RB\CoreBundle\RBCoreBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 ```
 
 configuration knpPaginator :
 
 [https://github.com/KnpLabs/KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)
+
+configuration knpMarkdown :
+
+[http://github.com/KnpLabs/KnpMarkdownBundle](http://github.com/KnpLabs/KnpMarkdownBundle)
+configuration du service
+```
+php bin/console config:dump-reference knp_markdown
+```
 
 Si a l'update de composer :
 ```
