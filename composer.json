@@ -19,5 +19,6 @@
     ],
     "autoload": {
         "psr-4": { "RB\\CoreBundle\\": "" }
-    }
+    },
+    "minimum-stability": "dev"
 }
