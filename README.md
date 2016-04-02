@@ -26,6 +26,14 @@ rb_core:
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 ```
 
+# Important : créer les fichiers :
+- /app/config/rb_config.yml
+- /app/config/rb_config.yml.dist
+Ils doivent contenir les liens absolue et les urls vers les différents dossier et fichiers de l'application RB.
+
+
+
+
 configuration knpPaginator :
 
 [https://github.com/KnpLabs/KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle)

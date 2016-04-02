@@ -194,5 +194,4 @@ class CoreController extends Controller
 
         return new JsonResponse($r);
     }
-
 }
