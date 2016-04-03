@@ -1,15 +1,19 @@
 {
-    "name": "rodbox/rodboxcore",
+    "name": "rodbox\/rodboxcore",
     "version": "0.1",
     "description": "core pour RB en version Alpha",
     "license": "MIT",
     "type": "symfony-bundle",
-    "keywords": ["rodbox","core","symfony"],
-    "homepage": "https://github.com/rodbox/corebundle",
+    "keywords": [
+        "rodbox",
+        "core",
+        "symfony"
+    ],
+    "homepage": "https:\/\/github.com\/rodbox\/corebundle",
     "require": {
-        "symfony/symfony": "3.*",
-        "knplabs/knp-paginator-bundle": "^2.5.1",
-        "knplabs/knp-markdown-bundle": "~1.3"
+        "symfony\/symfony": "3.*",
+        "knplabs\/knp-paginator-bundle": "^2.5.1",
+        "knplabs\/knp-markdown-bundle": "~1.3"
     },
     "authors": [
         {
@@ -18,7 +22,9 @@
         }
     ],
     "autoload": {
-        "psr-4": { "RB\\CoreBundle\\": "" }
+        "psr-4": {
+            "RB\\CoreBundle\\": ""
+        }
     },
     "minimum-stability": "dev"
 }
