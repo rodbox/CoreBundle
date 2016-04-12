@@ -22,6 +22,7 @@ rb_core:
         $bundles = [
            ...
             new RB\CoreBundle\RBCoreBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 ```

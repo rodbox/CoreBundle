@@ -13,7 +13,8 @@
     "require": {
         "symfony\/symfony": "3.*",
         "knplabs\/knp-paginator-bundle": "^2.5.1",
-        "knplabs\/knp-markdown-bundle": "~1.3"
+        "knplabs\/knp-markdown-bundle": "~1.3",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "authors": [
         {
