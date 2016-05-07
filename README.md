@@ -23,7 +23,9 @@ rb_core:
            ...
             new RB\CoreBundle\RBCoreBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
 ```
 
@@ -46,6 +48,14 @@ configuration du service
 ```
 php bin/console config:dump-reference knp_markdown
 ```
+
+StofDoctrineExtensionsBundle :
+Documentation
+[http://symfony.com/doc/master/bundles/StofDoctrineExtensionsBundle/index.html](http://symfony.com/doc/master/bundles/StofDoctrineExtensionsBundle/index.html)
+[http://atlantic18.github.io/DoctrineExtensions/](http://atlantic18.github.io/DoctrineExtensions/)
+
+tuto d'installation
+[https://www.grafikart.fr/formations/sf2-ecommerce/doctrine-extension](https://www.grafikart.fr/formations/sf2-ecommerce/doctrine-extension)
 
 Si a l'update de composer :
 ```

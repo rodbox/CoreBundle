@@ -16,7 +16,7 @@ class RBProtoExtension  extends \Twig_Extension{
             'proto'  => $proto,
             'target' => $id,
             'title'  => $id,
-            'counter'=>$counter,
+            'counter'=> $counter,
             'data'   => $data
         ]);
     }
