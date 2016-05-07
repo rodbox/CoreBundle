@@ -54,8 +54,11 @@ Documentation
 [http://symfony.com/doc/master/bundles/StofDoctrineExtensionsBundle/index.html](http://symfony.com/doc/master/bundles/StofDoctrineExtensionsBundle/index.html)
 [http://atlantic18.github.io/DoctrineExtensions/](http://atlantic18.github.io/DoctrineExtensions/)
 
+
 tuto d'installation
 [https://www.grafikart.fr/formations/sf2-ecommerce/doctrine-extension](https://www.grafikart.fr/formations/sf2-ecommerce/doctrine-extension)
+
+
 
 Si a l'update de composer :
 ```
