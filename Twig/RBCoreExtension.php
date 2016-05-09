@@ -181,6 +181,12 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
+    public function logo($size='M')
+    {
+        echo '<img href="/img/logo_'.$size.'.png" class="logo-size logo-size-'.$size.'"/>';
+    }
+
+
     public function getName(){
         return 'rb_core_extension';
     }
@@ -203,7 +209,8 @@ class RBCoreExtension  extends \Twig_Extension{
             "pane_me_lazy"        => new \Twig_Function_Method($this, 'pane_me_lazy',         ['is_safe' => ['html']]),
             "crop_me"             => new \Twig_Function_Method($this, 'crop_me',              ['is_safe' => ['html']]),
             "curl_me"             => new \Twig_Function_Method($this, 'curl_me',              ['is_safe' => ['html']]),
-            "view_me"             => new \Twig_Function_Method($this, 'view_me',              ['is_safe' => ['html']])
+            "view_me"             => new \Twig_Function_Method($this, 'view_me',              ['is_safe' => ['html']]),
+            "logo"             => new \Twig_Function_Method($this, 'logo',              ['is_safe' => ['html']])
         );
     }
 }
