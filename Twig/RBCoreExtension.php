@@ -183,7 +183,9 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function logo($size='M')
     {
-        echo '<img href="/img/logo_'.$size.'.png" class="logo-size logo-size-'.$size.'"/>';
+        echo $this->twig->render('RBCoreBundle:Twig:logo.html.twig',[
+            'size'    => $size
+        ]);
     }
 
 
