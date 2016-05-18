@@ -38,6 +38,12 @@ services:
         tags:
             - { name: twig.extension }
 
+    rb.pdf.extension:
+        class: RB\CoreBundle\Twig\RBPdfExtension
+        arguments: ["@service_container","@twig","@session","@router"]
+        tags:
+            - { name: twig.extension }
+
     rb.crud.extension:
         class: RB\CoreBundle\Twig\RBCrudExtension
         arguments: ["@service_container","@twig"]
