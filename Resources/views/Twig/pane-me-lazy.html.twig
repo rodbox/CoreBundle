@@ -1,11 +1,11 @@
 {% set routeTitle %}route.{{route}}.title{% endset %}
 <!-- BEGIN COL : col-md-3 col-xs-6 col-lg-3 col-xs-6  -->
-<div class="col-md-6 col-xs-6 col-lg-3 col-xl-3  ">
-    <div id="{{id}}-pane" data-url={{path(route) }} class="panel panel-me-lazy" >
+
+    <div id="{{id}}-pane" data-url={{path(route) }} class="panel panel-me-lazy {{ class }}" >
   <div class="panel-heading"><strong>{{routeTitle|trans}}</strong>
     {{counter_me(id)}}
     <div class="btn-group btn-group-sm pull-right ">
-  <button id="{{id}}-fullscreen" class="btn btn-cb" data-callback="paneFullscreen" data-target='#{{id}}-pane'><i class="fa fa-arrows-alt"></i></button>
+  {# <button id="{{id}}-fullscreen" class="btn btn-cb" data-callback="paneFullscreen" data-target='#{{id}}-pane'><i class="fa fa-arrows-alt"></i></button> #}
 <button id="{{id}}-refresh" class="btn btn-cb" data-callback="paneRefresh" data-target='#{{id}}-pane'><i class="fa fa-refresh"></i></button></div>
   </div>
   <div id="{{id}}-pane-body" class="panel-body panel-sidebar">
@@ -13,6 +13,6 @@
   <div id="{{id}}-pane-alt" class="panel-content-alt"></div>
   <div class="clearfix"></div>
   <div class="pane-footer text-right"><a href="{{ path(route) }}" class="text-muted ">{{'action.show_all'|trans}}</a></div>
-</div>
+
 </div>
 <!-- END COL : col-md-3 col-xs-6 col-lg-3 col-xs-6  -->
