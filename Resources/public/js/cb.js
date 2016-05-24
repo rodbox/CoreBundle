@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $.cb['core']=        {
+            default:function(){},
             setRule: function(t, e) {
                 $.rule.load(t.data('rule'));
             },
