@@ -61,7 +61,8 @@ class CoreController extends Controller
             $r    = [
                 'infotype' => 'success',
                 'msg'      => 'action : ok',
-                'callback' => 'setCounter',
+                'cb'       => 'setCounter',
+                'cbapp'    => 'core',
                 'counter'  => $counter->getCounter(),
                 'app'      => $this->renderView('::base.html.twig', [
                 'list'     => $list
