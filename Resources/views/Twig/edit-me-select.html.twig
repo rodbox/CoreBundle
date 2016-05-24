@@ -17,7 +17,7 @@
         {% endfor %}
     </select>
     <span class="input-group-btn">
-        <a  href="{{path('edit_me',{id:id,entityName:entity,field:field}) }}" data-src="#{{idInput}}" data-target="#{{idInput}}_value" class="btn btn-secondary btn-edit-me" data-callback="setEditMe"> <i class="fa fa-floppy-o"></i></a>
+        <a  href="{{path('edit_me',{id:id,entityName:entity,field:field}) }}" data-src="#{{idInput}}" data-target="#{{idInput}}_value" class="btn btn-secondary btn-edit-me" data-cb="setEditMe"> <i class="fa fa-floppy-o"></i></a>
     </span>
     <div class="clearfix"></div>
     <a href="#" class="btn-edit-me-toggle small-2 block">annuler</a>

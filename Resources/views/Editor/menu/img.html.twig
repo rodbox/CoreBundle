@@ -2,21 +2,21 @@
 {% block editorForce -%}
     <li class="nav-item">
         <div class="btn-group">
-            <button type="button" class="btn btn-crop-init" data-callback="getCrop" data-target="#{{id}}"><i class="fa fa-crop"></i></button>
+            <button type="button" class="btn btn-crop-init" data-cb="getCrop" data-target="#{{id}}"><i class="fa fa-crop"></i></button>
         </div>
         <div class="btn-group">
             {% for size in cropper.size %}
-            <button type="button" class="btn btn-crop" data-option="aspectRatio" data-value="{{size[0] / size[1]}}" data-w="{{size[0]}}" data-h="{{size[1]}}" data-target="#suffix_{{ id }}" data-callback="setSizePreview">{{ size[0] }}x{{ size[1] }}</button>
+            <button type="button" class="btn btn-crop" data-option="aspectRatio" data-value="{{size[0] / size[1]}}" data-w="{{size[0]}}" data-h="{{size[1]}}" data-target="#suffix_{{ id }}" data-cb="setSizePreview">{{ size[0] }}x{{ size[1] }}</button>
             {% endfor %}
-             <button type="button" class="btn btn-crop" data-option="aspectRatio" data-callback="setSizePreview" data-value="1.333333" >4/3</button>
+             <button type="button" class="btn btn-crop" data-option="aspectRatio" data-cb="setSizePreview" data-value="1.333333" >4/3</button>
         </div>
         <div class="btn-group">
           <button type="button" class="btn btn-crop" data-option="rotate"  data-value="-1"><i class="fa fa-undo"></i></button>
           <button type="button" class="btn btn-crop" data-option="rotate"  data-value="1"><i class="fa fa-repeat"></i></button>
         </div>
         <div class="btn-group">
-          <button class="btn btn-crop" data-option="viewMode" type="button" data-value="1" data-callback="setName">1</button>
-          <button class="btn btn-crop" data-option="viewMode" type="button" data-value="2" data-callback="setName">2</button>
+          <button class="btn btn-crop" data-option="viewMode" type="button" data-value="1" data-cb="setName">1</button>
+          <button class="btn btn-crop" data-option="viewMode" type="button" data-value="2" data-cb="setName">2</button>
         </div>
     </li>
     <form id="form_{{ id }}" action="{{path('editor_save',{ext:ext}) }}" class="form-editor form-inline pull-right">

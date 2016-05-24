@@ -1,7 +1,7 @@
 {% set rand %}popover-{{random()}}{% endset %}
 {% set template %}<div  class='popover popover-{{color|default('secondary')}} popover-live'><h3 class='popover-title'></h3><div id='{{rand}}' class='popover-content'>  </div></div>{% endset %}
 
-{# <a href="{{url}}"  data-content="{{btnContent}}" data-placement="{{popover.placement | default('bottom')}}" data-toggle="popover"  data-template="{{template}}" class="btn {{btnClass | default('btn btn-secondary')}} btn-popover-live" data-original-title="" title="" data-target="#{{rand}} .popover-content" data-callback="{{popover.callback | default('btn_popover_default')}}">{{btnContent}}
+{# <a href="{{url}}"  data-content="{{btnContent}}" data-placement="{{popover.placement | default('bottom')}}" data-toggle="popover"  data-template="{{template}}" class="btn {{btnClass | default('btn btn-secondary')}} btn-popover-live" data-original-title="" title="" data-target="#{{rand}} .popover-content" data-cb="{{popover.callback | default('btn_popover_default')}}">{{btnContent}}
 </a> #}
 
 <a href="{{url}}" class="btn btn-secondary btn-popover-live btn-sm" data-container="body" data-toggle="popover" data-placement="top" data-content=" " data-html="true"

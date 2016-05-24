@@ -2,7 +2,7 @@
     <a id="{{idInput}}_value" href="#{{idInput}}_group" class="btn-edit-me-toggle edit_me_value"><span class="input-value">{{value}}</span> <span class="i-edit-me"><i class="fa fa-pencil"></i></span></a>
     <div class="input-group edit_me_input">
          <span class="input-group-btn">
-            <a  href="{{ path('edit_me',{id:id,entityName:entity,field:field}) }}" data-src="#{{idInput}}" data-target="#{{idInput}}_value" class="btn btn-secondary btn-edit-me" data-callback="setEditMe"> <i class="fa fa-floppy-o"></i></a>
+            <a  href="{{ path('edit_me',{id:id,entityName:entity,field:field}) }}" data-src="#{{idInput}}" data-target="#{{idInput}}_value" class="btn btn-secondary btn-edit-me" data-cb="setEditMe"> <i class="fa fa-floppy-o"></i></a>
         </span>
         <input id="{{idInput}}" type="text" value="{{value}}" name="{{name}}" class="form-control" />
         <span class="input-group-btn">
@@ -11,7 +11,7 @@
     </div>
 </div> #}
 {% set contentPopover %}
-<form action='{{ path('edit_me',{id:id,entityName:entity,field:field}) }}' class='form-inline form-live editableform' data-callback='setEditMe'>
+<form action='{{ path('edit_me',{id:id,entityName:entity,field:field}) }}' class='form-inline form-live editableform' data-cb='setEditMe'>
     <div class='control-group input-group'>
             <input name='value' type='text' class='form-control ' autofocus='yes' value='{{value}}' />
             <div class='input-group-btn'>

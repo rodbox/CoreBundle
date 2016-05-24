@@ -5,7 +5,7 @@
 
 
 {% block body %}
-    <form action="{{path('upload_exec') }}" id="{{id | default('upload-default')}}" data-index="{{index | default('/')}}" class="plupload-form" data-dest="{{dest}}" data-callback="upload_file" data-filter="{{filter}}">
+    <form action="{{path('upload_exec') }}" id="{{id | default('upload-default')}}" data-index="{{index | default('/')}}" class="plupload-form" data-dest="{{dest}}" data-cb="upload_file" data-filter="{{filter}}">
     <div class="input-group image-preview m-c-t p-c-t">
         <input placeholder="" type="text" class="form-control image-preview-filename" disabled="disabled">
         <!-- don't give a name === doesn't send on POST/GET -->
