@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    $.cb = {
-        core:{
+    $.cb['core']=        {
             setRule: function(t, e) {
                 $.rule.load(t.data('rule'));
             },
@@ -20,21 +19,6 @@ $(document).ready(function() {
             },
             setValueOpen: function() {
 
-            },
-            notes: function(t, e, json) {
-                $(t.attr('data-target')).prepend(json.app);
-                $.counter();
-                t.find('*').val('');
-            },
-            note: function(t, e, json) {
-                $(t.attr('data-target')).attr('class', 'note-status-' + json.status);
-                $.counter();
-            },
-            note_remove: function(t, e, json) {
-                $(t.attr('data-target')).slideUp(function() {
-                    t.remove();
-                    $.counter();
-                });
             },
             upload_init: function(t, e, json) {
                 $('.plupload-form').initPlupload();
@@ -260,7 +244,6 @@ $(document).ready(function() {
             postRemove: function (t,e,json){
 
             }
-        }
     }
 
     $.dataSetter = function(dataSetter) {
