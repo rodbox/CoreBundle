@@ -15,6 +15,10 @@ services:
         class: RB\CoreBundle\Services\RBCounterService
         arguments: ["@service_container"]
 
+    rb.mustache:
+        class: RB\CoreBundle\Services\RBMustacheService
+        arguments: ["@service_container"]
+
     rb.editor:
         class: RB\CoreBundle\Services\RBEditorService
         arguments: ["@service_container","@twig"]

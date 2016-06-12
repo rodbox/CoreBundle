@@ -19,7 +19,6 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
-
     public function context_me()
     {
         echo $this->twig->render('RBCoreBundle:Twig:context-me.html.twig');
@@ -186,6 +185,22 @@ class RBCoreExtension  extends \Twig_Extension{
     {
         echo $this->twig->render('RBCoreBundle:Twig:logo.html.twig',[
             'size'    => $size
+        ]);
+    }
+
+
+    public function mustache_tpl($id='', $view='@RBCoreBundle')
+    {
+        $dirTpl = explode(':',$view);
+
+        $fileLocator = $this->container->get('file_locator');
+        $path = $fileLocator->locate($dirTpl[0]);
+
+        $data       = file_get_contents($path.'/Resources/views/'.$dirTpl[1].'/'.$dirTpl[2]);
+
+        echo $this->twig->render('RBCoreBundle:Twig:mustache_tpl.html.twig',[
+            'id'   => $id,
+            'data' => $data
         ]);
     }
 

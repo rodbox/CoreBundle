@@ -263,4 +263,10 @@ $(document).ready(function() {
             tr.removeClass('checked').find('.td-check input.rowId').prop('checked',false);
     }
 
+    $.mustache = function (id, data){
+        var tpl = $('#'+id).html();
+
+        Mustache.parse(tpl);
+        return Mustache.render(tpl, data);
+    };
 });
