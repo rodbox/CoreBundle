@@ -228,7 +228,8 @@ class RBCoreExtension  extends \Twig_Extension{
             "crop_me"             => new \Twig_Function_Method($this, 'crop_me',              ['is_safe' => ['html']]),
             "curl_me"             => new \Twig_Function_Method($this, 'curl_me',              ['is_safe' => ['html']]),
             "view_me"             => new \Twig_Function_Method($this, 'view_me',              ['is_safe' => ['html']]),
-            "logo"             => new \Twig_Function_Method($this, 'logo',              ['is_safe' => ['html']])
+            "logo"                => new \Twig_Function_Method($this, 'logo',                 ['is_safe' => ['html']]),
+            "mustache_tpl"        => new \Twig_Function_Method($this, 'mustache_tpl',         ['is_safe' => ['html']])
         );
     }
 }
