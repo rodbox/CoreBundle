@@ -160,6 +160,7 @@ class CoreController extends Controller
 
         $dir          = $request->request->get("dir");
         $folder       = $request->request->get("folder");
+        $folderProtect= strtolower(preg_replace('/\s/', '-', $folder));
 
         $dir_dest = $this->container->getParameter('dir_'.$dir);
         $web_dest = $this->container->getParameter('web_'.$dir);
@@ -168,8 +169,8 @@ class CoreController extends Controller
         $path         = explode('.',$info['path']);
         $ext          = end($path);
         // $extension    = $path[$ext];
-        $file         = $dir_dest.'/'.$folder.'.'.$ext;
-        $web_file     = $web_dest.'/'.$folder.'.'.$ext;
+        $file         = $dir_dest.'/'.$folderProtect.'.'.$ext;
+        $web_file     = $web_dest.'/'.$folderProtect.'.'.$ext;
 
         $curl         = $this->get('rb.curl')->save($url, $file);
 

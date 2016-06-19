@@ -3,6 +3,7 @@
 namespace RB\CoreBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 class RBCurlService {
     public function __construct($container)
@@ -26,7 +27,8 @@ class RBCurlService {
     function save($url,$dir_file)
     {
         $file_content = $this->curl($url);
-
+        $fs = new Filesystem();
+        $fs->mkdir(dirname($dir_file));
         file_put_contents($dir_file,$file_content);
 
         return filesize($dir_file);
