@@ -50,7 +50,7 @@ class RBCounterService {
 
         $this->getCounter();
 
-        $this->counter[$id] = (isset($this->counter[$id]))?$this->counter[$id]) + $value:$value;
+        $this->counter[$id] = (isset($this->counter[$id]))?$this->counter[$id] + $value:$value;
 
         file_put_contents($dir_counter,json_encode($this->counter));
     }
