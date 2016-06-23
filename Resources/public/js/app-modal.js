@@ -30,6 +30,20 @@ $(document).ready(function(){
           modal.find('input[autofocus="true"]').first().focus();
         },200)
     },
+    iframe:function(url,title){
+        $.loadlock.on();
+        var modal = $("#modalIframe");
+        var iframe = $("<iframe>",{
+          src  : url,
+          load : function(){
+              $.loadlock.off();
+              modal.modal({
+                backdrop: 'static'
+              });
+            }
+          });
+        modal.find(".modal-body").html(iframe);
+    },
     close: function(modal){
       if(modal)
           var modal = $(".modal#"+modal);
