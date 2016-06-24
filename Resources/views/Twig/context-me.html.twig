@@ -1,13 +1,17 @@
 <div id="context_nav" class="btn-group-sm ">
     {% set sessionUi = app.session.get('ui') %}
-    {% set keyContext %}{% spaceless %}
+    {% set keyContext %}{% spaceless %}dzazd
     {% endspaceless %}{% endset %}
-    <button  id="rb-key-context" class="btn  " data-toggle="popover" data-trigger="hover click" data-html="true" data-placement="bottom" data-content="{{keyContext}}" data-container="body"><i class="fa fa-keyboard-o "></i></button>
-    {# {% if is_granted('ROLE_USER') %}
-     <div data-toggle="buttons" class="btn-group "><label class="btn  disabled"><input type="checkbox" autocomplete="off" id="log_show"> <i class="fa fa-exclamation-triangle  "></i></label></div>{% endif %}#}
+    <button  id="rb-key-context" class="btn btn-default " data-toggle="popover" data-trigger="hover click" data-html="true" data-placement="bottom" data-content="{{keyContext}}" data-container="body"><i class="fa fa-keyboard-o "></i></button>
     <div class="btn-group">
         {{ context_me_checkbox() }}
         {{ context_me_checkbox('A','true','<i class="fa fa-wheelchair"></i>') }}
-        {# {{ context_me_select('C',{'default':'default','dark':'dark','ligth':'ligth','night':'night'}) }} #}
     </div>
+    <div class="btn-group">
+        {{ context_me_radio('V','list-A','<i class="fa fa-list"></i>') }}
+        {{ context_me_radio('V','list-B','<i class="fa fa-th-large"></i>') }}
+    </div>
+     <div class="btn-group">
+         {{ context_me_checkbox('strict','true','<i class="fa fa-hand-peace-o" aria-hidden="true"></i>') }}
+     </div>
 </div>

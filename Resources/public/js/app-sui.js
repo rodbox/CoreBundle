@@ -15,7 +15,7 @@ $(document).ready(function($) {
 
 	$.sui = {
 		get	: function (key){
-			return $('html').attr('data-sui-'+key);
+			return $('html').attr('data-context-'+key);
 		},
 		set	: function (key, value, cb){
 
@@ -28,10 +28,10 @@ $(document).ready(function($) {
 
 			$.get(urlSession, data);
 
-			return $('html').attr('data-sui-'+key,value);
+			return $('html').attr('data-context-'+key,value);
 		},
 		is	: function (key, value){
-			return ($('html').attr('data-sui-'+key)==value);
+			return ($('html').attr('data-context-'+key)==value);
 		}
 	}
 
@@ -74,7 +74,7 @@ $(document).ready(function($) {
 
 	});
 
-	$(document).on("click",".btn-sui-collapse",function (e){
+	$(document).on("click",".btn-context-collapse",function (e){
 		e.preventDefault();
 		var t = $(this);
 		t.toggleClass('open');
