@@ -46,6 +46,16 @@ class RBCoreExtension  extends \Twig_Extension{
         ]);
     }
 
+
+    public function setter_me($data,$id="")
+    {
+        $data = json_encode($data);
+        echo $this->twig->render('RBCoreBundle:Twig:btn-setter-me.html.twig',[
+            'data'    => $data,
+            'id'    => $id
+        ]);
+    }
+
     public function context_me_checkbox($keyContext="H", $valueSetter="true", $content="<i class='fa fa-question'></i>")
     {
         echo $this->twig->render('RBCoreBundle:Twig:btn-context-me.html.twig',[
@@ -221,6 +231,7 @@ class RBCoreExtension  extends \Twig_Extension{
             "context_me_radio"    => new \Twig_Function_Method($this, 'context_me_radio',     ['is_safe' => ['html']]),
             "context_me_checkbox" => new \Twig_Function_Method($this, 'context_me_checkbox',  ['is_safe' => ['html']]),
             "context_me_select"   => new \Twig_Function_Method($this, 'context_me_select',    ['is_safe' => ['html']]),
+            "setter_me"           => new \Twig_Function_Method($this, 'setter_me',            ['is_safe' => ['html']]),
             "tab_me"              => new \Twig_Function_Method($this, 'tab_me',               ['is_safe' => ['html']]),
             "nav_me"              => new \Twig_Function_Method($this, 'nav_me',               ['is_safe' => ['html']]),
             "pane_me"             => new \Twig_Function_Method($this, 'pane_me',              ['is_safe' => ['html']]),

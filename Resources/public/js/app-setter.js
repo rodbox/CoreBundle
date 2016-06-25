@@ -15,7 +15,7 @@ $(document).ready(function($) {
     $.form = {
         set : function(data){
             $.each(data,function(key, val){
-                var input = $('[name^='+key+']');
+                var input = $('[name^="'+key+'"]');
                 if(input.is('input:checkbox')){
                     input.prop('checked',false);
                     input.val(val);
@@ -32,4 +32,13 @@ $(document).ready(function($) {
             })
         }
     }
+
+    $(document).on("click",".btn-setter",function (e){
+        e.preventDefault();
+        var t = $(this);
+
+        var data  = t.data('setter');
+
+        $.form.set(data);
+    })
 })
