@@ -10,7 +10,7 @@
         </span>
     </div>
 </div> #}
-{% set contentPopover %}
+{% set content %}
 <form action='{{ path('edit_me',{id:id,entityName:entity,field:field}) }}' class='form-inline form-live editableform' data-cb='setEditMe'>
     <div class='control-group input-group'>
             <input name='value' type='text' class='form-control ' autofocus='yes' value='{{value}}' />
@@ -24,4 +24,5 @@
 </form>
 {% endset %}
 {% set btnContent %}<span class='i-edit-me'><i class='fa fa-pencil'></i></span>{{value}}{% endset %}
-{{ btn_popover(btnContent, contentPopover, ' ') }}
+{# {{ btn_popover(btnContent, content, ' ') }} #}
+<a href="#" class="btn-edit-me" data-content="{{ content }}" data-url="">{{ value }}</a>
