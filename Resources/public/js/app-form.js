@@ -2,30 +2,45 @@ $(document).ready(function($) {
     $(document).on("dblclick",".btn-edit-me",function (e){
         e.preventDefault();
         var t = $(this);
-        t.hide();
-        var input = $("<input>",{"name":"edit-me-setter"});
-        input.val(t.html());
-        input.on("keypress",function (e){
+
+        var input = $("<input>",
+            {
+                "type":"text",
+                "name":"edit-me-setter",
+                "class":"form-control",
+                'data-old-value':t.html()
+            })
+        .css({
+            width:parseInt(t.outerWidth()) + 50,
+            display:'inline-block'
+        })
+        .val(t.html())
+        .on("keypress",function (e){
+        if(e.keyCode==13){
             e.preventDefault();
-            var t = $(this);
-            if(e.keyCode==13){
-                var data = {
-                    value: $(this).val()
-                  }
-                  $.post(t.attr('data-url'), data, function(json, textStatus, xhr) {
-                    t.html($(this).val());
-                    $(this).remove();
-                    t.show();
-                  },'json');
+            var data = {
+              value: $(this).val()
             }
-            else{
-                $(this).remove();
-                t.show();
-            }
-        }).on('focusout',function(){
+
+            t.html(input.val());
+            $(this).remove();
+              t.show();
+            $.post(t.attr('data-url'), data, function(json, textStatus, xhr) {
+              t.html(input.val());
+
+            },'json');
+        }
+        else if(e.keyCode==27) {
+            e.preventDefault();
             $(this).remove();
             t.show();
+        }
+        else{}
+
         });
-        t.after();
+        t.hide();
+        t.after(input);
+
+        input.focus();
     })
 });
