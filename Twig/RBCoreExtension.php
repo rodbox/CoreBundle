@@ -56,21 +56,23 @@ class RBCoreExtension  extends \Twig_Extension{
         ]);
     }
 
-    public function context_me_checkbox($keyContext="H", $valueSetter="true", $content="<i class='fa fa-question'></i>")
+    public function context_me_checkbox($keyContext="H", $valueSetter="true", $content="<i class='fa fa-question'></i>",$class="")
     {
         echo $this->twig->render('RBCoreBundle:Twig:btn-context-me.html.twig',[
             'context' => $keyContext,
             'value'   => $valueSetter,
             'content' => $content,
-            'type'    => 'checkbox'
+            'type'    => 'checkbox',
+            'class'    => $class
         ]);
     }
 
-    public function context_me_select($keyContext="H", $valueSetter="true")
+    public function context_me_select($keyContext="H", $valueSetter="true",$class="")
     {
         echo $this->twig->render('RBCoreBundle:Twig:select-context-me.html.twig',[
             'context' => $keyContext,
-            'value'   => $valueSetter
+            'value'   => $valueSetter,
+            'class'   =>$class
         ]);
     }
 

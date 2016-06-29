@@ -1,8 +1,8 @@
 {% spaceless %}
     {% set sessionUi = app.session.get('ui') %}
-<select id="context-{{context}}" name="context-{{context}}" data-context="{{context}}" class="c-select btn btn-primary context-me">
+<select id="context-{{context}}" name="context-{{context}}" data-context="{{context}}" class="c-select btn btn-primary context-me {{ class | defautl('') }}">
     {% for item in value %}
-        <option value="{{item}}" {% if sessionUi[context] | default('') == value %}selected="selected"{% endif %}>{{item}}</option>
+        <option value="{{item}}" {% if sessionUi[context] | default('') == item %}selected="selected"{% endif %}>{{item}}</option>
     {% endfor %}
 </select>
 {% endspaceless %}
