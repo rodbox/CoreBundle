@@ -1,0 +1,61 @@
+{# default Sliding pagination control implementation #}
+
+<nav>
+{% if pageCount > 1 %}
+<ul class="pagination">
+    {% if first is defined and current != first %}
+        <li class=" page-item">
+
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): first})) }}"><i class="fa fa-angle-double-left "></i></a>
+
+        </li>
+    {% else %}
+        <li class=" page-item disabled">
+            <a class="page-link " href="#"><i class="fa fa-angle-double-left "></i></a>
+        </li>
+    {% endif %}
+
+
+    {% if previous is defined %}
+        <li class=" page-item">
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): previous})) }}"><i class="fa fa-angle-left "></i></a>
+        </li>
+    {% else %}
+        <li class=" page-item disabled">
+            <a class="page-link " href="#"><i class="fa fa-angle-left "></i></a>
+        </li>
+    {% endif %}
+
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <li class=" page-item">
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            </li>
+        {% else %}
+            <li class="page-item active"><span class="page-link">{{ page }}</span></li>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if next is defined %}
+        <li class=" page-item">
+                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): next})) }}"><i class="fa fa-angle-right "></i></a>
+        </li>
+    {% else %}
+        <li class=" page-item disabled">
+            <a class="page-link " href="#"><i class="fa fa-angle-right "></i></a>
+        </li>
+    {% endif %}
+
+    {% if last is defined and current != last %}
+        <li class=" page-item">
+            <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): last})) }}"><i class="fa fa-angle-double-right "></i></a>
+        </li>
+    {% else %}
+        <li class=" page-item disabled">
+            <a class="page-link " href="#"><i class="fa fa-angle-double-right "></i></a>
+        </li>
+    {% endif %}
+</ul>
+{% endif %}
+</nav>
