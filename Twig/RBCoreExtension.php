@@ -154,13 +154,14 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
-    public function pane_me_lazy($id, $route, $dataRoute='', $class='col-md-6 col-xs-6 col-lg-3 col-xl-3  ')
+    public function pane_me_lazy($id, $route, $dataRoute='', $class='col-md-6 col-xs-6 col-lg-3 col-xl-3 ', $paneClass='')
     {
         echo $this->twig->render('RBCoreBundle:Twig:pane-me-lazy.html.twig',[
-            'id'      => $id,
-            'route'   => $route,
-            'data'    => $dataRoute,
-            'class'    => $class
+            'id'        => $id,
+            'route'     => $route,
+            'data'      => $dataRoute,
+            'class'     => $class,
+            'paneClass' => $paneClass
         ]);
     }
 
