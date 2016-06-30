@@ -16,27 +16,33 @@ $(document).ready(function($) {
         })
         .val(t.html())
         .on("keypress",function (e){
-        if(e.keyCode==13){
-            e.preventDefault();
-            var data = {
-              value: $(this).val()
+            if(e.keyCode==13){
+                e.preventDefault();
+                var data = {
+                  value: $(this).val()
+                }
+
+                t.html(input.val());
+                $(this).remove();
+                  t.show();
+                $.post(t.attr('data-url'), data, function(json, textStatus, xhr) {
+                  t.html(input.val());
+
+                },'json');
             }
+            else if(e.keyCode==27) {
+                e.preventDefault();
+                t.html($(this).attr('data-old-value'));
+                $(this).remove();
+                t.show();
+            }
+            else{}
 
-            t.html(input.val());
-            $(this).remove();
-              t.show();
-            $.post(t.attr('data-url'), data, function(json, textStatus, xhr) {
-              t.html(input.val());
-
-            },'json');
-        }
-        else if(e.keyCode==27) {
-            e.preventDefault();
+        })
+        .on("focusout",function(){
+            t.html($(this).attr('data-old-value'));
             $(this).remove();
             t.show();
-        }
-        else{}
-
         });
         t.hide();
         t.after(input);
