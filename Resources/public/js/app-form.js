@@ -7,7 +7,7 @@ $(document).ready(function($) {
             {
                 "type":"text",
                 "name":"edit-me-setter",
-                "class":"form-control",
+                "class":"form-control edit-me-setter",
                 'data-old-value':t.html()
             })
         .css({
