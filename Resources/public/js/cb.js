@@ -246,7 +246,7 @@ $(document).ready(function() {
 
             },
             modalApp: function(t, e, json){
-                $.modal.html(json.app, json.msg);
+                $.modal.html(json.app, 'modalM',json.msg);
             }
     }
 
