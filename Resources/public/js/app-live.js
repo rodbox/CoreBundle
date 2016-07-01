@@ -48,4 +48,18 @@ $.live = {
   }
 };
 
+  $(document).on("click",".btn-live",function (e){
+    e.preventDefault();
+    var t    = $(this);
+
+    if (t.data('confirm') != undefined) {
+      if (confirm(t.data('confirm'))) {
+        $.live.post(t,e);
+      }
+    }
+    else{
+      $.live.post(t,e);
+    }
+  })
+
 })
