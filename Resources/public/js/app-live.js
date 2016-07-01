@@ -46,5 +46,6 @@ $.live = {
       $('#app-content').html(json);
     });
   }
-}
-)}
+};
+
+})
