@@ -244,6 +244,9 @@ $(document).ready(function() {
             },
             postRemove: function (t,e,json){
 
+            },
+            modalApp: function(t, e, json){
+                $.modal.html(json.app, json.msg);
             }
     }
 
