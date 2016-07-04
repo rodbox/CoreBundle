@@ -4,7 +4,7 @@ $(document).ready(function(){
     on:function (t){
 
       var textAlt = t.attr('data-loading-text');
-      textAlt = (textAlt==undefined)?'En cour...':textAlt;
+      textAlt = (textAlt==undefined)?"<i class='fa fa-refresh fa-spin'></i> "+t.html()+" ...":textAlt;
 
       t.attr('data-text',t.html());
       t.html(textAlt);
@@ -26,7 +26,7 @@ $(document).ready(function(){
       $.post(t.attr('href'), data, function(json, textStatus, xhr) {
         // if error
         if(json.infotype == "error"){
-          if(!t.hasClass('no-flash'))
+          if(!t.hasClass('no-flash') || json.infotype=='error')
             $.setFlash(json.msg, json.infotype);
           // confirm forcer
           if(confirm('forcer ?')){
@@ -56,7 +56,7 @@ $(document).ready(function(){
           $.setFlash(json.msg,json.infotype);
         $.btnLoad.off(t);
       }, 'json').error(function(err){
-        $.btnLoad.off($(this));
+        $.btnLoad.off(t);
         $.setFlash('erreur '+ err.status,'error');
       });
     },
