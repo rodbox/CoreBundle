@@ -1,5 +1,23 @@
 $(document).ready(function(){
 
+  $.btnLoad = {
+    on:function (t){
+
+      var textAlt = t.attr('data-loading-text');
+      textAlt = (textAlt==undefined)?'En cour...':textAlt;
+
+      t.attr('data-text',t.html());
+      t.html(textAlt);
+      t.attr('disabled','disabled');
+      t.addClass('onLoad');
+    },
+    off:function (t){
+      t.removeAttr('disabled');
+      t.removeClass('onLoad');
+      t.html(t.attr('data-text'));
+    }
+  }
+
   $.live = {
     post : function(t, e){
       var data = (t.data('src')) ? $(t.data('src')).serialize():{};
@@ -8,13 +26,15 @@ $(document).ready(function(){
       $.post(t.attr('href'), data, function(json, textStatus, xhr) {
         // if error
         if(json.infotype == "error"){
-          $.setFlash(json.msg, json.infotype);
+          if(!t.hasClass('no-flash'))
+            $.setFlash(json.msg, json.infotype);
           // confirm forcer
           if(confirm('forcer ?')){
             // envois forcer
             data.force = true;
             $.post(t.attr('href'), data, function(json, textStatus, xhr) {
-              $.setFlash(json.msg, json.infotype)
+              if(!t.hasClass('no-flash'))
+                $.setFlash(json.msg, json.infotype)
               // si c'est ok callback
               if (t.data('cb'))
                 $.cb[t.data('cb')](t, e, json);
@@ -32,7 +52,8 @@ $(document).ready(function(){
           if (json.cb != undefined)
             $.cb[json.cbapp][json.cb](t, e, json);
         }
-        $.setFlash(json.msg,json.infotype);
+        if(!t.hasClass('no-flash'))
+          $.setFlash(json.msg,json.infotype);
         $.btnLoad.off(t);
       }, 'json').error(function(err){
         $.btnLoad.off($(this));
