@@ -40,14 +40,13 @@ class Alert
 
     /**
      * @var \DateTime
-     * Gedmo\Timestampable (on="create")
      * @ORM\Column(name="dateCreate", type="datetime")
      */
     private $dateCreate;
 
     /**
      * @var \DateTime
-     * @ORM\Column(name="dateExpir", type="datetime", nullable=trues)
+     * @ORM\Column(name="dateExpir", type="datetime")
      */
     private $dateExpir;
 
