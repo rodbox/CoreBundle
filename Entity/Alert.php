@@ -33,7 +33,7 @@ class Alert
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="text", options={"default" = 'all'})
+     * @ORM\Column(name="type", type="text")
      */
     private $type;
 
