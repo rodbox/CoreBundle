@@ -33,7 +33,7 @@ $(document).ready(function(){
             // envois forcer
             data.force = true;
             $.post(t.attr('href'), data, function(json, textStatus, xhr) {
-              if(!t.hasClass('no-flash'))
+              if(!t.hasClass('no-flash') || json.infotype=='error')
                 $.setFlash(json.msg, json.infotype)
               // si c'est ok callback
               if (t.data('cb'))
@@ -52,7 +52,7 @@ $(document).ready(function(){
           if (json.cb != undefined)
             $.cb[json.cbapp][json.cb](t, e, json);
         }
-        if(!t.hasClass('no-flash'))
+        if(!t.hasClass('no-flash') || json.infotype=='error')
           $.setFlash(json.msg,json.infotype);
         $.btnLoad.off(t);
       }, 'json').error(function(err){
