@@ -107,6 +107,24 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
+    public function alert_me($id='', $value=0, $color='default')
+    {
+        $em = $this->doctrine->getManager();
+        $alerts = $em
+          ->getRepository('RBCorebundle:Alert')
+          ->findAll();
+
+
+        echo $this->twig->render('RBCoreBundle:Twig:alert-me.html.twig',[
+            'id'    => $id,
+            'value' => $value,
+            'alerts' => $alerts,
+            'color' => $color
+        ]);
+    }
+
+
+
     public function tab_me($id, $route, $dataRoute='',  $target='.tab-content', $active=false)
     {
         echo $this->twig->render('RBCoreBundle:Twig:tab-me.html.twig',[

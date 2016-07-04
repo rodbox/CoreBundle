@@ -1,4 +1,7 @@
 services:
+    rb.alert:
+        class: RB\CoreBundle\Services\RBAlertService
+        arguments: ["@service_container","@doctrine"]
     rb.scan:
         class: RB\CoreBundle\Services\RBScanService
         arguments: ["@service_container"]
