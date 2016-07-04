@@ -217,10 +217,6 @@ $(document).ready(function() {
             getEditorPdf: function (t,e,json){
                 console.log('getEditorPdf');
             },
-            paneRefresh: function(t,e){
-                var target = $(t.data('target')+".panel-me-lazy");
-                $.lazy.load(target);
-            },
             paneFullscreen: function (t,e){
                 $(t.data('target')).toggleClass('panel-me-fullscreen');
                 // $('body').toggleClass('panel-me-fullscreen');
