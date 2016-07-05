@@ -41,7 +41,7 @@ services:
             - { name: twig.extension }
     rb.core.extension:
         class: RB\CoreBundle\Twig\RBCoreExtension
-        arguments: ["@service_container","@twig","@session","@router"]
+        arguments: ["@service_container","@twig","@session","@router","@doctrine"]
         tags:
             - { name: twig.extension }
 

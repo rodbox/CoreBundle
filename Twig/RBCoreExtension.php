@@ -4,12 +4,14 @@ namespace RB\CoreBundle\Twig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class RBCoreExtension  extends \Twig_Extension{
-    public function __construct($container, $twig, $session, $router)
+    public function __construct($container, $twig, $session, $router, $doctrine)
     {
         $this->container = $container;
         $this->twig      = $twig;
-        $this->router      = $router;
+        $this->router    = $router;
+        $this->router    = $router;
         $this->session   = $session;
+        $this->doctrine  = $doctrine;
     }
 
 
@@ -107,19 +109,15 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-    public function alert_me($id='', $value=0, $color='default')
+    public function alert_me()
     {
         $em = $this->doctrine->getManager();
         $alerts = $em
           ->getRepository('RBCorebundle:Alert')
           ->findAll();
 
-
         echo $this->twig->render('RBCoreBundle:Twig:alert-me.html.twig',[
-            'id'    => $id,
-            'value' => $value,
-            'alerts' => $alerts,
-            'color' => $color
+            'alerts' => $alerts
         ]);
     }
 
