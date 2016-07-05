@@ -1,10 +1,10 @@
 <div id="alert-{{ id }}" class="btn-group">
-    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-sm">
+    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="nav-link">
     <i class="fa fa-bell"></i> {{ counter_me('alert') }}
     </a>
-    <div class="dropdown-menu pull-right">
+    <div class="dropdown-menu">
        {% for alert in alerts %}
-        <div class="dropdown-item">
+        <div class="dropdown-item alert-{{ alert.content }}">
             {{ alert.content }}
         </div>
        {% endfor %} 

@@ -109,7 +109,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-    public function alert_me()
+public function alert_me($id='all')
     {
         $em = $this->doctrine->getManager();
         $alerts = $em
@@ -117,6 +117,7 @@ class RBCoreExtension  extends \Twig_Extension{
           ->findAll();
 
         echo $this->twig->render('RBCoreBundle:Twig:alert-me.html.twig',[
+            'id'=>$id,
             'alerts' => $alerts
         ]);
     }
