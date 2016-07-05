@@ -4,47 +4,65 @@ namespace RB\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class AlertController extends Controller
 {
     /**
-     * @Route("/add")
+     * @Route("/add", name="alert_add")
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
-        return $this->render('RBCoreBundle:Alert:add.html.twig', array(
-            // ...
-        ));
+        $data = $request->request->getAll();
+        $this->get('rb.alert')->add($data);
+
+        $r = [
+            'infotype' => 'success',
+            'msg'      => 'ok'
+        ];
+        
+        return new JsonResponse($r);
     }
 
     /**
-     * @Route("/upd")
+     * @Route("/upd/{id}", name="alert_upd")
      */
-    public function updAction()
+    public function updAction(Request $request, $id)
     {
-        return $this->render('RBCoreBundle:Alert:upd.html.twig', array(
-            // ...
-        ));
+        $data = $request->request->getAll();
+        $this->get('rb.alert')->upd($id, $data);
+        
+        $r = [
+            'infotype' => 'success',
+            'msg'      => 'ok'
+        ];
+        
+        return new JsonResponse($r);
     }
 
     /**
-     * @Route("/del")
+     * @Route("/del/{id}", name="alert_del")
      */
-    public function delAction()
+    public function delAction($id)
     {
-        return $this->render('RBCoreBundle:Alert:del.html.twig', array(
-            // ...
-        ));
+        $data = $request->request->getAll();
+        $this->get('rb.alert')->del($id);
     }
 
     /**
-     * @Route("/reload")
+     * @Route("/reload", name="alert_reload", options = { "expose" = true })
      */
     public function reloadAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $alerts = $em
+          ->getRepository('RBCoreBundle:Alert')
+          ->findAll();
         return $this->render('RBCoreBundle:Alert:reload.html.twig', array(
-            // ...
+            'alerts'=>$alerts
         ));
     }
-
 }
+

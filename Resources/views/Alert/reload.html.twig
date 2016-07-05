@@ -1,7 +1,17 @@
-{% extends "::base.html.twig" %}
-
-{% block title %}RBCoreBundle:Alert:reload{% endblock %}
-
-{% block body %}
-<h1>Welcome to the Alert:reload page</h1>
-{% endblock %}
+<div class="dropdown-item dropdown-form">
+    <form action="{{path('alert_add') }}" class="form-live" data-cb="alertReload">
+       	<input type="hidden" name="type" value="note">
+       	<input type="hidden" name="expir" value="">
+       	<div class="input-group">
+       	      <input type="text" class="form-control" name="content">
+       	      <span class="input-group-btn">
+       	        <button class="btn btn-default btn-calendar" type="button"><i class="fa fa-calendar"></i></button>
+       	      </span>
+       	    </div>
+    </form>
+</div>
+{% for alert in alert %}
+<div class="dropdown-item alert-{{ alert.content }}">
+    {{ alert.content }} <div class="btn-group pull-xs-right-down"><a href="{{path('alert_del',{ id:alert.id }) }}" class="btn btn-seccondary"><i class="fa fa-remove"></i></a></div>
+</div>
+{% endfor %} 

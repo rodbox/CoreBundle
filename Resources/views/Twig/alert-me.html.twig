@@ -1,12 +1,9 @@
-<div id="alert-{{ id }}" class="btn-group">
-    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-sm">
-    <i class="fa fa-bell"></i> {{ counter_me('alert') }}
+<div id="alert-{{ id }}" class="btn-group alert-me">
+    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="nav-link btn-reload-alert" data-id='{{id}}'>
+        <i class="fa fa-bell"></i> {{ counter_me('alert') }}
     </a>
-    <div class="dropdown-menu pull-right">
-       {% for alert in alerts %}
-        <div class="dropdown-item">
-            {{ alert.content }}
-        </div>
-       {% endfor %} 
+    <div class="dropdown-menu dropdown-alert-me">
+    	{{ dump(alerts) }}
+      {% include 'RBCoreBundle:Alert:reload.html.twig' with alerts only %}
     </div>
 </div>
