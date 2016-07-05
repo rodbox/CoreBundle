@@ -113,7 +113,7 @@ class RBCoreExtension  extends \Twig_Extension{
     {
         $em = $this->doctrine->getManager();
         $alerts = $em
-          ->getRepository('RBCorebundle:Alert')
+          ->getRepository('RBCoreBundle:Alert')
           ->findAll();
 
         echo $this->twig->render('RBCoreBundle:Twig:alert-me.html.twig',[
