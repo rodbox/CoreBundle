@@ -245,6 +245,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
+            "alert_me"            => new \Twig_Function_Method($this, 'alert_me',             ['is_safe' => ['html']]),
             "counter_me"          => new \Twig_Function_Method($this, 'counter_me',           ['is_safe' => ['html']]),
             "input_me"            => new \Twig_Function_Method($this, 'input_me',             ['is_safe' => ['html']]),
             "clip_me"             => new \Twig_Function_Method($this, 'clip_me',              ['is_safe' => ['html']]),
