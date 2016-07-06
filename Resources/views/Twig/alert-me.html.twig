@@ -4,6 +4,9 @@
     </a>
     <div class="dropdown-menu dropdown-alert-me">
     	{{ dump(alerts) }}
-      {% include 'RBCoreBundle:Alert:reload.html.twig' with alerts only %}
+      {% include 'RBCoreBundle:Alert:reload.html.twig' with {
+        alerts: alerts,
+        id:id
+  } only %}
     </div>
 </div>
