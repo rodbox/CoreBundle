@@ -22,7 +22,7 @@ class AlertController extends Controller
             'infotype' => 'success',
             'msg'      => 'ok'
         ];
-        
+
         return new JsonResponse($r);
     }
 
@@ -33,19 +33,19 @@ class AlertController extends Controller
     {
         $data = $request->request->getAll();
         $this->get('rb.alert')->upd($id, $data);
-        
+
         $r = [
             'infotype' => 'success',
             'msg'      => 'ok'
         ];
-        
+
         return new JsonResponse($r);
     }
 
     /**
      * @Route("/del/{id}", name="alert_del")
      */
-    public function delAction($id)
+    public function delAction(Request $request, $id)
     {
         $data = $request->request->getAll();
         $this->get('rb.alert')->del($id);
