@@ -1,9 +1,9 @@
 <div class="dropdown-item dropdown-form">
     <form action="{{path('alert_add') }}" class="form-live" data-cb="alertReload">
        	<input type="hidden" name="type" value="note">
-       	<input type="hidden" name="expir" value="">
        	<div class="input-group">
-       	      <input type="text" class="form-control" name="content">
+              <input id="alert-content" type="text" class="form-control" name="content">
+       	      <input id="alert-expir" type="text" class="form-control" name="expir">
        	      <span class="input-group-btn">
        	        <button class="btn btn-default btn-calendar" type="button"><i class="fa fa-calendar"></i></button>
        	      </span>
@@ -15,3 +15,10 @@
     {{ alert.content }} <div class="btn-group pull-xs-right-down"><a href="{{path('alert_del',{ id:alert.id }) }}" class="btn btn-seccondary"><i class="fa fa-remove"></i></a></div>
 </div>
 {% endfor %}
+<script type="text/javascript">
+  $(function () {
+      $('#alert-expir').datetimepicker({
+        locale: {{ locale }}
+      });
+  });
+</script>
