@@ -3,7 +3,6 @@
         <i class="fa fa-bell"></i> {{ counter_me('alert') }}
     </a>
     <div class="dropdown-menu dropdown-alert-me">
-    	{{ dump(alerts) }}
       {% include 'RBCoreBundle:Alert:reload.html.twig' with {
         alerts: alerts,
         id:id

@@ -1,7 +1,10 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}RBCoreBundle:Alert:add{% endblock %}
-
 {% block body %}
-<h1>Welcome to the Alert:add page</h1>
+<form action="{{path('alert_add') }}" class="form-live" data-cb="alertReload">
+    <input type="hidden" name="type" value="note">
+    <textarea id="alert-content" class="form-control m-c-b" name="content" rows="3"></textarea>
+    <input id="alert-expir" type="text" class="form-control" name="expir">
+    <button class="btn btn-success btn-block">{{"action.note"|trans}}</button>
+</form>
 {% endblock %}

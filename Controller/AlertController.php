@@ -52,6 +52,15 @@ class AlertController extends Controller
     }
 
     /**
+     * @Route("/form", name="alert_form")
+     */
+    public function formAction()
+    {
+        return $this->render('RBCoreBundle:Alert:form.html.twig');
+    }
+
+
+    /**
      * @Route("/reload", name="alert_reload", options = { "expose" = true })
      */
     public function reloadAction()

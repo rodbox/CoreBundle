@@ -1,11 +1,4 @@
-<div class="dropdown-item dropdown-form">
-    <form action="{{path('alert_add') }}" class="form-live" data-cb="alertReload">
-        <input type="hidden" name="type" value="note">
-        <textarea id="alert-content" class="form-control m-c-b" name="content" rows="3"></textarea>
-        <input id="alert-expir" type="text" class="form-control" name="expir">
-        <button class="btn btn-success btn-block">{{"action.note"|trans}}</button>
-    </form>
-</div>
+<a href="{{path('alert_form') }}" class="dropdown-item btn-modal" title="{{"route.alert_form.title"|trans}}">{{"route.alert_form.title"|trans}}</a>
 {% for alert in alerts %}
 <div class="dropdown-item alert-{{ alert.content }}">
     {{ alert.content }} <div class="btn-group"><a href="{{path('alert_del',{ id:alert.id }) }}" class="btn btn-seccondary"><i class="fa fa-remove"></i></a></div>
