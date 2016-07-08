@@ -246,6 +246,36 @@ $(document).ready(function() {
             }
     }
 
+    $.def = function (value, defaultValue){
+        return (value == undefined)?defaultValue:value;
+    }
+
+
+    // callback this
+    $.cbt = function (t, e, json){
+        var cbapp = $.def(t.data('cb-app'),'admin');
+        var cb    = $.def(t.data('cb'),'default');
+
+        if($.cb[cbapp][cb] != undefined)
+          $.cb[cbapp][cb](t, json, e);
+
+        // le callback de la requete
+        if (json != undefined && json.cb != undefined){
+          var cbappjson = $.def(json.cbapp,'core');
+          $.cb[cbappjson][json.cb](t, json, e);
+        }
+    }
+
+
+
+    $(document).on("click",".btn-cb",function (e){
+        e.preventDefault();
+
+        var t = $(this);
+        $.cbt(t,e);
+    })
+
+
     $.dataSetter = function(dataSetter) {
         $.each(dataSetter, function(index, val) {
             var rowId = index;

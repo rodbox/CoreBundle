@@ -1,4 +1,3 @@
-$(document).ready(function(){
   $.modal = {
     set : function(url, dataSend, modal, title){
       $.loadlock.on();
@@ -52,7 +51,23 @@ $(document).ready(function(){
       modal.modal('hide');
     }
   }
-})
 
+$(document).on("click",".btn-modal",function (e){
+    e.preventDefault();
+    var t     = $(this);
+    var url   = t.attr('href');
+    var modal = t.data('modal');
+    var title = t.attr('title');
+    var data  = t.data();
 
+    if (t.data('modal') == 'alone')
+      $.modal.close();
+
+    if (t.data('form') != undefined){
+      var dataForm = $(t.data('form')).serialize();
+      var data = $.extend(data, dataForm);
+    }
+
+    $.modal.set(url,data,modal,title);
+  });
 
