@@ -27,7 +27,7 @@ class RBFileService
             $this->sheet    = $phpExcelObject->getActiveSheet();
             $arrXLS = [];
             for ($i=0; $i < $this->rowXlsRowCount(); $i++) {
-                $arrXLS[] = $this->row($i);
+                $arrXLS[] = $this->rowXls($i);
             }
 
         return $arrXLS;
