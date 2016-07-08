@@ -5,7 +5,9 @@ services:
     rb.scan:
         class: RB\CoreBundle\Services\RBScanService
         arguments: ["@service_container"]
-
+    rb.file:
+        class: RB\CoreBundle\Services\FileService
+        arguments: ["@service_container","@twig"]
     rb.templates:
         class: RB\CoreBundle\Services\RBTemplatesService
         arguments: ["@service_container"]

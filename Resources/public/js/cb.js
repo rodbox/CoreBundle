@@ -256,7 +256,7 @@ $(document).ready(function() {
         var cbapp = $.def(t.data('cb-app'),'admin');
         var cb    = $.def(t.data('cb'),'default');
 
-        if($.cb[cbapp][cb] != undefined)
+        if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
           $.cb[cbapp][cb](t, json, e);
 
         // le callback de la requete
