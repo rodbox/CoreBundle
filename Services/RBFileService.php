@@ -8,10 +8,10 @@ use Symfony\Component\Yaml\Dumper;
 
 class RBFileService
 {
-	function __construct($container,$twig){
-		$this->container = $container;
-		$this->twig = $twig;
-	}
+    function __construct($container,$twig){
+        $this->container = $container;
+        $this->twig = $twig;
+    }
 
 
 
@@ -22,7 +22,7 @@ class RBFileService
         if($ext == 'xls' || $ext == 'xlsx'){
             $phpexcel       = $this->container->get('phpexcel');
             $phpExcelObject = $phpexcel->createPHPExcelObject($file);
-            $writer         = $phpexcel->createWriter($phpExcelObject);
+            $writer         = $phpexcel->createWriter($phpExcelObject,'CSV');
 
             $this->sheet    = $phpExcelObject->getActiveSheet();
             $arrXLS = [];
@@ -30,7 +30,7 @@ class RBFileService
                 $arrXLS[] = $this->rowXls($i);
             }
 
-        return $arrXLS;
+            $this->arr = $arrXLS;
         }
         else if($ext == 'csv'){
             $arrCSV = [];
@@ -39,24 +39,41 @@ class RBFileService
                     $arrCSV[] = $data;
                 }
             }
-            return $arrCSV;
+            $this->arr = $arrCSV;
         }
 
         else if($ext == 'json')
-            return json_encode(file_get_contents($file),true);
+            $this->arr = json_encode(file_get_contents($file),true);
+
         else if($ext == 'xml')
-            return simplexml_load_file($file);
+            $this->arr = simplexml_load_file($file);
+
         else if($ext == 'yml'){
             $yaml  = new Parser();
             $arrYml = $yaml->parse(file_get_contents($dirYaml));
-            return $arrYml;
+            $this->arr = $arrYml;
         }
         else
-            return false;
+            $this->arr = false;
+
+        return $this->arr;
     }
 
-    // EXCEL
+    public function paginate($page = 1, $per = 50)
+    {
+        $pages      = count($this->arr);
 
+        $rowFirst   = $per * ($page - 1);
+        $rowLast    = $per * $page;
+
+        $pagesLast  = $rowLast / $per;
+
+        return array_slice($this->arr, $rowFirst, $rowLast);
+    }
+
+
+
+    // EXCEL
     function cellXls($cell='A1'){
         $cell = $this->sheet->getCell($cell)->getValue();
         return $cell;
@@ -70,7 +87,6 @@ class RBFileService
     function rowXlsRowCount(){
         return $this->sheet->getHighestRow();
     }
-
     // END : EXCEL
 }
 
