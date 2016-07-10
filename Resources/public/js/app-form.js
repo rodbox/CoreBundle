@@ -1,4 +1,8 @@
 $(document).ready(function($) {
+
+
+
+
     $(document).on("dblclick",".btn-edit-me",function (e){
         e.preventDefault();
         var t = $(this);

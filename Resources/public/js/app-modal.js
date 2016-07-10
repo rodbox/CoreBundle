@@ -11,7 +11,7 @@
         $.setFlash('erreur '+ err.status,'error');
       })
     },
-    html:function(content,modal,title){
+    html:function(content, modal, title){
         if(modal)
           var modal = $(".modal#"+modal);
         else
