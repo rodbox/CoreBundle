@@ -33,6 +33,9 @@ $(document).ready(function(){
             // envois forcer
             data.force = true;
             $.post(t.attr('href'), data, function(json, textStatus, xhr) {
+              if (json.modal != undefined)
+                $.modal.html(json.modal.content, json.modal.modal, json.modal.title);
+
               if(!t.hasClass('no-flash') || json.infotype=='error')
                 $.setFlash(json.msg, json.infotype)
               // si c'est ok callback
