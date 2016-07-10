@@ -59,6 +59,16 @@ class RBFileService
         return $this->arr;
     }
 
+    function toCsv($data, $dir, $separator = ";", $enclosure='"'){
+        $file = fopen($dir,"w");
+
+        foreach ($data as $line)
+            fputcsv($file, $line, $separator, $enclosure);
+
+        return fclose($file);
+    }
+
+
     public function paginate($page = 1, $per = 50)
     {
         $pages      = count($this->arr);
