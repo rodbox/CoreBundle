@@ -1,11 +1,6 @@
-   var url = Routing.generate('compatible_expose');
-    $.get(url,function(json){
-        localStorage.setItem('compatible',json);
-        $.compatible = $.parseJSON(json);
 
-    },"json")
     $(document).on("focusin focusout keyup keydown",".input-me",function (e){
-        console.log($.sui.is('strict','true'));
+
         var t = $(this);
         if (e.type == 'focusin') {
             $.suggest.on(t);
@@ -117,12 +112,16 @@ $.suggest = {
         var reg     = regexp(t.val());
 
         var patt    = new RegExp(reg, "i");
-        $.each($.compatible, function(k,val){
+
+        var list = $.local.[t.data('local')];
+
+
+        $.each(list, function(k,val){
             var name = val.name;
             var eval = name.match(patt);
             if(eval){
-                var list = $.mustache('compatible',val);
-                c.append(list);
+                var listitem = $.mustache(t.data('view'),val);
+                c.append(listitem);
             }
         })
 

@@ -49,12 +49,21 @@
         else
           var modal = $(".modal");
       modal.modal('hide');
+    },
+    json: function(json){
+       // modal json
+      if (json.modal != undefined && json.modal.content != undefined)
+        $.modal.html(json.modal.content, json.modal.modal, json.modal.title);
+      
+      if (json.modal != undefined && json.modal.iframe != undefined)
+        $.modal.iframe(json.modal.iframe, json.msg);
     }
   }
 
 $(document).on("click",".btn-modal",function (e){
     e.preventDefault();
     var t     = $(this);
+
     var url   = t.attr('href');
     var modal = t.data('modal');
     var title = t.attr('title');
@@ -71,3 +80,9 @@ $(document).on("click",".btn-modal",function (e){
     $.modal.set(url,data,modal,title);
   });
 
+$(document).on("click",".btn-iframe",function (e){
+  e.preventDefault();
+  var t = $(this);
+
+  $.modal.iframe(t.attr('href'));
+})
