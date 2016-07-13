@@ -15,9 +15,14 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
-    public function input_me($route='input_me',$data=[],$class='')
+    public function input_me($route='input_me',$data=[],$class='', $datainput = [])
     {
-        echo $this->twig->render('RBCoreBundle:Twig:input-me.html.twig',['route'=>$route,'data'=>$data,'class'=>$class]);
+        echo $this->twig->render('RBCoreBundle:Twig:input-me.html.twig',[
+            'route'=>$route,
+            'data'=>$data,
+            'class'=>$class,
+            'datainput'=>$datainput
+            ]);
     }
 
 

@@ -271,7 +271,7 @@ $(document).ready(function() {
     $(document).on("click",".btn-cb",function (e){
         e.preventDefault();
 
-        var t = $(this);
+        var t = ;
         $.cbt(t,e);
     })
 
