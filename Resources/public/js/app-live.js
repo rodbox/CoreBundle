@@ -101,4 +101,18 @@ $(document).ready(function(){
     $.live.post(t.attr('action'), t.serialize(), t, e);
   })
 
+  $(document).on("click",".btn-del-li",function (e){
+    e.preventDefault();  
+    var t = $(this);
+    
+    var li = t.parent('li').remove();
+    if(t.data('confirm') !=undefined){
+      if(confirm(t.data('confirm')))
+        li.remove();
+    }
+    else
+      li.remove();
+    
+  })
+
 })
