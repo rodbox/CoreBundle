@@ -128,7 +128,7 @@ $(document).ready(function() {
                 alert(json.msg);
             },
             setAction: function (t,e,json){
-                alert(json.msg);
+                
             },
             setFixStatus: function (t,e,json){
                 t.find('input').val('');
