@@ -22,7 +22,7 @@ class ExplorerController extends Controller
             $dir       = $this->container->getParameter('dir_src');
             
             $ext       = $request->request->get("ext",["js","css","less","scss","twig"]);
-            $search    = $request->request->get("search","");
+            $search    = $request->request->get("action","");
             $exclude   = $request->request->get("exclude",['var','web','node_modules']);
 
             $reg       = "{1}([a-zA-Z0-9\..\s_-]{0,}";
