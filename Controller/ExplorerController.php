@@ -6,9 +6,60 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Finder\Finder;
+
 
 class ExplorerController extends Controller
 {
+    
+    /**
+    * @Route("/finder", name="finder", options = { "expose" = true })
+    */
+    public function finderAction(Request $request)
+        {
+            $finder    = new finder();
+
+            $dir       = $this->container->getParameter('dir_src');
+            
+            $ext       = $request->request->get("ext",["js","css","less","scss","twig"]);
+            $search    = $request->request->get("search","");
+            $exclude   = $request->request->get("exclude",['var','web','node_modules']);
+
+            $reg       = "{1}([a-zA-Z0-9\..\s_-]{0,}";
+            $regsearch = implode($reg, str_split($search));
+
+            $list      = [];
+
+            $finder->in($dir);
+            // Filtre de dossier
+            foreach ($exclude as $key => $value)
+                $finder->notPath($value);
+
+            // Regurlar ex by js
+            $finder
+                ->path($regsearch)
+            ;
+
+            foreach ($ext as $key => $value)
+                $finder->name('*.'.$value);
+
+            $finder->files();
+
+            foreach ($finder as $file)
+                $list[]   = '/'.$file->getRelativePathname();
+
+
+
+            $r    = [
+                'infotype' => 'success',
+                'msg'      => 'action : ok',
+
+                'list'      =>$list
+            ];
+
+            return new JsonResponse($r);
+    }  
+
 
     /**
      * @Route("/explorer", name="explorer")

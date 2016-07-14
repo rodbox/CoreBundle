@@ -106,26 +106,29 @@ $.suggest = {
                 active.removeClass('active').next().addClass('active');
     },
     list:function(t){
-        var c = $($.suggest.container);
-        c.html('');
+        
+        if (t.data('local') != undefined) {
+            var c = $($.suggest.container);
+            c.html('');
 
-        var reg     = regexp(t.val());
+            var reg     = regexp(t.val());
 
-        var patt    = new RegExp(reg, "i");
+            var patt    = new RegExp(reg, "i");
 
-        var list = $.local.[t.data('local')];
+            var list = $.local[t.data('local')];
 
 
-        $.each(list, function(k,val){
-            var name = val.name;
-            var eval = name.match(patt);
-            if(eval){
-                var listitem = $.mustache(t.data('view'),val);
-                c.append(listitem);
-            }
-        })
+            $.each(list, function(k,val){
+                var name = val.name;
+                var eval = name.match(patt);
+                if(eval){
+                    var listitem = $.mustache(t.data('view'),val);
+                    c.append(listitem);
+                }
+            })
 
-        $($.suggest.container).find('.list-group-item').first().addClass('active');
+            $($.suggest.container).find('.list-group-item').first().addClass('active');
+        }
     },
     clear:function(t){
         $.suggest.clean(t)

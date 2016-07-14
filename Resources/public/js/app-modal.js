@@ -51,7 +51,6 @@
       modal.modal('hide');
     },
     json: function(json){
-       // modal json
       if (json.modal != undefined && json.modal.content != undefined)
         $.modal.html(json.modal.content, json.modal.modal, json.modal.title);
       
