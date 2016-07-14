@@ -2,6 +2,8 @@ $(document).ready(function(){
 
   $.btnLoad = {
     on:function (t){
+      t.addClass('onLoad');
+
       if(t.is('form'))
         t = t.find('button[type="submit"]');
 
@@ -14,6 +16,8 @@ $(document).ready(function(){
       t.addClass('onLoad');
     },
     off:function (t){
+      t.removeClass('onLoad');
+
       if(t.is('form'))
         t = t.find('button[type="submit"]');
 
@@ -46,7 +50,10 @@ $(document).ready(function(){
 
              $.cbt.this(t, e);
              $.cbt.json(t, json, e);
-
+             $.btnLoad.off(t);
+            }).error(function(err){
+              $.btnLoad.off(t);
+              $.setFlash('erreur '+ err.status,'error');
             });
           }
         }
@@ -57,7 +64,7 @@ $(document).ready(function(){
 
           $.cbt.this(t, e);
           $.cbt.json(t, json, e);
-
+          $.btnLoad.off(t);
         }
         if(!t.hasClass('no-flash') || json.infotype=='error')
           $.setFlash(json.msg,json.infotype);

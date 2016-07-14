@@ -18,9 +18,8 @@
         else
           var modal = $("#modalM");
 
-        $.modal.zindex++;
-        $('.modal-backdrop').last().css('z-index', $.modal.zindex);
-        $.modal.zindex++;
+        
+        $.modal.zindex += 2;
         modal.css('z-index',$.modal.zindex);
 
         modal.find('.modal-title').html(title);
@@ -28,6 +27,9 @@
         modal.modal({
           backdrop: 'static'
         });
+
+        $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);
+
 
         modal.initJq();
 
@@ -41,9 +43,7 @@
         $.loadlock.on();
         var modal = $("#modalIframe");
 
-        $.modal.zindex++;
-        $('.modal-backdrop').last().css('z-index', $.modal.zindex);
-        $.modal.zindex++;
+        $.modal.zindex += 2;
         modal.css('z-index',$.modal.zindex);
 
         var iframe = $("<iframe>",{
@@ -53,6 +53,8 @@
               modal.modal({
                 backdrop: 'static'
               });
+
+              $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);
             }
           });
         modal.find(".modal-body").html(iframe);
@@ -86,8 +88,8 @@ $(document).on("click",".btn-modal",function (e){
       $.modal.close();
 
     if (t.data('form') != undefined){
-      var dataForm = $(t.data('form')).serialize();
-      var data = $.extend(data, dataForm);
+      var dataForm  = $(t.data('form')).serialize();
+      var data      = $.extend(data, dataForm);
     }
 
     $.modal.set(url,data,modal,title);

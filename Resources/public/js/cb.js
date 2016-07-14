@@ -32,13 +32,11 @@ $(document).ready(function() {
                 $("#file").val(json.file);
             },
             entity_metas: function(t, e, json) {
-                // console.log('meta');
                 $(t.attr('data-target')).html(json.app);
             },
             src_parse: function(t, e, json) {
                 $.init(t.data('target'));
                 $("#import-step–2").trigger('click');
-                // $('.select2').select2({tags: true});
             },
             setImportRule: function(t, e, json) {
                 var config = json.rule.config;
@@ -86,7 +84,6 @@ $(document).ready(function() {
             getConvertResult: function(t, e, json) {
                 $("#import-step–3").trigger('click');
                 $('#target-convert-file').html(json.app);
-                // alert('convert callback');
                 $.init("#target-convert-file");
                 console.log(json);
             },
@@ -135,11 +132,10 @@ $(document).ready(function() {
 
                 $.counter();
                 $.lazy.load($("#fix_wait-pane"));
-                //alert('status mis jour : '+json.msg);
             },
             setDataOption: function (t,e,json){
                 $(t.data('target')).html(json.app);
-                // $(t.data('target')).select2();
+
             },
             setToggleVal: function (t,e,json){
                 if(t.attr('data-val')=="true")
@@ -219,7 +215,6 @@ $(document).ready(function() {
             },
             paneFullscreen: function (t,e){
                 $(t.data('target')).toggleClass('panel-me-fullscreen');
-                // $('body').toggleClass('panel-me-fullscreen');
                 $.context.set('f',$(t.data('target')).hasClass('panel-me-fullscreen'));
             },
             setCMMode: function (t,e){
@@ -258,15 +253,14 @@ $(document).ready(function() {
             var cb    = $.def(t.data('cb'),'default');
 
             if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
-              $.cb[cbapp][cb](t, json, e);
+              $.cb[cbapp][cb](t, e);
 
-            }
         },
         json : function(t, json, e){
             var cbapp = $.def(json.cbapp,'admin');
             var cb    = $.def(json.cb,'default');
 
-            if ($.cb[cbapp][cb] != undefined)
+            if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
                 $.cb[cbappjson][json.cb](t, json, e);
         }
     }

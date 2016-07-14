@@ -2,7 +2,7 @@ $(document).ready(function($) {
     $(document).on("click",".toggle-batch-all",function (e){
         e.preventDefault();
         var t = $(this);
-        console.log($(t.data("batch")));
+
         t.toggleClass("active");
 
         $(t.data("batch")+" input[type=checkbox].line")
