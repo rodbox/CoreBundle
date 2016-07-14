@@ -1,4 +1,4 @@
-<form id="input-me-{{route | default('core-form')}}" action="{{path(route, data) }}" class="form-live no-flash" data-cb="{{ datainput.cb | default('setAction')}}" data-cb-app="{{ datainput.cbapp | default('core')}}">
+<form id="input-me-{{route | default('core-form')}}" action="{{path(route, data  | default([])) }}" class="form-live no-flash" data-cb="{{ datainput.cb | default('setAction')}}" data-cb-app="{{ datainput.cbapp | default('core')}}">
     <div class="input-group" style="margin-top: 7px;">
         <div class="input-group-addon" style="background-color: #fff; border-color: #fff; border-width: 0;"><i class="fa fa-search"></i></div>
     <input type="text" name="action" class="form-control input-me {{ input.class | default('')}}" style="margin-top: 0px !important; " data-local="{{ dataInput.local | default('compatible')}}" data-view="{{ dataInput.view | default('compatible') }}" placeholder="Recherche et action" > </div>
