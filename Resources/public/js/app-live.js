@@ -5,7 +5,6 @@ $(document).ready(function(){
       if(t.is('form'))
         t = t.find('button[type="submit"]');
 
-
       var textAlt = t.attr('data-loading-text');
       textAlt = (textAlt==undefined)?"<i class='fa fa-refresh fa-spin'></i> "+t.html()+" ...":textAlt;
 
@@ -38,33 +37,27 @@ $(document).ready(function(){
             // envois forcer
             data.force = $.force();
             $.post(url, data, function(json, textStatus, xhr) {
-              // modal json
-              if (json.modal != undefined)
-                $.modal.html(json.modal.content, json.modal.modal, json.modal.title);
+
+              $.modal.json(json);
 
               // flash json
               if(!t.hasClass('no-flash') || json.infotype=='error')
                 $.setFlash(json.msg, json.infotype)
 
-              // cb this
-              if (t.data('cb') != undefined)
-                $.cb[t.data('cb-app')][t.data('cb')](t, e, json);
+             $.cbt.this(t, e);
+             $.cbt.json(t, json, e);
 
-              // cb json
-              if (json.cb != undefined)
-                $.cb[json.cbapp][json.cb](t, e, json);
             });
           }
         }
         // si c'est ok callback
         else{
-          // cb this
-          if (t.data('cb') != undefined)
-            $.cb[t.data('cb-app')][t.data('cb')](t, e, json);
 
-          // cb json
-          if (json.cb != undefined)
-            $.cb[json.cbapp][json.cb](t, e, json);
+          $.modal.json(json);
+
+          $.cbt.this(t, e);
+          $.cbt.json(t, json, e);
+
         }
         if(!t.hasClass('no-flash') || json.infotype=='error')
           $.setFlash(json.msg,json.infotype);
@@ -82,6 +75,8 @@ $(document).ready(function(){
     }
   };
 
+
+
   $(document).on("click", ".btn-live", function (e){
     e.preventDefault();
     var t    = $(this);
@@ -94,12 +89,16 @@ $(document).ready(function(){
       $.live.post(t.attr('href'), t.data(), t, e);
   })
 
+
+
   $(document).on("submit","form.form-live",function (e){
     e.preventDefault();
     var t    = $(this);
 
     $.live.post(t.attr('action'), t.serialize(), t, e);
   })
+
+
 
   $(document).on("click",".btn-del-li",function (e){
     e.preventDefault();  
@@ -111,8 +110,7 @@ $(document).ready(function(){
         li.remove();
     }
     else
-      li.remove();
-    
+      li.remove();    
   })
 
 })

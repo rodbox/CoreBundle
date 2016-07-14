@@ -1,4 +1,5 @@
   $.modal = {
+    zindex : 3000,
     set : function(url, dataSend, modal, title){
       $.loadlock.on();
       $.post(url, dataSend, function(data) {
@@ -17,6 +18,11 @@
         else
           var modal = $("#modalM");
 
+        $.modal.zindex++;
+        $('.modal-backdrop').last().css('z-index', $.modal.zindex);
+        $.modal.zindex++;
+        modal.css('z-index',$.modal.zindex);
+
         modal.find('.modal-title').html(title);
         modal.find(".modal-body").html(content);
         modal.modal({
@@ -28,10 +34,18 @@
         setTimeout(function(){
           modal.find('input[autofocus="true"]').first().focus();
         },200)
+
+
     },
     iframe:function(url,title){
         $.loadlock.on();
         var modal = $("#modalIframe");
+
+        $.modal.zindex++;
+        $('.modal-backdrop').last().css('z-index', $.modal.zindex);
+        $.modal.zindex++;
+        modal.css('z-index',$.modal.zindex);
+
         var iframe = $("<iframe>",{
           src  : url,
           load : function(){

@@ -252,17 +252,22 @@ $(document).ready(function() {
 
 
     // callback this
-    $.cbt = function (t, e, json){
-        var cbapp = $.def(t.data('cb-app'),'admin');
-        var cb    = $.def(t.data('cb'),'default');
+    $.cbt = {
+        this : function(t, e){
+            var cbapp = $.def(t.data('cb-app'),'admin');
+            var cb    = $.def(t.data('cb'),'default');
 
-        if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
-          $.cb[cbapp][cb](t, json, e);
+            if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
+              $.cb[cbapp][cb](t, json, e);
 
-        // le callback de la requete
-        if (json != undefined && json.cb != undefined){
-          var cbappjson = $.def(json.cbapp,'core');
-          $.cb[cbappjson][json.cb](t, json, e);
+            }
+        },
+        json : function(t, json, e){
+            var cbapp = $.def(json.cbapp,'admin');
+            var cb    = $.def(json.cb,'default');
+
+            if ($.cb[cbapp][cb] != undefined)
+                $.cb[cbappjson][json.cb](t, json, e);
         }
     }
 
@@ -270,9 +275,9 @@ $(document).ready(function() {
 
     $(document).on("click",".btn-cb",function (e){
         e.preventDefault();
-
         var t = $(this);
-        $.cbt(t,e);
+
+        $.cbt.this(t, e);
     })
 
 
