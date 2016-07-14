@@ -130,25 +130,35 @@ $.suggest = {
 
         if (t.data('live') != undefined) {
 
-            var url = Routing.generate(t.data('live'));
-            $.ajax({
-                url      : url,
-                data     : {
-                    action: t.val()
-                },
-                async    : false,
-                dataType : 'json'
-            })
-            .done(function(json) {
-                $.each(json, function(k,val){
-                    var name = val.name;
-                    var eval = name.match(patt);
-                    if(eval){
-                        var listitem = $.mustache(t.data('view'),val);
-                        c.append(listitem);
-                    }
-                })  
-            });
+            if (t.val().length >= 3) {
+
+                clearTimeout($.timer);
+                $.timer = setTimeout(function(){
+
+                    var url = Routing.generate(t.data('live'));
+                    $.ajax({
+                        url      : url,
+                        data     : {
+                            action: t.val()
+                        },
+                        async    : true,
+                        dataType : 'json'
+                    })
+                    .done(function(json) {
+                        $.each(json, function(k,val){
+                            var name = val.name;
+                            var eval = name.match(patt);
+                            if(eval){
+                                var listitem = $.mustache(t.data('view'),val);
+                                c.append(listitem);
+                            }
+                        })  
+                    });    
+
+
+                },250)
+
+            }
         }
 
          $($.suggest.container).find('.list-group-item').first().addClass('active');
