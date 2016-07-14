@@ -105,7 +105,7 @@ $(document).ready(function(){
     e.preventDefault();  
     var t = $(this);
     
-    var li = t.parent('li').remove();
+    var li = t.parents('li').first().remove();
     if(t.data('confirm') !=undefined){
       if(confirm(t.data('confirm')))
         li.remove();

@@ -1,7 +1,7 @@
-
-    $(document).on("focusin focusout keyup keydown",".input-me",function (e){
+$(document).on("focusin focusout keyup keydown",".input-me",function (e){
 
         var t = $(this);
+        
         if (e.type == 'focusin') {
             $.suggest.on(t);
         }
@@ -106,17 +106,16 @@ $.suggest = {
                 active.removeClass('active').next().addClass('active');
     },
     list:function(t){
+
+        var c = $($.suggest.container);
+        c.html('');
+
+        var reg     = regexp(t.val());
+        var patt    = new RegExp(reg, "i");
         
         if (t.data('local') != undefined) {
-            var c = $($.suggest.container);
-            c.html('');
-
-            var reg     = regexp(t.val());
-
-            var patt    = new RegExp(reg, "i");
-
+            
             var list = $.local[t.data('local')];
-
 
             $.each(list, function(k,val){
                 var name = val.name;
@@ -126,9 +125,33 @@ $.suggest = {
                     c.append(listitem);
                 }
             })
-
-            $($.suggest.container).find('.list-group-item').first().addClass('active');
         }
+
+
+        if (t.data('live') != undefined) {
+
+            var url = Routing.generate(t.data('live'));
+            $.ajax({
+                url      : url,
+                data     : {
+                    action: t.val()
+                },
+                async    : false,
+                dataType : 'json'
+            })
+            .done(function(json) {
+                $.each(json, function(k,val){
+                    var name = val.name;
+                    var eval = name.match(patt);
+                    if(eval){
+                        var listitem = $.mustache(t.data('view'),val);
+                        c.append(listitem);
+                    }
+                })  
+            });
+        }
+
+         $($.suggest.container).find('.list-group-item').first().addClass('active');
     },
     clear:function(t){
         $.suggest.clean(t)

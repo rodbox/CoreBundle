@@ -13,7 +13,7 @@ class ExplorerController extends Controller
 {
     
     /**
-    * @Route("/finder", name="finder", options = { "expose" = true })
+    * @Route("/finder_expose", name="finder_expose", options = { "expose" = true })
     */
     public function finderAction(Request $request)
         {
@@ -45,17 +45,14 @@ class ExplorerController extends Controller
 
             $finder->files();
 
-            foreach ($finder as $file)
-                $list[]   = '/'.$file->getRelativePathname();
+            foreach ($finder as $file){
+                $list[]   = [
+                    'name'=>'/'.$file->getRelativePathname()
+                ];
+            }
 
 
-
-            $r    = [
-                'infotype' => 'success',
-                'msg'      => 'action : ok',
-
-                'list'      =>$list
-            ];
+            $r    = $list;
 
             return new JsonResponse($r);
     }  
