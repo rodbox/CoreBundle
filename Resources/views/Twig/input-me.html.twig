@@ -3,5 +3,3 @@
         <div class="input-group-addon" style="background-color: #fff; border-color: #fff; border-width: 0;"><i class="fa fa-search"></i></div>
     <input type="text" name="action" class="form-control input-me {{ input.class | default('')}}" style="margin-top: 0px !important;"  placeholder="Recherche et action" {% if datainput.live is defined %} data-live="{{ datainput.live }}" {% endif %} {% if datainput.local is defined %} data-local="{{ datainput.local }}" {% endif %} {% if datainput.view is defined %} data-view="{{ datainput.view }}" {% endif %} /> </div>
 </form>
-
-
