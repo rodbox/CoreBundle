@@ -81,7 +81,7 @@ $(document).on("focusin focusout keyup keydown",".input-me",function (e){
 $.suggest = {
     container : '',
     on:function(t){
-        var container = $("<div>",{"id":"suggest","class":"suggest list-group"}).css({
+        var container = $("<div>",{"id":t.attr('id')+"-suggest","class":"suggest list-group"}).css({
             position: 'absolute',
             top: t.position().top + 34,
             left: 0,
@@ -146,6 +146,7 @@ $.suggest = {
                     })
                     .done(function(json) {
                         $.each(json, function(k,val){
+                            console.log(val);
                             var name = val.name;
                             var eval = name.match(patt);
                             if(eval){
@@ -156,12 +157,12 @@ $.suggest = {
                     });    
 
 
-                },250)
+                },300)
 
             }
         }
 
-         $($.suggest.container).find('.list-group-item').first().addClass('active');
+        c.find('.list-group-item').first().addClass('active');
     },
     clear:function(t){
         $.suggest.clean(t)

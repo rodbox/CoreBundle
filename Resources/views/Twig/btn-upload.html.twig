@@ -1,7 +1,9 @@
-<!-- BEGIN DROPDOWN HOVER  -->
-<div class="btn-group input-group-btn">
-    <a href="{{path('upload') }}" class="btn btn-secondary btn-modal" data-index="{{index}}" data-target-list="#{{id}}-files" title="Upload" data-filter="{{filter}}" data-dest="{{dest}}" data-cb="upload_init">
+<div id="{{id}}-dropdown-plupload-group" class="btn-group dropdown-plupload-group">
+    <a href="{{path('upload_exec') }}" id="{{id}}-dropdown-plupload" data-target-list="#{{id}}-dropdown-plupload-menu"  class="btn btn-plupload" data-multiple="true">
     <i class="fa fa-cloud-upload"></i>
+
+<span id="{{id}}-dropdown-plupload-badge" class="label">10</span>
+
     </a>
+    <div id="{{id}}-dropdown-plupload-list" class="dropdown-menu dropdown-plupload-list" style="width: 200px; margin-left:-68px; border:0px;"></div>
 </div>
-<!-- END DROPDOWN HOVER  -->
