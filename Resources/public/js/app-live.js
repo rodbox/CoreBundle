@@ -9,7 +9,9 @@ $(document).ready(function(){
 
       var textAlt = t.attr('data-loading-text');
       textAlt = (textAlt==undefined)?"<i class='fa fa-refresh fa-spin'></i> "+t.html()+" ...":textAlt;
-
+      t.css({
+        'min-width':t.outerWidth()
+      });
       t.attr('data-text',t.html());
       t.html(textAlt);
       t.attr('disabled','disabled');

@@ -11,14 +11,24 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
-    public function btn_upload($index='/',$id='plup-default',$filter='def',$dest='dir_upload')
+    public function btn_upload($index='/',$id='upl-default', $data = [])
     {
-        echo $this->twig->render('RBCoreBundle:Twig:btn-upload.html.twig',[
+
+        $data = [
             'id'     => $id,
             'index'  => $index,
-            'filter' => $filter,
-            'dest'   => $dest
-        ]);
+            'route'  => 'upload',
+            'data'   => [
+                'filter'   =>  'all',
+                'dest'     => 'dir_upload',
+                'rename'   => false,
+                'multiple' => true,
+                "cbapp"    => 'import',
+                "cb"       => 'default'
+            ]
+        ];
+
+        echo $this->twig->render('RBCoreBundle:Twig:btn-upload.html.twig',$data);
     }
 
     public function dropzone($index='/',$id='plup-drop',$filter='def',$dest='dir_upload')
@@ -31,28 +41,62 @@ class RBUploadExtension  extends \Twig_Extension{
         ]);
     }
 
-    public function btn_upload_import(){
-        $this->btn_upload('/','plup-import','imports','dir_import');
+    public function btn_upload_import($rename='import', $index='/',$cbapp='admin',$cb='import'){
+
+        $data = [
+            'id'     => 'import',
+            'index'  => $index,
+            'route'  => 'upload',
+            'data'   => [
+                'filter'   => 'xls',
+                'rename'   => $rename,
+                'dest'     => 'dir_import',
+                'index'    => $index,
+                'multiple' => false,
+                "cbapp"    => $cbapp,
+                "cb"       => $cb
+            ]
+        ];
+
+        echo $this->twig->render('RBCoreBundle:Twig:btn-upload.html.twig', $data);
     }
 
 
-    public function btn_upload_import_wait(){
-        $this->btn_upload('/','plup-import','imports','dir_import_wait');
+    public function btn_upload_media($filter = 'img', $index = '/'){
+        $data = [
+            'id'     => 'media',
+            'index'  => $index,
+            'route'  => 'upload',
+            'data'   => [
+                'filter'   => $filter,
+                'dest'     => 'dir_media',
+                'rename'   => false,
+                'multiple' => true,
+                "cbapp"    => 'import',
+                "cb"       => 'default'
+            ]
+        ];
+
+        echo $this->twig->render('RBCoreBundle:Twig:btn-upload.html.twig',$data);
     }
 
 
-    public function btn_upload_product($id){
-        $this->btn_upload('/','plup-product','img','dir_products');
-    }
+    public function btn_upload_user($id, $index = '/'){
+        $data = [
+            'id'     => 'user',
+            'index'  => '/'.$id.$index,
+            'route'  => 'upload',
+            'data'   => [
+                'filter'   =>  'all',
+                'dest'     => 'dir_user',
+                'rename'   => false,
+                'multiple' => true,
+                "cbapp"    => 'import',
+                "cb"       => 'default'
+            ]
+        ];
 
-
-    public function btn_upload_media(){
-        $this->btn_upload('/','plup-media','def','dir_import');
-    }
-
-
-    public function btn_upload_user($id){
-        $this->btn_upload('/','plup-user','def','dir_user');
+        echo $this->twig->render('RBCoreBundle:Twig:btn-upload.html.twig',$data);
     }
 
 
@@ -66,8 +110,6 @@ class RBUploadExtension  extends \Twig_Extension{
         return array(
             "btn_upload"             => new \Twig_Function_Method($this, 'btn_upload',            ['is_safe' => ['html']]),
             "btn_upload_import"      => new \Twig_Function_Method($this, 'btn_upload_import',            ['is_safe' => ['html']]),
-            "btn_upload_import_wait" => new \Twig_Function_Method($this, 'btn_upload_import_wait',            ['is_safe' => ['html']]),
-            "btn_upload_product"     => new \Twig_Function_Method($this, 'btn_upload_product',            ['is_safe' => ['html']]),
             "btn_upload_media"       => new \Twig_Function_Method($this, 'btn_upload_media',            ['is_safe' => ['html']]),
             "btn_upload_user"        => new \Twig_Function_Method($this, 'btn_upload_user',            ['is_safe' => ['html']]),
             "dropzone"               => new \Twig_Function_Method($this, 'dropzone',            ['is_safe' => ['html']])

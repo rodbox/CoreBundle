@@ -11,6 +11,9 @@ services:
     rb.templates:
         class: RB\CoreBundle\Services\RBTemplatesService
         arguments: ["@service_container"]
+    rb.upload:
+        class: RB\CoreBundle\Services\RBUploadService
+        arguments: ["@service_container"]
 
     rb.helper.service:
         class: RB\CoreBundle\Services\RBHelperService
