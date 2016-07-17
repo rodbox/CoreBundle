@@ -17,11 +17,12 @@ class UploadController extends Controller
     public function uploadAction(Request $request){
 
         // on recupere le nom de la constante de destination.
-        $dest       = $request->request->get("dest", "dir_upload");
+        $dest       = $request->request->get("dest", "upload");
         $dir        = $request->request->get("index", "/");
         $rename     = $request->request->get("rename", "");
 
-        $dir_upload = $this->container->getParameter($dest);
+        $dir_upload = $this->container->getParameter('dir_'.$dest);
+        $web_upload = $this->container->getParameter('web_'.$dest);
         $dir_dest   = $dir_upload.$dir;
         $files      = $request->files;
         $filters    = [];
@@ -38,19 +39,21 @@ class UploadController extends Controller
                 $filename   = $file->getClientOriginalName();
                 $filename   = preg_replace('/\s+/', '_', $filename);
             }
-            else{
+
+            else
                 $filename   = $rename;
-            }
+
             $fs->mkdir($dir_dest);
             $file->move($dir_dest, $filename);
 
-            $list['valid'][] = $filename;
+            $list['valid'][] = $dir.$filename;
         }
 
 
         $r = [
             'infotype' => "success",
             'msg'      => $rename,
+            'url'      => $web_upload.$dir,
             'file'     => $list
         ];
         return new JsonResponse($r);

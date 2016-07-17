@@ -10,7 +10,6 @@ $.fn.initPlupload = function(options) {
 		var id       = Math.random().toString(36).substring(2);
 		var pourcent = 0;
 
-		console.log(t.data());
 		param[id] = {};
 		
 		param[id].t         = t;
@@ -27,6 +26,7 @@ $.fn.initPlupload = function(options) {
 		param[id].multiple = t.data('multiple');
 
 		initUploader();
+
 
 		function FilesAdded(file){
 			var fileSize    = plupload.formatSize(file.size);
@@ -47,6 +47,8 @@ $.fn.initPlupload = function(options) {
 			return divItem;
 	  	}
 
+
+
 		function badge(){
 			var badge = $("#"+param[id].badge);
 			badge.html(param[id].counter);
@@ -61,170 +63,173 @@ $.fn.initPlupload = function(options) {
 		}
 
 
+
 		function clear(){
 			param[id].counter = 0;
 			$('#'+param[id].list).hide().html('');
 		}
-	  function initUploader(){
-
-
-	  	var filters = {
-	  		all : {
-
-	  		},
-	  		img : {
-	  			filters: {
-				  mime_types : [
-				    { title : "Image files", extensions : "jpg,gif,png" }
-				  ],
-				  max_file_size: "200mb",
-				  prevent_duplicates: true
-				},
-				resize 			: {
-					"width"	  : 1200,
-					"height"  : 1000,
-					"quality" : 90
-				}
-	  		},
-	  		xls: {
-	  			filters: {
-				  mime_types : [
-				    { title : "Xls files", extensions : "csv,xls,xlsx" }
-				  ]
-				}
-	  		},
-	  		pdf: {
-	  			filters: {
-				  mime_types : [
-				    { title : "PDF files", extensions : "pdf" }
-				  ]
-				}
-	  		},
-	  		audio: {
-	  			filters: {
-				  mime_types : [
-				    { title : "Audio files", extensions : "mp3,wav" }
-				  ]
-				}
-	  		},
-	  		video: {
-	  			filters: {
-				  mime_types : [
-				    { title : "Video files", extensions : "avi,mp4,mpg" }
-				  ]
-				}
-	  		},
-	  		media:{
-	  			filters: {
-				  mime_types : [
-				    { title : "Image files", extensions : "jpg,gif,png,svg" }
-				    { title : "Video files", extensions : "avi,mp4,mpg" }
-				    { title : "Audio files", extensions : "mp3,wav" }
-				  ]
-				}
-	  		},
-	  		archive: {
-	  			filters: {
-				  mime_types : [
-				    { title : "Archive files", extensions : "zip,rar" }
-				  ]
-				}
-	  		}
-	  	}
 
 
 
+	  	function initUploader(){
+		  	var filters = {
+		  		all : {
 
+		  		},
+		  		img : {
+		  			filters: {
+					  mime_types : [
+					    { title : "Image files", extensions : "jpg,gif,png" }
+					  ],
+					  max_file_size: "200mb",
+					  prevent_duplicates: true
+					},
+					resize 			: {
+						"width"	  : 1200,
+						"height"  : 1000,
+						"quality" : 90
+					}
+		  		},
+		  		xls: {
+		  			filters: {
+					  mime_types : [
+					    { title : "Xls files", extensions : "csv,xls,xlsx" }
+					  ]
+					}
+		  		},
+		  		pdf: {
+		  			filters: {
+					  mime_types : [
+					    { title : "PDF files", extensions : "pdf" }
+					  ]
+					}
+		  		},
+		  		audio: {
+		  			filters: {
+					  mime_types : [
+					    { title : "Audio files", extensions : "mp3,wav" }
+					  ]
+					}
+		  		},
+		  		video: {
+		  			filters: {
+					  mime_types : [
+					    { title : "Video files", extensions : "avi,mp4,mpg" }
+					  ]
+					}
+		  		},
+		  		media:{
+		  			filters: {
+					  mime_types : [
+					    { title : "Image files", extensions : "jpg,gif,png,svg" },
+					    { title : "Video files", extensions : "avi,mp4,mpg" },
+					    { title : "Audio files", extensions : "mp3,wav" }
+					  ]
+					}
+		  		},
+		  		archive: {
+		  			filters: {
+					  mime_types : [
+					    { title : "Archive files", extensions : "zip,rar" }
+					  ]
+					}
+		  		}
+		  	}
 
-		var paramData    = param[id].t.data();
-		var paramDefault = {
-			
-			runtimes		: "html5,flash",
-			flash_swf_url	: "js/Moxie.swf",
-			containers		: param[id].container,
-			multi_selection : param[id].multiple,
-			browse_button	: param[id].browse,
-			url				: param[id].url,
-			multipart_params: paramData,
-			multipart		: true,
-			urlstream_upload: true,
-			startOnAdded	: true
-		}
-
-		// on rajoute le preset filter au param par default;
-		var paramUploader= $.extend(paramDefault, filters[param[id].t.data('filter')], paramData);
-
-		param[id].uploader = new plupload.Uploader(paramUploader);
-		param[id].uploader.init();
-
-		param[id].uploader.bind('FilesAdded',function(up,files){
-			var fileslist = $('#'+param[id].list);
-
-			for (var i in files) {
-				var file = files[i];
-				fileslist.append(FilesAdded(file));
-				param[id].counter++;
-			};
-
-			param[id].uploader.refresh();
-			param[id].uploader.start();
-
-
-			$.btnLoad.on(param[id].t);
-			badge();
-		});
-
-		param[id].uploader.bind('UploadProgress',function(up,file){
-			var percent     = file.percent;
-			var fileCurrent = $('#'+file.id);
-			var progressbar = fileCurrent.find(".progress");
-			
-
-			if (!fileCurrent.hasClass("plupload-file-current"))
-				fileCurrent.addClass("plupload-file-current");
-
-			progressbar.attr("value",percent).html(percent+"%");
-
-			if(percent >= 100){
-				progressbar.addClass('progress-success');
-				fileCurrent.removeClass("plupload-file-current").addClass("plupload-file-complete");
+			var paramData    = param[id].t.data();
+			var paramDefault = {
+				containers		: param[id].container,
+				multi_selection : param[id].multiple,
+				browse_button	: param[id].browse,
+				flash_swf_url	: "js/Moxie.swf",
+				runtimes		: "html5,flash",
+				url				: param[id].url,
+				multipart_params: paramData,
+				multipart		: true,
+				urlstream_upload: true,
+				startOnAdded	: true
 			}
-		});
 
-		param[id].uploader.bind('UploadComplete',function(up, files){
-			 $.btnLoad.off(param[id].t);
-			 clear();
-			 if (param[id].cb+"s" != undefined && param[id].cbapp != undefined)
-					$.cb[param[id].cbapp][param[id].cb+"s"](files);
-		});
-		param[id].uploader.bind('FileUploaded',function(up, file, response){
-			param[id].fileCurrent  	= $('#'+file.id);
-			param[id].response 		= $.parseJSON(response.response);
-			console.log(param[id].response);
-			setTimeout(function(){
-				param[id].fileCurrent.removeClass("plupload-file-current").remove();
-				param[id].counter--;
+			// on rajoute le preset filter au param par default;
+			var paramUploader= $.extend(paramDefault, filters[param[id].t.data('filter')], paramData);
+
+			param[id].uploader = new plupload.Uploader(paramUploader);
+			param[id].uploader.init();
+
+
+			param[id].uploader.bind('FilesAdded',function(up,files){
+				var fileslist = $('#'+param[id].list);
+
+				for (var i in files) {
+					var file = files[i];
+					fileslist.append(FilesAdded(file));
+					param[id].counter++;
+				};
+
+				param[id].uploader.refresh();
+				param[id].uploader.start();
+
+				$.btnLoad.on(param[id].t);
 				badge();
+			});
 
-				if (param[id].cb != undefined && param[id].cbapp != undefined)
-					$.cb[param[id].cbapp][param[id].cb](param[id].response);
-			},450)
-		});
-	};
-});
+
+			param[id].uploader.bind('UploadProgress',function(up,file){
+				var percent     = file.percent;
+				var fileCurrent = $('#'+file.id);
+				var progressbar = fileCurrent.find(".progress");
+				
+				if (!fileCurrent.hasClass("plupload-file-current"))
+					fileCurrent.addClass("plupload-file-current");
+
+				progressbar.attr("value",percent).html(percent+"%");
+
+				if(percent >= 100){
+					progressbar.addClass('progress-success');
+					fileCurrent.removeClass("plupload-file-current").addClass("plupload-file-complete");
+				}
+			});
+
+
+			param[id].uploader.bind('UploadComplete',function(up, files){
+				$.btnLoad.off(param[id].t);
+				clear();
+				var cbs 	= param[id].cb+"s";
+				var cbapp 	= param[id].cbapp;
+
+				if (cbs != undefined && cbapp != undefined)
+					$.cb[cbapp][cbs](files);
+			});
+
+
+			param[id].uploader.bind('FileUploaded',function(up, file, response){
+				param[id].fileCurrent  	= $('#'+file.id);
+				param[id].response 		= $.parseJSON(response.response);
+
+				setTimeout(function(){
+					param[id].fileCurrent.removeClass("plupload-file-current").remove();
+					param[id].counter--;
+					badge();
+
+					if (param[id].cb != undefined && param[id].cbapp != undefined)
+						$.cb[param[id].cbapp][param[id].cb](param[id].response);
+				},450)
+			});
+		};
+	});
 };
 
 
 })(jQuery);
 
 $(document).ready(function($) {
+	
 	$(document).on("click",".btn-plupload",function (e){
 		e.preventDefault();
 		var t = $(this);
-//		$('#'+t.attr('id')+'-list').toggle();
-		//$(this).initPlupload();
 	})
-$('.btn-plupload').initPlupload();
+
+	$('.btn-plupload').initPlupload();
 
 });
 
