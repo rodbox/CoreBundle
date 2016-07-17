@@ -114,6 +114,15 @@ $.fn.initPlupload = function(options) {
 				  ]
 				}
 	  		},
+	  		media:{
+	  			filters: {
+				  mime_types : [
+				    { title : "Image files", extensions : "jpg,gif,png,svg" }
+				    { title : "Video files", extensions : "avi,mp4,mpg" }
+				    { title : "Audio files", extensions : "mp3,wav" }
+				  ]
+				}
+	  		},
 	  		archive: {
 	  			filters: {
 				  mime_types : [
