@@ -85,10 +85,10 @@ class RBExplorerExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            "explorer_src" => new \Twig_Function_Method($this, 'explorer_src',             ['is_safe' => ['html']]),
-            "explorer_me"  => new \Twig_Function_Method($this, 'explorer_me',           ['is_safe' => ['html']]),
-            "editor_me"    => new \Twig_Function_Method($this, 'editor_me',              ['is_safe' => ['html']]),
-            "editor_menu"  => new \Twig_Function_Method($this, 'editor_menu',              ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("explorer_src", [$this, 'explorer_src'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("explorer_me", [$this, 'explorer_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("editor_me", [$this, 'editor_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("editor_menu", [$this, 'editor_menu'], ['is_safe' => ['html']]),
         );
     }
 }

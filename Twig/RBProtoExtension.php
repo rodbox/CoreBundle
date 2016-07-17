@@ -29,7 +29,7 @@ class RBProtoExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            "btn_proto"   => new \Twig_Function_Method($this, 'btn_proto',            ['is_safe' => ['html']])
+            new \Twig_SimpleFunction("btn_proto",[$this, 'btn_proto'],['is_safe' => ['html']])
         );
     }
 }

@@ -201,17 +201,17 @@ class RBCrudExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            "menu_edit"        => new \Twig_Function_Method($this, 'menu_edit',         ['is_safe' => ['html']]),
-            "menu_show"        => new \Twig_Function_Method($this, 'menu_show',         ['is_safe' => ['html']]),
-            "menu_new"         => new \Twig_Function_Method($this, 'menu_new',          ['is_safe' => ['html']]),
-            "play_select"      => new \Twig_Function_Method($this, 'play_select',       ['is_safe' => ['html']]),
-            "edit_me"          => new \Twig_Function_Method($this, 'edit_me',           ['is_safe' => ['html']]),
-            "find_me"          => new \Twig_Function_Method($this, 'find_me',           ['is_safe' => ['html']]),
-            "action_me"        => new \Twig_Function_Method($this, 'action_me',         ['is_safe' => ['html']]),
-            "crud_menu"        => new \Twig_Function_Method($this, 'crud_menu',         ['is_safe' => ['html']]),
-            "crud_menu_entity" => new \Twig_Function_Method($this, 'crud_menu_entity',  ['is_safe' => ['html']]),
-            "check_me"         => new \Twig_Function_Method($this, 'check_me',          ['is_safe' => ['html']]),
-            "check_setter_me"  => new \Twig_Function_Method($this, 'check_setter_me',   ['is_safe' => ['html']])
+            new \Twig_SimpleFunction("menu_edit", [$this, 'menu_edit'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("menu_show", [$this, 'menu_show'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("menu_new", [$this, 'menu_new'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("play_select", [$this, 'play_select'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("edit_me", [$this, 'edit_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("find_me", [$this, 'find_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("action_me", [$this, 'action_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("crud_menu", [$this, 'crud_menu'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("crud_menu_entity", [$this, 'crud_menu_entity'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("check_me", [$this, 'check_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("check_setter_me", [$this, 'check_setter_me'], ['is_safe' => ['html']])
         );
     }
 }

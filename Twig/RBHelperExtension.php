@@ -28,8 +28,8 @@ class RBHelperExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            "form_helper"            => new \Twig_Function_Method($this, 'form_helper',            ['is_safe' => ['html']]),
-            "form_helper_addon"            => new \Twig_Function_Method($this, 'form_helper_addon',            ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("form_helper"[$this, 'form_helper'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("form_helper_addon"[$this, 'form_helper_addon'], ['is_safe' => ['html']]),
         );
     }
 }

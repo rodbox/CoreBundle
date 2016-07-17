@@ -47,8 +47,8 @@ class RBBootstrapExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            "btn_popover"      => new \Twig_Function_Method($this, 'btn_popover',            ['is_safe' => ['html']]),
-            "btn_popover_live" => new \Twig_Function_Method($this, 'btn_popover_live',       ['is_safe' => ['html']])
+            new \Twig_SimpleFunction("btn_popover",[$this, 'btn_popover'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("btn_popover_live",[$this, 'btn_popover_live'], ['is_safe' => ['html']])
         );
     }
 }

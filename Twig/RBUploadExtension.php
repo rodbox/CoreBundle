@@ -132,12 +132,12 @@ class RBUploadExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            'btn_upload'             => new \Twig_Function_Method($this, 'btn_upload',            ['is_safe' => ['html']]),
-            'btn_upload_import'      => new \Twig_Function_Method($this, 'btn_upload_import',            ['is_safe' => ['html']]),
-            'btn_upload_media'       => new \Twig_Function_Method($this, 'btn_upload_media',            ['is_safe' => ['html']]),
-            'btn_upload_user'        => new \Twig_Function_Method($this, 'btn_upload_user',            ['is_safe' => ['html']]),
-            'btn_upload_file'        => new \Twig_Function_Method($this, 'btn_upload_file',            ['is_safe' => ['html']]),
-            'dropzone'               => new \Twig_Function_Method($this, 'dropzone',            ['is_safe' => ['html']])
+            new \Twig_SimpleFunction('btn_upload',[$this, 'btn_upload'],['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('btn_upload_import',[$this, 'btn_upload_import'],['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('btn_upload_media',[$this, 'btn_upload_media'],['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('btn_upload_user',[$this, 'btn_upload_user'],['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('btn_upload_file',[$this, 'btn_upload_file'],['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('dropzone',[$this, 'dropzone'],['is_safe' => ['html']])
         );
     }
 }

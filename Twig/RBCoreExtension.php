@@ -249,25 +249,25 @@ public function alert_me($id='all')
 
     public function getFunctions(){
         return array(
-            "alert_me"            => new \Twig_Function_Method($this, 'alert_me',             ['is_safe' => ['html']]),
-            "counter_me"          => new \Twig_Function_Method($this, 'counter_me',           ['is_safe' => ['html']]),
-            "input_me"            => new \Twig_Function_Method($this, 'input_me',             ['is_safe' => ['html']]),
-            "clip_me"             => new \Twig_Function_Method($this, 'clip_me',              ['is_safe' => ['html']]),
-            "context_me"          => new \Twig_Function_Method($this, 'context_me',           ['is_safe' => ['html']]),
-            "context_me_attr"     => new \Twig_Function_Method($this, 'context_me_attr',      ['is_safe' => ['html']]),
-            "context_me_radio"    => new \Twig_Function_Method($this, 'context_me_radio',     ['is_safe' => ['html']]),
-            "context_me_checkbox" => new \Twig_Function_Method($this, 'context_me_checkbox',  ['is_safe' => ['html']]),
-            "context_me_select"   => new \Twig_Function_Method($this, 'context_me_select',    ['is_safe' => ['html']]),
-            "setter_me"           => new \Twig_Function_Method($this, 'setter_me',            ['is_safe' => ['html']]),
-            "tab_me"              => new \Twig_Function_Method($this, 'tab_me',               ['is_safe' => ['html']]),
-            "nav_me"              => new \Twig_Function_Method($this, 'nav_me',               ['is_safe' => ['html']]),
-            "pane_me"             => new \Twig_Function_Method($this, 'pane_me',              ['is_safe' => ['html']]),
-            "pane_me_lazy"        => new \Twig_Function_Method($this, 'pane_me_lazy',         ['is_safe' => ['html']]),
-            "crop_me"             => new \Twig_Function_Method($this, 'crop_me',              ['is_safe' => ['html']]),
-            "curl_me"             => new \Twig_Function_Method($this, 'curl_me',              ['is_safe' => ['html']]),
-            "view_me"             => new \Twig_Function_Method($this, 'view_me',              ['is_safe' => ['html']]),
-            "logo"                => new \Twig_Function_Method($this, 'logo',                 ['is_safe' => ['html']]),
-            "mustache_tpl"        => new \Twig_Function_Method($this, 'mustache_tpl',         ['is_safe' => ['html']])
+            new \Twig_SimpleFunction("alert_me", [$this, 'alert_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("counter_me", [$this, 'counter_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("input_me", [$this, 'input_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("clip_me", [$this, 'clip_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("context_me", [$this, 'context_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("context_me_attr", [$this, 'context_me_attr'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("context_me_radio", [$this, 'context_me_radio'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("context_me_checkbox", [$this, 'context_me_checkbox'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("context_me_select", [$this, 'context_me_select'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("setter_me", [$this, 'setter_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("tab_me", [$this, 'tab_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("nav_me", [$this, 'nav_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("pane_me", [$this, 'pane_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("pane_me_lazy", [$this, 'pane_me_lazy'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("crop_me", [$this, 'crop_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("curl_me", [$this, 'curl_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("view_me", [$this, 'view_me'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("logo", [$this, 'logo'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("mustache_tpl", [$this, 'mustache_tpl'], ['is_safe' => ['html']])
         );
     }
 }

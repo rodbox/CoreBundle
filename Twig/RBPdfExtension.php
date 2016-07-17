@@ -37,8 +37,8 @@ class RBPdfExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            "css_pdf"      => new \Twig_Function_Method($this, 'css_pdf',        ['is_safe' => ['html']]),
-            "css_border_bottom"      => new \Twig_Function_Method($this, 'css_border_bottom',        ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("css_pdf", [$this, 'css_pdf'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction("css_border_bottom", [$this, 'css_border_bottom'], ['is_safe' => ['html']]),
         );
     }
 }
