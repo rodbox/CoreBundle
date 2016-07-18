@@ -22,7 +22,7 @@ class RBSerializerService
         $normalizers = array(new ObjectNormalizer());
         $serializer  = new Serializer($normalizers, $encoders);
 
-        return $serializer->serialize($products, 'json');
+        return $serializer->serialize($entity, 'json');
     }
 }
 
