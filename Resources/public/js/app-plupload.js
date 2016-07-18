@@ -90,10 +90,22 @@ $.fn.initPlupload = function(options) {
 						"quality" : 90
 					}
 		  		},
+		  		text: {
+		  			filters: {
+					  mime_types : [
+					    { title : "Doc files", extensions : "doc, docx" }
+					    { title : "Text files", extensions : "txt" }
+					    { title : "Markdown files", extensions : "md" }
+					  ]
+					}
+		  		},
 		  		xls: {
 		  			filters: {
 					  mime_types : [
-					    { title : "Xls files", extensions : "csv,xls,xlsx" }
+					    { title : "Xls files", extensions : "xls,xlsx" }
+					    { title : "Csv files", extensions : "csv" }
+					    { title : "Json files", extensions : "json" }
+					    { title : "Xml files", extensions : "xml" }
 					  ]
 					}
 		  		},

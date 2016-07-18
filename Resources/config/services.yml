@@ -8,6 +8,9 @@ services:
     rb.file:
         class: RB\CoreBundle\Services\RBFileService
         arguments: ["@service_container","@twig"]
+    rb.serializer:
+        class: RB\CoreBundle\Services\RBSerializerService
+        arguments: []
     rb.templates:
         class: RB\CoreBundle\Services\RBTemplatesService
         arguments: ["@service_container"]
