@@ -93,8 +93,8 @@ $.fn.initPlupload = function(options) {
 		  		text: {
 		  			filters: {
 					  mime_types : [
-					    { title : "Doc files", extensions : "doc, docx" }
-					    { title : "Text files", extensions : "txt" }
+					    { title : "Doc files", extensions : "doc, docx" },
+					    { title : "Text files", extensions : "txt" },
 					    { title : "Markdown files", extensions : "md" }
 					  ]
 					}
@@ -235,14 +235,10 @@ $.fn.initPlupload = function(options) {
 })(jQuery);
 
 $(document).ready(function($) {
-	
 	$(document).on("click",".btn-plupload",function (e){
 		e.preventDefault();
 		var t = $(this);
 	})
-
-	$('.btn-plupload').initPlupload();
-
 });
 
 
