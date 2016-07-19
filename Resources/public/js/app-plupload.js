@@ -102,9 +102,9 @@ $.fn.initPlupload = function(options) {
 		  		xls: {
 		  			filters: {
 					  mime_types : [
-					    { title : "Xls files", extensions : "xls,xlsx" }
-					    { title : "Csv files", extensions : "csv" }
-					    { title : "Json files", extensions : "json" }
+					    { title : "Xls files", extensions : "xls,xlsx" },
+					    { title : "Csv files", extensions : "csv" },
+					    { title : "Json files", extensions : "json" },
 					    { title : "Xml files", extensions : "xml" }
 					  ]
 					}
