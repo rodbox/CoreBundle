@@ -227,16 +227,35 @@ public function alert_me($id='all')
 
     public function mustache_tpl($id='', $view='@RBCoreBundle')
     {
-        $dirTpl = explode(':',$view);
+        $dirTpl      = explode(':',$view);
 
         $fileLocator = $this->container->get('file_locator');
-        $path = $fileLocator->locate($dirTpl[0]);
+        $path        = $fileLocator->locate($dirTpl[0]);
 
-        $data       = file_get_contents($path.'/Resources/views/'.$dirTpl[1].'/'.$dirTpl[2]);
+        $data        = file_get_contents($path.'/Resources/views/'.$dirTpl[1].'/'.$dirTpl[2]);
 
         echo $this->twig->render('RBCoreBundle:Twig:mustache_tpl.html.twig',[
             'id'   => $id,
             'data' => $data
+        ]);
+    }
+
+
+    public function data_local($url, $index)
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:data-local.html.twig',[
+            'url'   => $url,
+            'index' => $index
+        ]);
+    }
+
+    public function btn_local($content = 'local', $target, $index, $tpl)
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:btn-local.html.twig',[
+            'content' => $content,
+            'target'  => $target,
+            'index'   => $index,
+            'tpl'     => $tpl
         ]);
     }
 
@@ -249,25 +268,27 @@ public function alert_me($id='all')
 
     public function getFunctions(){
         return array(
-            new \Twig_SimpleFunction("alert_me", [$this, 'alert_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("counter_me", [$this, 'counter_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("input_me", [$this, 'input_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("clip_me", [$this, 'clip_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("context_me", [$this, 'context_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("context_me_attr", [$this, 'context_me_attr'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("context_me_radio", [$this, 'context_me_radio'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("context_me_checkbox", [$this, 'context_me_checkbox'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("context_me_select", [$this, 'context_me_select'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("setter_me", [$this, 'setter_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("tab_me", [$this, 'tab_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("nav_me", [$this, 'nav_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("pane_me", [$this, 'pane_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("pane_me_lazy", [$this, 'pane_me_lazy'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("crop_me", [$this, 'crop_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("curl_me", [$this, 'curl_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("view_me", [$this, 'view_me'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("logo", [$this, 'logo'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction("mustache_tpl", [$this, 'mustache_tpl'], ['is_safe' => ['html']])
+            new \Twig_SimpleFunction("alert_me"            , [$this , 'alert_me']            , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("counter_me"          , [$this , 'counter_me']          , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("input_me"            , [$this , 'input_me']            , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("clip_me"             , [$this , 'clip_me']             , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("context_me"          , [$this , 'context_me']          , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("context_me_attr"     , [$this , 'context_me_attr']     , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("context_me_radio"    , [$this , 'context_me_radio']    , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("context_me_checkbox" , [$this , 'context_me_checkbox'] , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("context_me_select"   , [$this , 'context_me_select']   , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("setter_me"           , [$this , 'setter_me']           , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("tab_me"              , [$this , 'tab_me']              , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("nav_me"              , [$this , 'nav_me']              , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("pane_me"             , [$this , 'pane_me']             , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("pane_me_lazy"        , [$this , 'pane_me_lazy']        , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("crop_me"             , [$this , 'crop_me']             , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("curl_me"             , [$this , 'curl_me']             , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("view_me"             , [$this , 'view_me']             , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("logo"                , [$this , 'logo']                , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("mustache_tpl"        , [$this , 'mustache_tpl']        , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("btn_local"           , [$this , 'btn_local']           , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("data_local"          , [$this , 'data_local']          , ['is_safe' => ['html']])
         );
     }
 }

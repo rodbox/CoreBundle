@@ -153,7 +153,7 @@ $.fn.initPlupload = function(options) {
 				containers		: param[id].container,
 				multi_selection : param[id].multiple,
 				browse_button	: param[id].browse,
-				flash_swf_url	: "js/Moxie.swf",
+				flash_swf_url	: "js/Moxie.swf                                            ",
 				runtimes		: "html5,flash",
 				url				: param[id].url,
 				multipart_params: paramData,
