@@ -15,7 +15,7 @@ class RBSerializerService
     }
 
 
-    function json($entity){
+    function normalize($entity){
         $encoders    = array(new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
         $serializer  = new Serializer($normalizers, $encoders);
