@@ -1,4 +1,6 @@
-$(document).ready(function() {
+
+
+    $.cb = {};
 
     $.cb['upload'] = {
         upload       : function(files){},
@@ -284,6 +286,13 @@ $(document).ready(function() {
     })
 
 
+    $(document).on("change",".input-cb",function (e){
+        e.preventDefault();
+        var t = $(this);
+
+        $.cbt.this(t, e);
+    })
+
     $.dataSetter = function(dataSetter) {
         $.each(dataSetter, function(index, val) {
             var rowId = index;
@@ -299,5 +308,3 @@ $(document).ready(function() {
         else
             tr.removeClass('checked').find('.td-check input.rowId').prop('checked',false);
     }
-
-});

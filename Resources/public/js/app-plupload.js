@@ -14,16 +14,16 @@ $.fn.initPlupload = function(options) {
 		
 		param[id].t         = t;
 		param[id].id        = id;
+		param[id].data 		= t.data();
+		param[id].cb		= t.data("cb");
+		param[id].cbapp		= t.data("cbapp");
 		param[id].url       = t.attr("href");
 		param[id].container = t.attr("id")+"-group";
 		param[id].badge 	= t.attr("id")+"-badge";
 		param[id].list      = t.attr("id")+"-list";
+		param[id].multiple  = t.data('multiple');
 		param[id].browse    = t.attr("id");
-		param[id].data 		= t.data();
-		param[id].cb		= t.data("cb");
 		param[id].counter 	= 0;
-		param[id].cbapp		= t.data("cbapp");
-		param[id].multiple = t.data('multiple');
 
 		initUploader();
 
@@ -149,6 +149,7 @@ $.fn.initPlupload = function(options) {
 		  	}
 
 			var paramData    = param[id].t.data();
+
 			var paramDefault = {
 				containers		: param[id].container,
 				multi_selection : param[id].multiple,
@@ -208,7 +209,7 @@ $.fn.initPlupload = function(options) {
 				clear();
 				var cbs 	= param[id].cb+"s";
 				var cbapp 	= param[id].cbapp;
-
+				
 				if (cbs != undefined && cbapp != undefined)
 					$.cb[cbapp][cbs](files);
 			});
