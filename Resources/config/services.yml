@@ -17,7 +17,11 @@ services:
     rb.upload:
         class: RB\CoreBundle\Services\RBUploadService
         arguments: ["@service_container"]
-
+    rb.barcode.extension:
+        class: RB\CoreBundle\Twig\RBBarcodeExtension
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }
     rb.helper.service:
         class: RB\CoreBundle\Services\RBHelperService
         arguments: ["@service_container","@twig"]

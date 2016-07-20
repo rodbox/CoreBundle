@@ -18,7 +18,6 @@
         else
           var modal = $("#modalM");
 
-        
         $.modal.zindex += 2;
         modal.css('z-index',$.modal.zindex);
 
@@ -30,14 +29,11 @@
 
         $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);
 
-
         modal.initJq();
 
         setTimeout(function(){
           modal.find('input[autofocus="true"]').first().focus();
         },200)
-
-
     },
     iframe:function(url,title){
         $.loadlock.on();
