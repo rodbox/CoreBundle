@@ -5,12 +5,20 @@ $.local = {
 	get : function(index){
 		return jQuery.parseJSON(localStorage.getItem(index));
 	},
-	load : function(url, index){
+	load : function(url, index, expire){
+		if ($.local.get(index+'_expire') != null) {
+			var date 			= $.now();
+			var date_expire 	= new Date($.local.get(index+'_expire'));
+			var expire 			= $.date.expire(date, date_expire);
+		}
+		else
+			var expire 			= true;
 
-		var expire = true;
-
-		if(expire){
+		if(expire || $.force() || $.sui.get('force') == 'true'){
 			$.get(url, function(json) {
+				var date_expire = $.date.add(new Date(), 7, 'day');
+
+				$.local.set(index+'_expire',date_expire);
 				$.local.set(index, json);
 			},'json');
 		}

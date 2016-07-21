@@ -113,7 +113,7 @@ $.suggest = {
         
         if (t.data('local') != undefined) {
             
-            var list = $.local[t.data('local')];
+            var list = $.local.get(t.data('local'));
 
             $.each(list, function(k,val){
                 var name = val.name;

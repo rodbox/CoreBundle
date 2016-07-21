@@ -18,51 +18,43 @@ $(document).ready(function($) {
         var suffix = t.data("suffix");
 
         var src    = $(t.data('src')).val();
-        // t.toggleClass('active');
 
         // si la chaine commence a par une etoile c'est pour uncheck.
         var checkOn = (src.indexOf("*")<0);
         if (!checkOn)
             src = src.substring(1);
 
-
-
         // si on selection par tranche
         if(src.indexOf(">")>0){
-          var list = src.split('>');
-          for (var i = list[0]; i <= list[1]; i++)
-            $.checkLine(target, i, checkOn, t.data("suffix"));
+            var list = src.split('>');
+            for (var i = list[0]; i <= list[1]; i++)
+                $.checkLine(target, i, checkOn, t.data("suffix"));
         }
 
         else if (src.indexOf(",")>0){
-          var list = src.split(',');
-          $.each(list, function(index, val) {
-            $.checkLine(target, val, checkOn, suffix);
-          });
+            var list = src.split(',');
+            $.each(list, function(index, val) {
+                $.checkLine(target, val, checkOn, suffix);
+            });
         }
 
         else if (src.indexOf(":")>0){
-          var list = src.split(':');
-          for (var i = list[0]; i < parseInt(list[0])+parseInt(list[1]); i++)
-            $.checkLine(target, i, checkOn, suffix);
+            var list = src.split(':');
+            for (var i = list[0]; i < parseInt(list[0])+parseInt(list[1]); i++)
+                $.checkLine(target, i, checkOn, suffix);
         }
+    })
 
-  })
-
-  $.checkLine = function(tableTarget, idLine, booleanCheck, suffix){
-     // console.log("idLine");
-     // console.log(idLine);
+    $.checkLine = function(tableTarget, idLine, booleanCheck, suffix){
     suffix = ( typeof suffix === 'undefined')?"":suffix;
-
 
     var checkboxLine = $(tableTarget+" #line_"+idLine+suffix);
         checkboxLine.prop("checked",booleanCheck).trigger("change");
         var p = checkboxLine.parents('tr');
         (booleanCheck)?p.addClass("checked"):p.removeClass("checked");
-  }
+    }
 
     $(document).on("click",".td-check label",function (e){
-
         var t       = $(this);
         var p       = t.parents("tr");
 
@@ -83,7 +75,7 @@ $(document).ready(function($) {
 
     $(document).on("click",".batch-action",function (e){
         e.preventDefault();
-        var t = $(this);
+        var t    = $(this);
         var data = $(t.data("batch")).serialize();
 
         if (t.data("confirm")) {
