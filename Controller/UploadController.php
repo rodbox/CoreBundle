@@ -46,14 +46,14 @@ class UploadController extends Controller
             $fs->mkdir($dir_dest);
             $file->move($dir_dest, $filename);
 
-            $list['valid'][] = $dir.$filename;
+            $list['valid'][] = $dir.'/'.$filename;
         }
 
 
         $r = [
             'infotype' => "success",
             'msg'      => $rename,
-            'url'      => $web_upload.$dir,
+            'url'      => $web_upload,
             'file'     => $list
         ];
         return new JsonResponse($r);
