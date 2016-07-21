@@ -13,6 +13,5 @@ setInterval(function(){
 
 $(document).on("click",".btn-alert-reload",function (e){
 	var t = $(this);
-	$.alert.reload()
-	
+	$.alert.reload();
 })

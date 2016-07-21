@@ -8,10 +8,10 @@ $(document).ready(function($) {
   },3000);
 
   $.setFlash =  function (msg,type){
-  	var type = (type == undefined)?"info":type;
-  	var div = $("<div>",{"class":"flash flash-"+type})
-  	var a = $("<a>",{"class":"pull-right c-7 close-flash big"}).html("<i class='fa fa-remove'></i>");
-  	var p = $("<p>",{"id":"id","class":"class"}).html(msg);
+  	var type   = (type == undefined)?"info":type;
+  	var div    = $("<div>",{"class":"flash flash-"+type})
+  	var a      = $("<a>",{"class":"pull-right close-flash big"}).html("<i class='fa fa-remove'></i>");
+  	var p      = $("<p>").html(msg);
   	div.append(a).append(p);
 	  	$('div.flash-container').prepend(div);
 	  	setTimeout(function (){

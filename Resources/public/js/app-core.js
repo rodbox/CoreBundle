@@ -147,4 +147,10 @@ $.loadlock = {
     }
 }
 
+
+$.def = function (value, defaultValue){
+    return (value == undefined)?defaultValue:value;
+}
+
+
 });

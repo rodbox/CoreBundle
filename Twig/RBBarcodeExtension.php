@@ -21,7 +21,8 @@ $generatorJPG = new Picqer\Barcode\BarcodeGeneratorJPG();
 $generatorHTML = new Picqer\Barcode\BarcodeGeneratorHTML();
 */
        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($code, $generator::TYPE_CODE_128)) . '" style="width:150px;" >';
+echo '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode($code, $generator::TYPE_CODE_128, 1, 40)) . '" >';
+     
     }
 
 

@@ -6,10 +6,10 @@ $(document).ready(function($) {
 
         var input = $("<input>",
             {
-                "type":"text",
-                "name":"edit-me-setter",
-                "class":"form-control edit-me-setter",
-                'data-old-value':t.html()
+                "type"           : "text",
+                "name"           : "edit-me-setter",
+                "class"          : "form-control edit-me-setter",
+                'data-old-value' : t.html()
             })
         .css({
             width:parseInt(t.outerWidth()) + 50,

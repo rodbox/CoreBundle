@@ -16,11 +16,12 @@ $.fn.initPlupload = function(options) {
 		param[id].id        = id;
 		param[id].data 		= t.data();
 		param[id].cb		= t.data("cb");
-		param[id].cbapp		= t.data("cbapp");
+		param[id].cbapp		= t.data("cb-app");
 		param[id].url       = t.attr("href");
 		param[id].container = t.attr("id")+"-group";
 		param[id].badge 	= t.attr("id")+"-badge";
 		param[id].list      = t.attr("id")+"-list";
+		param[id].target    = t.attr("id")+"-uploaded";
 		param[id].multiple  = t.data('multiple');
 		param[id].browse    = t.attr("id");
 		param[id].counter 	= 0;
@@ -169,7 +170,6 @@ $.fn.initPlupload = function(options) {
 			param[id].uploader = new plupload.Uploader(paramUploader);
 			param[id].uploader.init();
 
-
 			param[id].uploader.bind('FilesAdded',function(up,files){
 				var fileslist = $('#'+param[id].list);
 
@@ -209,9 +209,8 @@ $.fn.initPlupload = function(options) {
 				clear();
 				var cbs 	= param[id].cb+"s";
 				var cbapp 	= param[id].cbapp;
-				
-				if (cbs != undefined && cbapp != undefined)
-					$.cb[cbapp][cbs](files);
+
+				$.cb[cbapp][cbs](files);
 			});
 
 
@@ -224,9 +223,12 @@ $.fn.initPlupload = function(options) {
 					param[id].counter--;
 					badge();
 
-					if (param[id].cb != undefined && param[id].cbapp != undefined)
-						$.cb[param[id].cbapp][param[id].cb](param[id].response);
-				},450)
+					var cbs 	= param[id].cb;
+					var cbapp 	= param[id].cbapp;
+
+					$.cb[cbapp][cbs](param[id].response);
+
+				},350)
 			});
 		};
 	});

@@ -8,8 +8,6 @@ $(document).ready(function($) {
         $(t.data("batch")+" input[type=checkbox].line")
             .prop("checked",t.hasClass("active"))
             .trigger("change");
-
-
     })
 
     $(document).on("click",".btn-play-select",function (e){
@@ -65,8 +63,8 @@ $(document).ready(function($) {
 
     $(document).on("click",".td-check label",function (e){
 
-        var t = $(this);
-        var p = t.parents("tr");
+        var t       = $(this);
+        var p       = t.parents("tr");
 
         var checked = $('#'+t.attr('for')).prop('checked');
 
@@ -76,9 +74,9 @@ $(document).ready(function($) {
     $(document).on(" change","form.batch-form tr input.line, form.batch-form ul input.line",function (e){
         var t = $(this);
         var p = t.parents("tr");
-        if(p.length == 0)
-        var p = t.parents("li").first();
 
+        if(p.length == 0)
+            var p = t.parents("li").first();
 
         (t.prop('checked'))?p.addClass("checked"):p.removeClass("checked");
     })
@@ -92,25 +90,29 @@ $(document).ready(function($) {
             $.confirm(t);
         }
         else{
-            param.info = $.appInfo.add({type:'loader','open' : true,'msg':'chargement '+t.data("title")});
+            param.info = $.appInfo.add({
+                type   : 'loader',
+                'open' : true,
+                'msg'  : 'chargement '+t.data("title")
+            });
             $.post(t.attr("href"), data, function(json, textStatus, xhr) {
                 $.appInfo.upd(param.info,{
-                    from:'loader',
-                    to:'success',
-                    msg:json.msg,
-                    open    : true,
-                    showmsgmeta:false,
-                    timer:2500
+                    from        : 'loader',
+                    to          : 'success',
+                    msg         : json.msg,
+                    open        : true,
+                    showmsgmeta : false,
+                    timer       : 2500
                 });
                 if(t.data('callback'))
                     $.callback[t.data('callback')](json)
             },"json").error(function(json){
                 $.appInfo.upd(param.info,{
-                    from:'loader',
-                    to:'error',
-                    msg:json.msg,
-                    open    : true,
-                    showmsgmeta:true
+                    from        : 'loader',
+                    to          : 'error',
+                    msg         : json.msg,
+                    open        : true,
+                    showmsgmeta : true
                 });
             });
         }
@@ -124,7 +126,7 @@ $(document).ready(function($) {
         var checkedTarget = $("tr.checked").find(t.data('target'));
         $.each(checkedTarget, function(index, val) {
             var trCol = $(val);
-            trCol.attr('data-history',trCol.val());
+            trCol.attr('data-history', trCol.val());
             $(val).val(t.val());
         });
 
