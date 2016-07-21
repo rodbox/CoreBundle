@@ -29,7 +29,7 @@ class UploadController extends Controller
 
         $fs         = new Filesystem();
 
-        $list = [];
+        $list       = [];
 
         foreach ($files as $file){
 
@@ -46,7 +46,7 @@ class UploadController extends Controller
             $fs->mkdir($dir_dest);
             $file->move($dir_dest, $filename);
 
-            $list['valid'][] = $dir.'/'.$filename;
+            $list['valid'][] = $filename;
         }
 
 
@@ -54,6 +54,7 @@ class UploadController extends Controller
             'infotype' => "success",
             'msg'      => $rename,
             'url'      => $web_upload,
+            'dir'      => $dir,
             'file'     => $list
         ];
         return new JsonResponse($r);

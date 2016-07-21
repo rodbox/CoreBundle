@@ -18,17 +18,26 @@ class RBCoreExtension  extends \Twig_Extension{
     public function input_me($route='input_me',$data=[],$class='', $datainput = [])
     {
         echo $this->twig->render('RBCoreBundle:Twig:input-me.html.twig',[
-            'route'=>$route,
-            'data'=>$data,
-            'class'=>$class,
-            'datainput'=>$datainput
-            ]);
+            'route'     => $route,
+            'data'      => $data,
+            'class'     => $class,
+            'datainput' => $datainput
+        ]);
     }
 
 
     public function context_me()
     {
         echo $this->twig->render('RBCoreBundle:Twig:context-me.html.twig');
+    }
+
+    public function table_me($data, $name = 'table', $class = '')
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:table-me.html.twig',[
+            'table' => $data,
+            'name'  => $name,
+            'class' => $class
+        ]);
     }
 
 
@@ -268,6 +277,7 @@ public function alert_me($id='all')
 
     public function getFunctions(){
         return array(
+            new \Twig_SimpleFunction("table_me"            , [$this , 'table_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("alert_me"            , [$this , 'alert_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("counter_me"          , [$this , 'counter_me']          , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("input_me"            , [$this , 'input_me']            , ['is_safe' => ['html']]) ,

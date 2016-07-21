@@ -17,7 +17,7 @@ class RBFileService
 
     function file($file){
         $info = pathinfo($file);
-        $ext  = $info['extension'];
+        $ext = $info['extension'];
 
         if($ext == 'xls' || $ext == 'xlsx'){
             $phpexcel       = $this->container->get('phpexcel');
