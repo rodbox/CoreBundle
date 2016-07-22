@@ -15,13 +15,13 @@ class RBUploadExtension  extends \Twig_Extension{
 
     public function btn_upload($index='/', $id='upl-default', $data = [])
     {
-
+        $rand    = substr( md5(rand()), 0, 8);
         $data = [
-            'id'     => $id,
+            'id'     => $id.'-'.$rand,
             'index'  => $index,
             'route'  => 'upload',
             'data'   => [
-                'filter'   =>  'all',
+                'filter'   => 'all',
                 'dest'     => 'upload',
                 'rename'   => '',
                 'multiple' => true,
@@ -36,8 +36,9 @@ class RBUploadExtension  extends \Twig_Extension{
 
     public function dropzone($index='/', $id='plup-drop', $filter='def', $dest='upload')
     {
+        $rand    = substr( md5(rand()), 0, 8);
         echo $this->twig->render('RBCoreBundle:Twig:drop-upload.html.twig',[
-            'id'     => $id,
+            'id'     => $id.'-'.$rand,
             'index'  => $index,
             'filter' => $filter,
             'dest'   => $dest
@@ -45,10 +46,11 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
-    public function btn_upload_import($rename='', $index='/', $cbapp='upload', $cb='uploadImport'){
-
+    public function btn_upload_import($rename='', $index='/', $cbapp='upload', $cb='uploadImport')
+    {
+        $rand    = substr( md5(rand()), 0, 8);
         $data = [
-            'id'     => 'import',
+            'id'     => 'import-'.$rand,
             'index'  => $index,
             'route'  => 'upload',
             'data'   => [
@@ -66,9 +68,11 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
-    public function btn_upload_media($filter = 'img', $index = '/'){
+    public function btn_upload_media($filter = 'img', $index = '/')
+    {
+        $rand    = substr( md5(rand()), 0, 8);
         $data = [
-            'id'     => 'media',
+            'id'     => 'media-'.$rand,
             'index'  => $index,
             'route'  => 'upload',
             'data'   => [
@@ -85,9 +89,11 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
-    public function btn_upload_user($id, $index = '/'){
-        $data = [
-            'id'     => 'user',
+    public function btn_upload_user($id, $index = '/')
+    {
+        $rand   = substr( md5(rand()), 0, 8);
+        $data   = [
+            'id'     => 'user-'.$rand,
             'index'  => '/'.$id.$index,
             'route'  => 'upload',
             'data'   => [
@@ -104,9 +110,9 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
-    public function btn_upload_file($dir='upload', $index = '/', $rename = '', $filter = 'all'){
+    public function btn_upload_file($dir='upload', $index = '/', $rename = '', $filter = 'all')
+    {
         $rand    = substr( md5(rand()), 0, 8);
-        
         $data = [
             'id'     => 'file-'.$rand,
             'index'  => $index,
@@ -125,12 +131,14 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
-    public function getName(){
+    public function getName()
+    {
         return 'rb_upload_extension';
     }
 
 
-    public function getFunctions(){
+    public function getFunctions()
+    {
         return array(
             new \Twig_SimpleFunction('btn_upload',[$this, 'btn_upload'],['is_safe' => ['html']]),
             new \Twig_SimpleFunction('btn_upload_import',[$this, 'btn_upload_import'],['is_safe' => ['html']]),
