@@ -1,27 +1,28 @@
-<table class="table">
-	<thead>
-		<tr>
-			<th></th>
-			{% for keyCol, col in data[0] %}
-				<th class="col_{{ keyCol }}" data-col="{{ keyCol }}">
-					{{ keyCol }}
-				</th>
-			{% endfor %}
-		</tr>
-	</thead>
-	<tbody>
-		{% for keyRow, row in data %}
+<div class="table-responsive">
+	<table class="table table-sm  table-striped table-bordered">
+		<thead>
 			<tr>
-				<td>
-					<input id="row_{{ keyrow }}" type="checkbox" name="value[{{ keyRow }}]" value="{{ keyRow }}">
-					<label for="">{{ keyRow }}</label>
-				</td>
-				{% for keyCol in col %}
-					<td class="row_{{ keyRow }} col_{{ keyCol }}" data-row="{{ keyRow }}" data-col="{{ keyCol }}">
-						<input type="text" class="form-control" name="value[{{ keyRow }}][{{ keyCol }}]" value="{{ col }}">
-					</td>
+				<th></th>
+				{% for keyCol, col in data[0] %}
+					<th class="col_{{ keyCol }}" data-col="{{ keyCol }}">
+						<input id="col_{{ keyCol }}" type="checkbox" name="title[{{ keyCol }}]" class="check-col" data-col="{{ keyCol }}" value="{{ keyCol }}">
+						<label for="">{{ keyCol }}</label>
+					</th>
 				{% endfor %}
 			</tr>
-		{% endfor %}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{% for keyRow, row in data %}
+				<tr>
+					<td>
+						<input id="row_{{ keyRow }}" type="checkbox" name="value[{{ keyRow }}]" class="check-row" data-row="{{ keyRow }}" value="{{ keyRow }}">
+						<label for="">{{ keyRow }}</label>
+					</td>
+					{% for keyCol, col in row %}
+						<td class="row_{{ keyRow }} col_{{ keyCol }}" data-row="{{ keyRow }}" data-col="{{ keyCol }}" data-value="{{ col }}">{{ col }}</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

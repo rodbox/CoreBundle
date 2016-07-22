@@ -46,7 +46,7 @@ class UploadController extends Controller
             $fs->mkdir($dir_dest);
             $file->move($dir_dest, $filename);
 
-            $list['valid'][] = $filename;
+            $list['valid'][] = $dir.'/'.$filename;
         }
 
 

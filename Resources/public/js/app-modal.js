@@ -24,7 +24,8 @@
         modal.find('.modal-title').html(title);
         modal.find(".modal-body").html(content);
         modal.modal({
-          backdrop: 'static'
+          backdrop: 'static',
+          keyboard: false
         });
 
         $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);
@@ -47,7 +48,8 @@
           load : function(){
               $.loadlock.off();
               modal.modal({
-                backdrop: 'static'
+                backdrop: 'static',
+                keyboard: false
               });
 
               $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);

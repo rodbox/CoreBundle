@@ -106,9 +106,13 @@ class CoreController extends Controller
     */
     public function sessionAction(Request $request)
     {
-        $all     = $request->query->all();
+       $all     = $request->query->all();
 
-        $context[$all['key']] = ($all['checked']=="true")?$all['value']:false;
+        if (isset($all['checked']))
+            $context[$all['key']] = ($all['checked']=="true")?$all['value']:'false';
+        else
+            $context[$all['key']] = (isset($all['value']))?$all['value']:'false';
+
 
         $session = $request->getSession();
 
