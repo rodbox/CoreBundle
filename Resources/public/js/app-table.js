@@ -1,8 +1,11 @@
 $(document).on("click",".table-ceil-edit",function (e){
-	var t 	= $(this);
-	var val = t.attr('data-value');
+	var t 	  = $(this);
+	var val   = t.attr('data-value');
 
-	var input = $("<input>",{"id":"ceil-edit-"+t.data('row')+'-'+t.data('col'),"class":"ceil-edit-input form-control"})
+	var input = $("<input>",{
+			"id"    : "ceil-edit-"+t.data('row')+'-'+t.data('col'),
+			"class" : "ceil-edit-input form-control"
+		})
 		.keypress(function(e){
 			if (e.keyCode == 13) {
 				var tin = $(this);

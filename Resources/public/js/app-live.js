@@ -17,7 +17,7 @@ $(document).ready(function(){
       t.attr('disabled','disabled');
       t.addClass('onLoad');
     },
-    off:function (t){
+    off:function (t, json, err){
       t.removeClass('onLoad');
 
       if(t.is('form'))
@@ -26,6 +26,9 @@ $(document).ready(function(){
       t.removeAttr('disabled');
       t.removeClass('onLoad');
       t.html(t.attr('data-text'));
+
+      if (err != undefined)
+        $.noty.reponse(err);
     }
   }
 
@@ -52,9 +55,10 @@ $(document).ready(function(){
 
              $.cbt.this(t, e);
              $.cbt.json(t, json, e);
-             $.btnLoad.off(t);
+             $.btnLoad.off(t, json);
             }).error(function(err){
-              $.btnLoad.off(t);
+
+              $.btnLoad.off(t, '', err);
               $.setFlash('erreur '+ err.status,'error');
             });
           }
@@ -66,12 +70,12 @@ $(document).ready(function(){
 
           $.cbt.this(t, e);
           $.cbt.json(t, json, e);
-          $.btnLoad.off(t);
+          $.btnLoad.off(t, json);
         }
         if(!t.hasClass('no-flash') || json.infotype=='error')
           $.setFlash(json.msg,json.infotype);
 
-        $.btnLoad.off(t);
+        $.btnLoad.off(t, json);
       }, 'json').error(function(err){
         $.btnLoad.off(t);
         $.setFlash('erreur '+ err.status,'error');

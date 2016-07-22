@@ -34,7 +34,7 @@ class RBCoreExtension  extends \Twig_Extension{
     public function table_me($data, $name = 'table', $class = '')
     {
         echo $this->twig->render('RBCoreBundle:Twig:table-me.html.twig',[
-            'table' => $data,
+            'data'  => $data,
             'name'  => $name,
             'class' => $class
         ]);
