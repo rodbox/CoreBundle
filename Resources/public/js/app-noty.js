@@ -1,11 +1,10 @@
-
-$.noty = {
+$(document).ready(function($) {
+    $.noty = {
     init: function(paramSend) {
 
         var defauts = {
             i     : 0,
             id    : "noty-container",
-
         }
 
         var param            = $.extend(defauts, paramSend);
@@ -154,8 +153,10 @@ $.noty = {
         }
     },
     response: function(t, response){
-
+        /**
+        * TODO : Response auto params
+        **/
     }
 }
-
-$.noty.init();
+    $.noty.init();
+});

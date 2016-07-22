@@ -23,4 +23,5 @@ $(document).on("click",".table-ceil-edit",function (e){
 
 	input.val(val);
 
+	t.html(input);
 })
