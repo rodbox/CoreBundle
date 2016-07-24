@@ -131,6 +131,28 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
+
+    public function btn_upload_mail($dir='tmp', $index = '/', $rename = '', $filter = 'all')
+    {
+        $rand    = substr( md5(rand()), 0, 8);
+        $data = [
+            'id'     => 'file-'.$rand,
+            'index'  => $index,
+            'route'  => 'upload',
+            'data'   => [
+                'filter'   => $filter,
+                'dest'     => $dir,
+                'rename'   => $rename,
+                'multiple' => false,
+                'cbapp'    => 'upload',
+                'cb'       => 'uploadMail'
+            ]
+        ];
+
+        echo $this->twig->render('RBCoreBundle:Twig:btn-upload.html.twig', $data);
+    }
+
+
     public function getName()
     {
         return 'rb_upload_extension';
@@ -141,6 +163,7 @@ class RBUploadExtension  extends \Twig_Extension{
     {
         return array(
             new \Twig_SimpleFunction('btn_upload',[$this, 'btn_upload'],['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('btn_upload_mail',[$this, 'btn_upload_mail'],['is_safe' => ['html']]),
             new \Twig_SimpleFunction('btn_upload_import',[$this, 'btn_upload_import'],['is_safe' => ['html']]),
             new \Twig_SimpleFunction('btn_upload_media',[$this, 'btn_upload_media'],['is_safe' => ['html']]),
             new \Twig_SimpleFunction('btn_upload_user',[$this, 'btn_upload_user'],['is_safe' => ['html']]),

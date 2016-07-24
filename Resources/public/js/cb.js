@@ -283,6 +283,17 @@ $(document).on("click",".btn-cb",function (e){
 })
 
 
+$(document).on("click",".btn-toggle",function (e){
+    e.preventDefault();    
+    var t = $(this);
+    
+    $(t.data('target')).slideToggle(function(){
+        $(this).find('[autofocus="true"]').first().focus();
+    });
+})
+
+
+
 $(document).on("change",".input-cb",function (e){
     e.preventDefault();
     var t = $(this);

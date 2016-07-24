@@ -153,4 +153,44 @@ $.def = function (value, defaultValue){
 }
 
 
+
+$(document).on("keydown","textarea[data-tab=true]",function (e){
+    if (e.keyCode === 9) {
+        var val             = this.value,
+        start               = this.selectionStart,
+        end                 = this.selectionEnd;
+        this.value          = val.substring(0, start) + '\t' + val.substring(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+
+            return false;
+        }
+
+        if (e.keyCode === 13) {
+        var val             = this.value,
+        start               = this.selectionStart,
+        end                 = this.selectionEnd;
+        this.value          = val.substring(0, start) + '\n' + val.substring(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+
+            return false;
+        }
+  });
+
+
+
+$(document).on("click",".btn-nav",function (e){
+  e.preventDefault();  
+  var t = $(this);
+  
+  var target = $(t.data('target')).find('.active');
+
+  if(t.data('sens') == 'next')
+    target.next().trigger('click');
+  else
+    target.prev().trigger('click');
+
+
+  
+})
+
 });

@@ -41,6 +41,7 @@ $(document).ready(function(){
         if(json.infotype == "error"){
           if(!t.hasClass('no-flash') || json.infotype=='error')
             $.setFlash(json.msg, json.infotype);
+          
           // confirm forcer
           if(confirm('forcer ?')){
             // envois forcer
@@ -49,7 +50,6 @@ $(document).ready(function(){
 
               $.modal.json(json);
 
-              // flash json
               if(!t.hasClass('no-flash') || json.infotype=='error')
                 $.setFlash(json.msg, json.infotype)
 
@@ -57,7 +57,6 @@ $(document).ready(function(){
              $.cbt.json(t, json, e);
              $.btnLoad.off(t, json);
             }).error(function(err){
-
               $.btnLoad.off(t, '', err);
               $.setFlash('erreur '+ err.status,'error');
             });
@@ -76,7 +75,8 @@ $(document).ready(function(){
           $.setFlash(json.msg,json.infotype);
 
         $.btnLoad.off(t, json);
-      }, 'json').error(function(err){
+      }, 'json')
+      .error(function(err){
         $.btnLoad.off(t);
         $.setFlash('erreur '+ err.status,'error');
       });
@@ -84,6 +84,16 @@ $(document).ready(function(){
     reload: function(){
       $.post(window.location.href, function(json, textStatus, xhr) {
         $('#app-content').html(json);
+      });
+    },
+    target: function(url, data, t, e){
+      $(t.data('target'))
+      .addClass('onLoad');
+      t.addClass('active');
+      $.btnLoad.on(t);
+      $.post(url, data, function(html, textStatus, xhr) {
+        $.btnLoad.off(t);
+        $(t.data('target')).removeClass('onLoad').html(html)
       });
     }
   };
@@ -100,6 +110,15 @@ $(document).ready(function(){
     }
     else
       $.live.post(t.attr('href'), t.data(), t, e);
+  })
+
+
+
+  $(document).on("click", ".btn-live-target", function (e){
+    e.preventDefault();
+    var t    = $(this);
+    $(".btn-live-target").removeClass('active');
+    $.live.target(t.attr('href'), t.data(), t, e);
   })
 
 
