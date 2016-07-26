@@ -87,12 +87,9 @@ $(document).ready(function(){
       });
     },
     target: function(url, data, t, e){
-      $(t.data('target'))
-      .addClass('onLoad');
+      $(t.data('target')).addClass('onLoad');
       t.addClass('active');
-      $.btnLoad.on(t);
       $.post(url, data, function(html, textStatus, xhr) {
-        $.btnLoad.off(t);
         $(t.data('target')).removeClass('onLoad').html(html)
       });
     }

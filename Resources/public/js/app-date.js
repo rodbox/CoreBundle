@@ -1,3 +1,7 @@
+/**
+* TODO : Gestion des heures et de minutes a vérifié
+**/
+
 $.date = {
 	now : function(){
 		return $.now();

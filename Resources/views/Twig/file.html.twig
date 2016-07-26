@@ -1,0 +1,8 @@
+<div id="file-attach-{{file.id }}" class="card card-xs card-block file-{{file.ext }} m-c file-attach-{{file.id }} p-c m-c" style="width: 150px; display:inline-block; ">
+	<a href="#" data-target=".file-attach-{{file.id }}" class="text-muted btn-del" style="position: absolute; right: 0.3rem; top: 0.3rem;"><i class="fa fa-remove"></i></a>
+	<div class="text-xs-center">
+		<input type="hidden" name='file[]' value="{{file.dir }}">
+		<i class="fa fa-file"></i>
+	    <p class="card-text c-1 sm">{{file.filename }}</p>
+	</div>
+</div>

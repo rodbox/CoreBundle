@@ -5,6 +5,12 @@ $.local = {
 	get : function(index){
 		return jQuery.parseJSON(localStorage.getItem(index));
 	},
+	del : function(index){
+		localStorage.removeItem(index);
+	},
+	clear : function(){
+		localStorage.clear();
+	},
 	load : function(url, index, expire){
 		if ($.local.get(index+'_expire') != null) {
 			var date 			= $.now();
@@ -13,6 +19,8 @@ $.local = {
 		}
 		else
 			var expire 			= true;
+
+		console.log(expire);
 
 		if(expire || $.force() || $.sui.get('force') == 'true'){
 			$.get(url, function(json) {
@@ -26,7 +34,7 @@ $.local = {
 }
 
 $(document).ready(function($) {
-	$('.data-local').each(function(key, val){
+	$('.local-me').each(function(key, val){
 		var t = $(val);
 		$.local.load(t.data('url'), t.data('index'));
 	});	

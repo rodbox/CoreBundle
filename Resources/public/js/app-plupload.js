@@ -210,7 +210,7 @@ $.fn.initPlupload = function(options) {
 				var cbs 	= param[id].cb+"s";
 				var cbapp 	= param[id].cbapp;
 
-				$.cb[cbapp][cbs](files);
+				$.cb[cbapp][cbs](files, param[id].t);
 			});
 
 
@@ -226,7 +226,7 @@ $.fn.initPlupload = function(options) {
 					var cbs 	= param[id].cb;
 					var cbapp 	= param[id].cbapp;
 
-					$.cb[cbapp][cbs](param[id].response);
+					$.cb[cbapp][cbs](param[id].response, param[id].t);
 
 				},350)
 			});

@@ -67,7 +67,7 @@ class RBCoreExtension  extends \Twig_Extension{
     {
         $data = json_encode($data);
         echo $this->twig->render('RBCoreBundle:Twig:btn-setter-me.html.twig',[
-            'data'    => $data,
+            'data'  => $data,
             'id'    => $id
         ]);
     }
@@ -79,7 +79,7 @@ class RBCoreExtension  extends \Twig_Extension{
             'value'   => $valueSetter,
             'content' => $content,
             'type'    => 'checkbox',
-            'class'    => $class
+            'class'   => $class
         ]);
     }
 
@@ -131,7 +131,7 @@ public function alert_me($id='all')
           ->findAll();
 
         echo $this->twig->render('RBCoreBundle:Twig:alert-me.html.twig',[
-            'id'=>$id,
+            'id'     =>$id,
             'alerts' => $alerts
         ]);
     }
@@ -159,10 +159,10 @@ public function alert_me($id='all')
             $path     = $routeMeta->getPath();
             preg_match_all('[\{[{a-zA-Z0-9]{1,}\}]',$path , $matches);
             $routes[] = [
-                'name' => $route,
-                'path' => $path,
-                'req'  => json_encode($matches[0]),
-                'reqStr'  => implode(',',$matches[0])
+                'name'   => $route,
+                'path'   => $path,
+                'req'    => json_encode($matches[0]),
+                'reqStr' => implode(',',$matches[0])
             ];
         }
 
@@ -243,17 +243,19 @@ public function alert_me($id='all')
 
         $data        = file_get_contents($path.'/Resources/views/'.$dirTpl[1].'/'.$dirTpl[2]);
 
-        echo $this->twig->render('RBCoreBundle:Twig:mustache_tpl.html.twig',[
+        echo $this->twig->render('RBCoreBundle:Twig:mustache-tpl.html.twig',[
             'id'   => $id,
             'data' => $data
         ]);
     }
 
 
-    public function data_local($url, $index)
-    {
-        echo $this->twig->render('RBCoreBundle:Twig:data-local.html.twig',[
+    public function local_me($route, $index, $data = [])
+    {   
+        $url = $this->router->generate($route, $data);
+        echo $this->twig->render('RBCoreBundle:Twig:local-me.html.twig',[
             'url'   => $url,
+            'data'  => $data,
             'index' => $index
         ]);
     }
@@ -298,7 +300,7 @@ public function alert_me($id='all')
             new \Twig_SimpleFunction("logo"                , [$this , 'logo']                , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("mustache_tpl"        , [$this , 'mustache_tpl']        , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("btn_local"           , [$this , 'btn_local']           , ['is_safe' => ['html']]) ,
-            new \Twig_SimpleFunction("data_local"          , [$this , 'data_local']          , ['is_safe' => ['html']])
+            new \Twig_SimpleFunction("local_me"          , [$this , 'local_me']          , ['is_safe' => ['html']])
         );
     }
 }

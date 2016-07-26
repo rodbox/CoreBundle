@@ -33,7 +33,7 @@ class UploadController extends Controller
 
         foreach ($files as $file){
 
-            $fileExt    = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+            $fileExt    = pathinfo($file->getClientOriginalName(),PATHINFO_EXTENSION);
 
             if ($rename == ""){
                 $filename   = $file->getClientOriginalName();
@@ -46,7 +46,12 @@ class UploadController extends Controller
             $fs->mkdir($dir_dest);
             $file->move($dir_dest, $filename);
 
-            $list['valid'][] = $dir.'/'.$filename;
+            $list['valid'][] = [
+                'src'      => $dest,
+                'dir'      => $dir.'/'.$filename,
+                'filename' => $filename,
+                'ext'      => $fileExt
+            ];
         }
 
 

@@ -1,5 +1,5 @@
 <form id="input-me-{{route | default('core-form')}}" action="{{path(route, data | default([])) }}" class="form-live no-flash" data-cb="{{ datainput.cb | default('setAction')}}" data-cb-app="{{ datainput.cbapp | default('core')}}">
-    <div class="input-group" style="margin-top: 7px;">
-        <div class="input-group-addon" style="background-color: #fff; border-color: #fff; border-width: 0;"><button type="submit" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" class="" style="background-color: transparent; border-color: transparent; border-width: 0;"><i class="fa fa-search"></i></button></div>
+    <div class="input-group m-c-t">
+        <div class="input-group-addon" ><button type="submit" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" class="" style="background-color: transparent; border-color: transparent; border-width: 0;"><i class="fa fa-search"></i></button></div>
     <input id="input-me-{{route | default('core-form')}}-input" type="text" name="action" class="form-control input-me {{ input.class | default('')}}" style="margin-top: 0px !important;"  placeholder="Recherche et action" {% if datainput.live is defined %} data-live="{{ datainput.live }}" {% endif %} {% if datainput.local is defined %} data-local="{{ datainput.local }}" {% endif %} {% if datainput.view is defined %} data-view="{{ datainput.view }}" {% endif %} /> </div>
 </form>

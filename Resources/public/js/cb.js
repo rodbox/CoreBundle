@@ -1,13 +1,33 @@
 $.cb = {};
 
+
+
 $.cb['upload'] = {
-    uploaded     : function(files){
-        console.log('uploaded');
+    uploaded     : function(json, t){
+        $.each(json.file.valid, function(key, val){
+            var rand = Math.random().toString(36).substring(2);
+            val.id   = 'file-' + rand;
+            var file = $.mustache('file',{file : val});
+
+            $(t.data('target')).append(file);
+        })
     },
     uploadeds   : function(){
        console.log('upload terminé');
-    }
+    },
+    uploadMail: function(json, t){
+        $.each(json.file.valid, function(key, val){
+            var rand = Math.random().toString(36).substring(2);
+            val.id   = 'file-' + rand;
+            var file = $.mustache('file',{file : val});
+
+            $('.files-attach').append(file);
+        })
+    },
+    uploadMails: function(){}
 }
+
+
 
 $.cb['core'] = {
     default:function(){},
@@ -253,7 +273,6 @@ $.cb['core'] = {
 
 
 
-
 // callback this
 $.cbt = {
     this : function(t, e){
@@ -283,12 +302,16 @@ $(document).on("click",".btn-cb",function (e){
 })
 
 
+
 $(document).on("click",".btn-toggle",function (e){
     e.preventDefault();    
     var t = $(this);
     
-    $(t.data('target')).slideToggle(function(){
-        $(this).find('[autofocus="true"]').first().focus();
+    $(t.data('target')).toggle({
+        duration: 0,
+        complete : function(){
+            $(this).find('textarea').first().focus();
+        }
     });
 })
 
@@ -301,6 +324,8 @@ $(document).on("change",".input-cb",function (e){
     $.cbt.this(t, e);
 })
 
+
+
 $.dataSetter = function(dataSetter) {
     $.each(dataSetter, function(index, val) {
         var rowId = index;
@@ -310,9 +335,27 @@ $.dataSetter = function(dataSetter) {
     });
 }
 
+
+
 $.checkLine2 = function (tr,checkBool){
     if(checkBool)
         tr.addClass('checked').find('.td-check input.rowId').prop('checked',true);
     else
         tr.removeClass('checked').find('.td-check input.rowId').prop('checked',false);
+}
+
+
+
+/* créer la regexp pour trouver le resultat */
+$.regexp = function (strFind) {
+    var reg = "[a-zA-Z0-9\\.\.\\s\_\-]{0,}";
+    
+    if ($.sui.is('strict','true'))
+       var strReg    = "("+reg+")"+strFind+"("+reg+")";
+    else{
+        var strReg = "";
+        for (var i = 0; i < strFind.length; i++) strReg = strReg  + strFind[i] + "{1}(" + reg + ")";
+    }
+
+    return strReg;
 }

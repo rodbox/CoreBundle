@@ -137,13 +137,13 @@ class RBUploadExtension  extends \Twig_Extension{
         $rand    = substr( md5(rand()), 0, 8);
         $data = [
             'id'     => 'file-'.$rand,
-            'index'  => $index,
+            'index'  => '/'.$rand,
             'route'  => 'upload',
             'data'   => [
                 'filter'   => $filter,
                 'dest'     => $dir,
                 'rename'   => $rename,
-                'multiple' => false,
+                'multiple' => true,
                 'cbapp'    => 'upload',
                 'cb'       => 'uploadMail'
             ]

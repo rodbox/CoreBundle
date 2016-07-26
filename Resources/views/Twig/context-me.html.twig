@@ -1,17 +1,19 @@
-<div id="context_nav" class="btn-group-sm ">
+<div id="context_nav" >
     {% set sessionUi = app.session.get('ui') %}
     {% set keyContext %}{% spaceless %}dzazd
     {% endspaceless %}{% endset %}
-    <button  id="rb-key-context" class="btn btn-default " data-toggle="popover" data-trigger="hover click" data-html="true" data-placement="bottom" data-content="{{keyContext}}" data-container="body"><i class="fa fa-keyboard-o "></i></button>
-    <div class="btn-group">
+    <div class="btn-group btn-group-sm">
+        <button  id="rb-key-context" class="btn btn-default " data-toggle="popover" data-trigger="hover click" data-html="true" data-placement="bottom" data-content="{{keyContext}}" data-container="body"><i class="fa fa-keyboard-o "></i></button>
+    </div>
+    <div class="btn-group btn-group-sm">
         {{ context_me_checkbox() }}
         {{ context_me_checkbox('A','true','<i class="fa fa-wheelchair"></i>') }}
     </div>
-    <div class="btn-group">
+    <div class="btn-group btn-group-sm">
         {{ context_me_radio('V','list-A','<i class="fa fa-list"></i>') }}
         {{ context_me_radio('V','list-B','<i class="fa fa-th-large"></i>') }}
     </div>
-     <div class="btn-group">
+     <div class="btn-group btn-group-sm">
          {{ context_me_checkbox('strict','true','<i class="fa fa-hand-peace-o" aria-hidden="true"></i>') }}
      </div>
 </div>
