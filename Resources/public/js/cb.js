@@ -13,7 +13,7 @@ $.cb['upload'] = {
         })
     },
     uploadeds   : function(){
-       console.log('upload terminé');
+      
     },
     uploadMail: function(json, t){
         $.each(json.file.valid, function(key, val){
@@ -115,7 +115,7 @@ $.cb['core'] = {
         $("#import-step–3").trigger('click');
         $('#target-convert-file').html(json.app);
         $.init("#target-convert-file");
-        console.log(json);
+       
     },
     getValidResult: function(t, e, json) {
         $("#import-step–4").trigger('click');
@@ -144,7 +144,7 @@ $.cb['core'] = {
 
             for (var i = 0; i < byReq; i++) {
                 var trNext = $('.current').nextAll('tr').eq(i);
-                console.log(trNext);
+               
                 $.checkLine2(trNext,true);
             };
         }
@@ -226,22 +226,22 @@ $.cb['core'] = {
         },'json');
     },
     getEditorTxt: function (t,e,json){
-        console.log('getEditorTxt');
+        
     },
     getEditorPdf: function (t,e,json){
-        console.log('getEditorPdf');
+        
     },
     getEditorImg: function (t,e,json){
 
     },
     getEditorCode: function (t,e,json){
-        console.log('getEditorCode');
+        
     },
     getEditorZip: function (t,e,json){
-        console.log('getEditorZip');
+        
     },
     getEditorPdf: function (t,e,json){
-        console.log('getEditorPdf');
+        
     },
     paneFullscreen: function (t,e){
         $(t.data('target')).toggleClass('panel-me-fullscreen');

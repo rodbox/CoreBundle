@@ -44,5 +44,21 @@ $.date = {
 	},
 	expire : function(date1, date2){
 		return (date1 - date2) > 0;
+	},
+	format : function(date, format){
+		var dateFormat  = new Date(date * 1000);
+
+		var now = Date.now();
+       
+
+        var dif = (now / 1000) - (date / 1000);
+
+        var h24 = 86400;
+        var w1 = 604800;
+
+
+
+
+		return dateFormat;
 	}
 }

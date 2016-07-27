@@ -4,6 +4,8 @@ namespace RB\CoreBundle\Twig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class RBCoreExtension  extends \Twig_Extension{
+
+
     public function __construct($container, $twig, $session, $router, $doctrine)
     {
         $this->container = $container;
@@ -13,6 +15,7 @@ class RBCoreExtension  extends \Twig_Extension{
         $this->session   = $session;
         $this->doctrine  = $doctrine;
     }
+
 
 
     public function input_me($route='input_me',$data=[],$class='', $datainput = [])
@@ -26,10 +29,13 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
+
     public function context_me()
     {
         echo $this->twig->render('RBCoreBundle:Twig:context-me.html.twig');
     }
+
+
 
     public function table_me($data, $name = 'table', $class = '')
     {
@@ -39,6 +45,42 @@ class RBCoreExtension  extends \Twig_Extension{
             'class' => $class
         ]);
     }
+
+
+
+    public function pagin_me($data = [], $param = [], $class = '')
+    {
+        $paramDefault = [
+            'id'     => 'pagin',
+            'view'   => 'RBCoreBundle:Twig:pagin-list.html.twig',
+            'per'    => 5,
+            'cur'    => 1,
+            'filter' => false,
+            'search' => true,
+            'data'   => $data
+        ];
+        
+        $param                 = array_merge($paramDefault, $param);
+
+        $first                 = ($param['cur'] - 1) * $param['per'];
+        $last                  = $param['cur'] * $param['per'];
+        $count                 = count($data);
+        $param['pages']        = $count / $param['per'];
+
+        $last                  = ($last > $count)?$param['per']:$last;
+        
+        $data_page             = array_slice($data, $first, $param['per'], true);
+
+
+        echo $this->twig->render('RBCoreBundle:Twig:pagin-me.html.twig',[
+            'id'        => $param['id'],
+            'data'      => $data,
+            'data_page' => $data_page,
+            'param'     => $param,
+            'class'     => $class
+        ]);
+    }
+
 
 
 
@@ -63,6 +105,7 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
+
     public function setter_me($data,$id="")
     {
         $data = json_encode($data);
@@ -71,6 +114,8 @@ class RBCoreExtension  extends \Twig_Extension{
             'id'    => $id
         ]);
     }
+
+
 
     public function context_me_checkbox($keyContext="H", $valueSetter="true", $content="<i class='fa fa-question'></i>",$class="")
     {
@@ -82,6 +127,8 @@ class RBCoreExtension  extends \Twig_Extension{
             'class'   => $class
         ]);
     }
+
+
 
     public function context_me_select($keyContext="H", $valueSetter="true",$class="")
     {
@@ -123,7 +170,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-public function alert_me($id='all')
+    public function alert_me($id='all')
     {
         $em = $this->doctrine->getManager();
         $alerts = $em
@@ -216,7 +263,7 @@ public function alert_me($id='all')
      * [curl_me description]
      * @return [type] [description]
      */
-    public function curl_me($target="#product_img",$dir="products",$folder="/123")
+    public function curl_me($target="#product_img", $dir="products", $folder="/123")
     {
         echo $this->twig->render('RBCoreBundle:Twig:curl-me.html.twig',[
             'target' => $target,
@@ -226,12 +273,14 @@ public function alert_me($id='all')
     }
 
 
+
     public function logo($size='M')
     {
         echo $this->twig->render('RBCoreBundle:Twig:logo.html.twig',[
             'size'    => $size
         ]);
     }
+
 
 
     public function mustache_tpl($id='', $view='@RBCoreBundle')
@@ -250,6 +299,7 @@ public function alert_me($id='all')
     }
 
 
+
     public function local_me($route, $index, $data = [])
     {   
         $url = $this->router->generate($route, $data);
@@ -259,6 +309,8 @@ public function alert_me($id='all')
             'index' => $index
         ]);
     }
+
+    
 
     public function btn_local($content = 'local', $target, $index, $tpl)
     {
@@ -271,6 +323,7 @@ public function alert_me($id='all')
     }
 
 
+
     public function getName(){
         return 'rb_core_extension';
     }
@@ -280,6 +333,7 @@ public function alert_me($id='all')
     public function getFunctions(){
         return array(
             new \Twig_SimpleFunction("table_me"            , [$this , 'table_me']            , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("pagin_me"            , [$this , 'pagin_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("alert_me"            , [$this , 'alert_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("counter_me"          , [$this , 'counter_me']          , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("input_me"            , [$this , 'input_me']            , ['is_safe' => ['html']]) ,

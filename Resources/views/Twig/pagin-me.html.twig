@@ -1,0 +1,29 @@
+<div id="pagin-{{ id }}-container" class="pagin-me" data-per="{{ param.per }}" data-cur="{{ param.cur }}" data-pages="">
+
+	{% if param.search %}
+		<form action="#" class="p-c-v">
+			<div class="input-group">  
+				<div class="input-group-addon"><button style="background-color: transparent; border-color: transparent; border-width: 0;" class="" data-loading-text="&lt;i class='fa fa-refresh fa-spin'&gt;&lt;/i&gt;" type="submit"  placeholder="{{ "action.search" | trans }}" ><i class="fa fa-search"></i></button></div>
+				<input type="text" class="form-control input-search" data-target="#pagin-{{ id }}" data-items="a.list-group-item">
+			</div>
+		</form>
+	{% endif %}
+
+	<div class="btn-group btn-group-sm m-c-v">
+		<button class="btn btn-default btn-pagin page-prev" data-pagin="-1"><i class="fa fa-chevron-left"></i></button>
+		<select name="page" class="btn btn-default c-select pagin-{{ id }}-cur" style="padding: 0.37rem; border:0px;">
+			<option value="1">1</option>
+		</select>
+		<button class="btn btn-default btn-pagin page-next" data-pagin="+1"><i class="fa fa-chevron-right"></i></button>
+	</div>
+
+	<div id="pagin-{{ id }}">
+	{% for item in data_page %}
+		{% include param.view with { item : item} only %}
+	{% endfor %}
+	</div>
+</div>                                                                                                                                                    
+{{ mustache_tpl(id, '@'~param.view) }}
+<script>
+	$('#pagin-{{ id }}').pagin({{ param | json_encode | raw}});
+</script>

@@ -11,6 +11,9 @@ services:
     rb.serializer:
         class: RB\CoreBundle\Services\RBSerializerService
         arguments: []
+    rb.serializer_extension:
+        class: RB\CoreBundle\Twig\RBSerializerExtension
+        arguments: []
     rb.templates:
         class: RB\CoreBundle\Services\RBTemplatesService
         arguments: ["@service_container"]
