@@ -1,10 +1,10 @@
   $.modal = {
     zindex : 3000,
-    set : function(url, dataSend, modal, title){
+    set : function(url, dataSend, modal, title, vertical){
       $.loadlock.on();
       $.post(url, dataSend, function(data) {
 
-        $.modal.html(data, modal, title);
+        $.modal.html(data, modal, title, vertical);
         $.loadlock.off();
 
       },'html').error(function(err){
@@ -18,28 +18,30 @@
         else
           var modal = $(".modalM");
 
+        var modalDialog = modal.find('.modal-dialog');
+        var clone       = modalDialog.clone();
         $('body').append(clone);
 
-        if(vertical == "true"){
-          var modalDialog = modal.find('.modal-dialog');
-          var clone = modalDialog.clone();
+        if(vertical){
+
           clone.css({
             position:'fixed',
             top: -8000
           })
           modalDialog.css({
             'margin-top': function () {
-                return (($(window).outerHeight() / 2) - (clone.outerHeight()));
+                return (($(window).outerHeight() / 3) - (clone.outerHeight()));
             }
           });
-          clone.remove();
         }
         else{
+
           modalDialog.css({
               'margin-top': 'inherit'
           });
         }
 
+        clone.remove();
 
         $.modal.zindex += 2;
         modal.css('z-index',$.modal.zindex);
@@ -58,13 +60,6 @@
         setTimeout(function(){
           modal.find('input[autofocus="true"]').first().focus();
         },200)
-
-
-
-
-
-
-
     },
     iframe:function(url,title){
         $.loadlock.on();
@@ -105,12 +100,13 @@
 
 $(document).on("click",".btn-modal",function (e){
     e.preventDefault();
-    var t     = $(this);
+    var t        = $(this);
 
-    var url   = t.attr('href');
-    var modal = t.data('modal');
-    var title = t.attr('title');
-    var data  = t.data();
+    var url      = t.attr('href');
+    var modal    = t.data('modal');
+    var title    = t.attr('title');
+    var data     = t.data();
+    var vertical = t.attr('data-vertical');
 
     if (t.data('modal') == 'alone')
       $.modal.close();
@@ -120,7 +116,7 @@ $(document).on("click",".btn-modal",function (e){
       var data      = $.extend(data, dataForm);
     }
 
-    $.modal.set(url,data,modal,title);
+    $.modal.set(url, data, modal, title, vertical);
   });
 
 $(document).on("click",".btn-iframe",function (e){
