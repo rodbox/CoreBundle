@@ -276,24 +276,31 @@ $.cb['core'] = {
     }
 }
 
+$.def = function (value, defaultValue){
+    return (value == undefined)?defaultValue:value;
+}
 
 
 // callback this
 $.cbt = {
-    this : function(t, e){
+    this : function(t, json, e){
         var cbapp = $.def(t.data('cb-app'),'admin');
         var cb    = $.def(t.data('cb'),'default');
 
-        if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
-          $.cb[cbapp][cb](t, e);
+        if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined){
+          $.cb[cbapp][cb](t, json, e);
+          console.log('cb this ok');
+        }
 
     },
     json : function(t, json, e){
         var cbapp = $.def(json.cbapp,'admin');
         var cb    = $.def(json.cb,'default');
 
-        if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
-            $.cb[cbappjson][json.cb](t, json, e);
+        if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined){
+            $.cb[cbapp][json.cb](t, json, e);
+            console.log('cb json ok');
+        }
     }
 }
 

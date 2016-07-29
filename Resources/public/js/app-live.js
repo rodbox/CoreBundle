@@ -41,7 +41,7 @@ $(document).ready(function(){
         if(json.infotype == "error"){
           if(!t.hasClass('no-flash') || json.infotype=='error')
             $.setFlash(json.msg, json.infotype);
-          
+
           // confirm forcer
           if(confirm('forcer ?')){
             // envois forcer
@@ -53,8 +53,9 @@ $(document).ready(function(){
               if(!t.hasClass('no-flash') || json.infotype=='error')
                 $.setFlash(json.msg, json.infotype)
 
-             $.cbt.this(t, e);
+             $.cbt.this(t, json, e);
              $.cbt.json(t, json, e);
+
              $.btnLoad.off(t, json);
             }).error(function(err){
               $.btnLoad.off(t, '', err);
@@ -67,7 +68,7 @@ $(document).ready(function(){
 
           $.modal.json(json);
 
-          $.cbt.this(t, e);
+          $.cbt.this(t, json, e);
           $.cbt.json(t, json, e);
           $.btnLoad.off(t, json);
         }
@@ -130,16 +131,16 @@ $(document).ready(function(){
 
 
   $(document).on("click",".btn-del-li",function (e){
-    e.preventDefault();  
+    e.preventDefault();
     var t = $(this);
-    
+
     var li = t.parents('li').first().remove();
     if(t.data('confirm') !=undefined){
       if(confirm(t.data('confirm')))
         li.remove();
     }
     else
-      li.remove();    
+      li.remove();
   })
 
 })

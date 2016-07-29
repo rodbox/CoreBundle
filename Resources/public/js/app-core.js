@@ -152,12 +152,6 @@ $(document).ready(function($) {
     }
 
 
-    $.def = function (value, defaultValue){
-        return (value == undefined)?defaultValue:value;
-    }
-
-
-
     $(document).on("keydown","textarea[data-tab=true]",function (e){
         if (e.keyCode === 9) {
 
@@ -187,7 +181,7 @@ $(document).ready(function($) {
 
 
     $(document).on("click",".btn-nav",function (e){
-        e.preventDefault();  
+        e.preventDefault();
         var t      = $(this);
 
         var target = $(t.data('target')).find('.active');
