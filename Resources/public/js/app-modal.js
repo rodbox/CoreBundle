@@ -37,9 +37,10 @@
           });
         }
         else{
+          var lopen = $('.modal.in').length;
 
           modalDialog.css({
-              'margin-top': 'inherit'
+              'margin-top': ((lopen + 1)*1.5)+'rem'
           });
         }
 
