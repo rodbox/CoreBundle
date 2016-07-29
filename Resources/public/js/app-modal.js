@@ -27,11 +27,13 @@
           clone.css({
             position:'fixed',
             top: -8000
-          })
+          });
+
+          var margTop = ($(window).outerHeight() / 3) - (clone.outerHeight());
+          var margTop = (margTop > 0)margTop:'0.5rem';
+
           modalDialog.css({
-            'margin-top': function () {
-                return (($(window).outerHeight() / 3) - (clone.outerHeight()));
-            }
+            'margin-top': margTop
           });
         }
         else{

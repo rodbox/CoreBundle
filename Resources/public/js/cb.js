@@ -13,7 +13,7 @@ $.cb['upload'] = {
         })
     },
     uploadeds   : function(){
-      
+
     },
     uploadMail: function(json, t){
         $.each(json.file.valid, function(key, val){
@@ -27,6 +27,11 @@ $.cb['upload'] = {
     uploadMails: function(){}
 }
 
+.cb['input'] = {
+    setModal : function(json){
+        $.modal.html(json.content, json.title)
+    }
+}
 
 
 $.cb['core'] = {
@@ -115,7 +120,7 @@ $.cb['core'] = {
         $("#import-step–3").trigger('click');
         $('#target-convert-file').html(json.app);
         $.init("#target-convert-file");
-       
+
     },
     getValidResult: function(t, e, json) {
         $("#import-step–4").trigger('click');
@@ -144,7 +149,7 @@ $.cb['core'] = {
 
             for (var i = 0; i < byReq; i++) {
                 var trNext = $('.current').nextAll('tr').eq(i);
-               
+
                 $.checkLine2(trNext,true);
             };
         }
@@ -155,7 +160,7 @@ $.cb['core'] = {
         alert(json.msg);
     },
     setAction: function (t,e,json){
-        
+
     },
     setFixStatus: function (t,e,json){
         t.find('input').val('');
@@ -226,22 +231,22 @@ $.cb['core'] = {
         },'json');
     },
     getEditorTxt: function (t,e,json){
-        
+
     },
     getEditorPdf: function (t,e,json){
-        
+
     },
     getEditorImg: function (t,e,json){
 
     },
     getEditorCode: function (t,e,json){
-        
+
     },
     getEditorZip: function (t,e,json){
-        
+
     },
     getEditorPdf: function (t,e,json){
-        
+
     },
     paneFullscreen: function (t,e){
         $(t.data('target')).toggleClass('panel-me-fullscreen');
@@ -304,9 +309,9 @@ $(document).on("click",".btn-cb",function (e){
 
 
 $(document).on("click",".btn-toggle",function (e){
-    e.preventDefault();    
+    e.preventDefault();
     var t = $(this);
-    
+
     $(t.data('target')).toggle({
         duration: 0,
         complete : function(){
@@ -349,7 +354,7 @@ $.checkLine2 = function (tr,checkBool){
 /* créer la regexp pour trouver le resultat */
 $.regexp = function (strFind) {
     var reg = "[a-zA-Z0-9\\.\.\\s\_\-]{0,}";
-    
+
     if ($.sui.is('strict','true'))
        var strReg    = "("+reg+")"+strFind+"("+reg+")";
     else{
