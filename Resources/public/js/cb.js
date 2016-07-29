@@ -27,7 +27,7 @@ $.cb['upload'] = {
     uploadMails: function(){}
 };
 
-.cb['input'] = {
+$.cb['input'] = {
     setModal : function(json){
         $.modal.html(json.content, json.title)
     }
