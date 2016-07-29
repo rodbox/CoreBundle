@@ -25,13 +25,13 @@ $.cb['upload'] = {
         })
     },
     uploadMails: function(){}
-}
+};
 
 .cb['input'] = {
     setModal : function(json){
         $.modal.html(json.content, json.title)
     }
-}
+};
 
 
 $.cb['core'] = {

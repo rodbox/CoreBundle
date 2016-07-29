@@ -30,10 +30,10 @@
           });
 
           var margTop = ($(window).outerHeight() / 3) - (clone.outerHeight());
-          var margTop = (margTop > 0)?margTop:'0.5rem';
+          var margTopValue = (margTop > 0)?margTop+'px':'0.5rem';
 
           modalDialog.css({
-            'margin-top': margTop
+            'margin-top': margTopValue
           });
         }
         else{
