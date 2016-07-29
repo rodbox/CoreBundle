@@ -1,27 +1,25 @@
-$(document).on("click",".table-ceil-edit",function (e){
+$(document).on("dblclick keypress focusout",".table-ceil-edit",function (e){
 	var t 	  = $(this);
-	var val   = t.attr('data-value');
 
-	var input = $("<input>",{
-			"id"    : "ceil-edit-"+t.data('row')+'-'+t.data('col'),
-			"class" : "ceil-edit-input form-control"
-		})
-		.keypress(function(e){
-			if (e.keyCode == 13) {
-				var tin = $(this);
-				t.attr('data-value',tin.val());
-				t.html(tin.val());
-			}
+	// dblclick on ouvre le champ
+	if(e.type=="dblclick"){
+		t.attr('data-value',t.val());
+		t.removeAttr('readonly');
+	}
+	// on quitte : on bloque le champ
+	else if(e.type=="focusout"){
+		t.val(t.attr('data-value'));
+		t.attr('readonly');
+	}
+	else {
+		if (e.keyCode == 13){
+			t.attr('data-value',t.val());
+			t.attr('readonly');
+		}
 
-			if (e.keyCode == 27) {
-				t.html(t.attr('data-value'));
-			}
-		})
-		.focusout(function(){
-			t.html(t.attr('data-value'));
-		})
-
-	input.val(val);
-
-	t.html(input);
+		if (e.keyCode == 27) {
+			t.val(t.attr('data-value'));
+			t.attr('readonly');
+		}
+	}
 })
