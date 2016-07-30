@@ -1,10 +1,10 @@
   $.modal = {
     zindex : 3000,
-    set : function(url, dataSend, modal, title, vertical){
+    set : function(url, dataSend, modal, title, data){
       $.loadlock.on();
       $.post(url, dataSend, function(data) {
 
-        $.modal.html(data, modal, title, vertical);
+        $.modal.html(data, modal, title, data);
         $.loadlock.off();
 
       },'html').error(function(err){
@@ -12,7 +12,7 @@
         $.setFlash('erreur '+ err.status,'error');
       })
     },
-    html:function(content, modal, title, vertical){
+    html:function(content, modal, title, data){
         if(modal)
           var modal = $(".modal."+modal);
         else
@@ -22,7 +22,7 @@
         var clone       = modalDialog.clone();
         $('body').append(clone);
 
-        if(vertical){
+        if(data.vertical){
 
           clone.css({
             position:'fixed',
@@ -51,10 +51,7 @@
 
         modal.find('.modal-title').html(title);
         modal.find(".modal-body").html(content);
-        modal.modal({
-          backdrop: 'static',
-          keyboard: false
-        });
+        modal.modal(data);
 
         $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);
 
@@ -119,7 +116,7 @@ $(document).on("click",".btn-modal",function (e){
       var data      = $.extend(data, dataForm);
     }
 
-    $.modal.set(url, data, modal, title, vertical);
+    $.modal.set(url, data, modal, title, t.data());
   });
 
 $(document).on("click",".btn-iframe",function (e){
