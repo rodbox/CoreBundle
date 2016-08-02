@@ -8,7 +8,7 @@ $(document).ready(function(){
         t = t.find('button[type="submit"]');
 
       var textAlt = t.attr('data-loading-text');
-      textAlt = (textAlt==undefined)?"<i class='fa fa-refresh fa-spin'></i> "+t.html()+" ...":textAlt;
+      textAlt = (textAlt==undefined)?"<i class='fa fa-refresh fa-spin'></i>":textAlt;
       t.css({
         'min-width':t.outerWidth()
       });

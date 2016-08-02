@@ -1,4 +1,4 @@
-  $.modal = {
+$.modal = {
     zindex : 3000,
     set : function(url, dataSend, modal, title, data){
       $.loadlock.on();
@@ -17,6 +17,15 @@
           var modal = $(".modal."+modal);
         else
           var modal = $(".modalM");
+
+
+        var dataDefault ={
+            vertical : false,
+            backdrop : 'static',
+            keyboard : true
+        };
+
+        var data = $.extend(dataDefault, data);
 
         var modalDialog = modal.find('.modal-dialog');
         var clone       = modalDialog.clone();
@@ -51,15 +60,21 @@
 
         modal.find('.modal-title').html(title);
         modal.find(".modal-body").html(content);
-        modal.modal(data);
+        modal.modal({
+          backdrop: data.backdrop,
+          keyboard: data.keyboard
+        })
+        .on('shown.bs.modal', function (e) {
+          modal.initJq();
+          modal.find('input[autofocus="true"]').first().focus();
+        })
+        .on('hidden.bs.modal', function (e) {
+          modal.initJq('destroy');
+        });
 
         $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);
 
-        modal.initJq();
 
-        setTimeout(function(){
-          modal.find('input[autofocus="true"]').first().focus();
-        },200)
     },
     iframe:function(url,title){
         $.loadlock.on();

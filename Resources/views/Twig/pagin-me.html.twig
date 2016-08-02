@@ -1,7 +1,7 @@
 <div id="pagin-{{ id }}-container" class="pagin-me" data-per="{{ param.per }}" data-cur="{{ param.cur }}" data-pages="">
 
 	{% if param.search %}
-		<form action="#" class="p-c-v">
+		<form action="#" class="p-c-b">
 			<div class="input-group">  
 				<div class="input-group-addon"><button style="background-color: transparent; border-color: transparent; border-width: 0;" class="" data-loading-text="&lt;i class='fa fa-refresh fa-spin'&gt;&lt;/i&gt;" type="submit"  placeholder="{{ "action.search" | trans }}" ><i class="fa fa-search"></i></button></div>
 				<input type="text" class="form-control input-search" data-target="#pagin-{{ id }}" data-items="a.list-group-item">

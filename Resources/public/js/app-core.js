@@ -14,10 +14,18 @@
     };
 
 
-    $.fn.initJq = function() {
-      var chosen = $(this.selector +' select.form-control').chosen();
+    $.fn.initJq = function(opt) {
 
-      $(this.selector +' [autofocus="true"]').focus();
+      var chosen = $(this.selector +' select.form-control');
+      
+
+      if(opt == 'destroy'){
+        chosen.chosen('destroy');
+      }
+      else{
+        chosen.chosen();
+        $(this.selector +' [autofocus="true"]').focus();
+      }
 
       return this;
     };
