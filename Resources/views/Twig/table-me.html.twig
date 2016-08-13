@@ -1,10 +1,10 @@
 <div class="table-responsive">
-	<table class="table table-sm table-striped table-bordered table-arr">
+	<table id="table-me-{{ name }}" data-resizable-columns-id="table-me-{{ name }}" class="table table-sm table-striped table-bordered table-arr table-me">
 		<thead>
 			<tr>
 				<th></th>
 				{% for keyCol, col in data[0] %}
-					<th class="col-{{ keyCol }}" data-col="{{ keyCol }}">
+					<th class="col-{{ keyCol }}" data-col="{{ keyCol }}" data-resizable-column-id="{{ keyCol }}" >
 						<input id="col-{{ keyCol }}" type="checkbox" name="title[{{ keyCol }}]" class="check-col" data-col="{{ keyCol }}" value="{{ keyCol }}">
 						<label for="">{{ keyCol }}</label>
 					</th>
@@ -26,3 +26,11 @@
 		</tbody>
 	</table>
 </div>
+
+<script>
+$(function(){
+  $("table.table-me").resizableColumns({
+    store: window.store
+  });
+});
+</script>
