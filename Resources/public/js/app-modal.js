@@ -113,6 +113,13 @@ $.modal = {
     }
   }
 
+// fix le probleme de scroll lors de la fermeture de d'un modal au z index supperieur
+$(document).on('hidden.bs.modal',".modal", function (e) {
+  if($('.modal.in').length >0)
+    $('body').addClass('modal-open');
+});
+
+
 $(document).on("click",".btn-modal",function (e){
     e.preventDefault();
     var t        = $(this);
