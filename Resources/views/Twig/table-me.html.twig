@@ -1,36 +1,50 @@
 <div class="table-responsive">
-	<table id="table-me-{{ name }}" data-resizable-columns-id="table-me-{{ name }}" class="table table-sm table-striped table-bordered table-arr table-me">
-		<thead>
-			<tr>
-				<th></th>
-				{% for keyCol, col in data[0] %}
-					<th class="col-{{ keyCol }}" data-col="{{ keyCol }}" data-resizable-column-id="{{ keyCol }}" >
-						<input id="col-{{ keyCol }}" type="checkbox" name="title[{{ keyCol }}]" class="check-col" data-col="{{ keyCol }}" value="{{ keyCol }}">
-						<label for="">{{ keyCol }}</label>
-					</th>
-				{% endfor %}
-			</tr>
-		</thead>
-		<tbody>
-			{% for keyRow, row in data %}
-				<tr>
-					<td>
-						<input id="row-{{ keyRow }}" type="checkbox" name="value[{{ keyRow }}]" class="check-row" data-row="{{ keyRow }}" value="{{ keyRow }}">
-						<label for="">{{ keyRow }}</label>
-					</td>
-					{% for keyCol, col in row %}
-					<td class="row-{{ keyRow }} col-{{ keyCol }}" data-row="{{ keyRow }}" data-col="{{ keyCol }}" ><input type="text" name="ceil[{{ keyRow }}][{{ keyCol }}]" value="{{ col }}" class="table-ceil-edit form-control input-row-{{ keyRow }} input-col-{{ keyCol }}" data-value="{{ col }}" readonly /></td>
+	<!-- BEGIN NAVTABS : table-tab  -->
+	<ul class="nav nav-tabs" id="table-tab">
+	    <li class="nav-item ">
+	        <a data-toggle="tab" href="#table-tab-tab-1" class="nav-link active btn-sheet" aria-expanded="true" data-sheet-title="{{"title.sheet"| trans}} 1">{{"title.sheet"| trans}} 1</a>
+	    </li>
+	</ul>
+	<!-- END NAVTABS : table-tab  -->
+	<!-- BEGIN TABSCONTENT  -->
+	<div class="tab-content">
+	    <div id="table-tab-tab-2" class="tab-pane "></div>
+	    <div id="table-tab-tab-1" class="tab-pane active">
+			<table id="table-me-{{ name }}" data-resizable-columns-id="table-me-{{ name }}" class="table table-sm table-striped table-bordered table-arr table-me ">
+				<thead classs="thead-inverse">
+					<tr>
+						<th class="c-5 bg-1"></th>
+						{% for keyCol, col in data[0] %}
+							<th class="col-{{ keyCol }} c-5 bg-1 text-xs-center" data-col="{{ keyCol }}" data-resizable-column-id="{{ keyCol }}" >
+								<input id="col-{{ keyCol }}" type="checkbox" name="title[{{ keyCol }}]" class="check-col" data-col="{{ keyCol }}" value="{{ keyCol }}">
+								<label for="col-{{ keyCol }}" class="c-1">{{ char_me(keyCol) }}</label>
+							</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for keyRow, row in data %}
+						<tr>
+							<td class="c-5 bg-1  text-xs-center">
+								<input id="row-{{ keyRow }}" type="checkbox" name="value[{{ keyRow }}]" class="check-row" data-row="{{ keyRow }}" value="{{ keyRow }}">
+								<label for="">{{ keyRow + 1 }}</label>
+							</td>
+							{% for keyCol, col in row %}
+							<td class="row-{{ keyRow }} col-{{ keyCol }}" data-row="{{ keyRow }}" data-col="{{ keyCol }}" ><input type="text" name="ceil[{{ keyRow }}][{{ keyCol }}]" value="{{ col }}" class="table-ceil-edit form-control input-row-{{ keyRow }} input-col-{{ keyCol }}" data-value="{{ col }}" readonly /></td>
+							{% endfor %}
+						</tr>
 					{% endfor %}
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+				</tbody>
+			</table>
+			<script>
+			$(function(){
+			  $("table.table-me").resizableColumns({
+			    store: window.store
+			  });
+			});
+			</script>
+		</div>
+	</div>
+	<!-- END TABSCONTENT table-tab -->
 </div>
 
-<script>
-$(function(){
-  $("table.table-me").resizableColumns({
-    store: window.store
-  });
-});
-</script>

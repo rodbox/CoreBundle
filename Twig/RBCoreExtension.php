@@ -17,6 +17,17 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
+    public function char_me($id = 0)
+    {
+        $num    = floor($id / 26);
+
+        $chr    =  $id - (26 * $num) + 65;
+
+        echo chr($chr);
+        if ($num>1)
+            echo $num-1;
+    }
+
 
     public function input_me($route='input_me',$data=[],$class='', $datainput = [])
     {
@@ -59,7 +70,7 @@ class RBCoreExtension  extends \Twig_Extension{
             'search' => true,
             'data'   => $data
         ];
-        
+
         $param                 = array_merge($paramDefault, $param);
 
         $first                 = ($param['cur'] - 1) * $param['per'];
@@ -68,7 +79,7 @@ class RBCoreExtension  extends \Twig_Extension{
         $param['pages']        = $count / $param['per'];
 
         $last                  = ($last > $count)?$param['per']:$last;
-        
+
         $data_page             = array_slice($data, $first, $param['per'], true);
 
 
@@ -301,7 +312,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
     public function local_me($route, $index, $data = [])
-    {   
+    {
         $url = $this->router->generate($route, $data);
         echo $this->twig->render('RBCoreBundle:Twig:local-me.html.twig',[
             'url'   => $url,
@@ -310,7 +321,7 @@ class RBCoreExtension  extends \Twig_Extension{
         ]);
     }
 
-    
+
 
     public function btn_local($content = 'local', $target, $index, $tpl)
     {
@@ -332,6 +343,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
+            new \Twig_SimpleFunction("char_me"             , [$this , 'char_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_me"            , [$this , 'table_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("pagin_me"            , [$this , 'pagin_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("alert_me"            , [$this , 'alert_me']            , ['is_safe' => ['html']]) ,
