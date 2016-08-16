@@ -20,8 +20,6 @@ $.local = {
 		else
 			var expire 			= true;
 
-		console.log(expire);
-
 		if(expire || $.force() || $.sui.get('force') == 'true'){
 			$.get(url, function(json) {
 				var date_expire = $.date.add(new Date(), 7, 'day');
