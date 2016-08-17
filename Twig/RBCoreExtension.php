@@ -57,6 +57,15 @@ class RBCoreExtension  extends \Twig_Extension{
         ]);
     }
 
+    public function table_sheet_me($data, $name = 'table', $class = '')
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:table-sheet-me.html.twig',[
+            'data'  => $data,
+            'name'  => $name,
+            'class' => $class
+        ]);
+    }
+
 
 
     public function pagin_me($data = [], $param = [], $class = '')
@@ -343,8 +352,9 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            new \Twig_SimpleFunction("char_me"             , [$this , 'char_me']            , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("char_me"             , [$this , 'char_me']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_me"            , [$this , 'table_me']            , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("table_sheet_me"      , [$this , 'table_sheet_me']      , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("pagin_me"            , [$this , 'pagin_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("alert_me"            , [$this , 'alert_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("counter_me"          , [$this , 'counter_me']          , ['is_safe' => ['html']]) ,

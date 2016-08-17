@@ -22,13 +22,19 @@ class RBFileService
         if($ext == 'xls' || $ext == 'xlsx'){
             $phpexcel       = $this->container->get('phpexcel');
             $phpExcelObject = $phpexcel->createPHPExcelObject($file);
-            $writer         = $phpexcel->createWriter($phpExcelObject,'CSV');
+
+     //       $writer         = $phpexcel->createWriter($phpExcelObject,'CSV');
 
             $this->sheet    = $phpExcelObject->getActiveSheet();
             $arrXLS = [];
-            for ($i=0; $i < $this->rowXlsRowCount(); $i++) {
-                $arrXLS[] = $this->rowXls($i);
+
+             foreach ($phpExcelObject->getWorksheetIterator() as $worksheet) {
+                $this->sheet    = $worksheet;
+                $sheetTitle     = $worksheet->getTitle();
+                for ($i=0; $i < $this->rowXlsRowCount(); $i++)
+                    $arrXLS[$sheetTitle][$i] = $this->rowXls($i);
             }
+
 
             $this->arr = $arrXLS;
         }
@@ -36,10 +42,10 @@ class RBFileService
             $arrCSV = [];
             if (($handle = fopen($file, "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-                    $arrCSV[] = $data;
+                    $arrCSV[] =  $data;
                 }
             }
-            $this->arr = $arrCSV;
+            $this->arr = ['sheet1' => $arrCSV];
         }
 
         else if($ext == 'json')

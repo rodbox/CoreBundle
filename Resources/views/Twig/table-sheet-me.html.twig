@@ -1,0 +1,16 @@
+<div class="table-responsive">
+	<ul class="nav nav-tabs" id="table-tab">
+		{% for keySheet, sheet in data %}
+		    <li class="nav-item ">
+		        <a data-toggle="tab" href="#table-tab-tab-{{ keySheet }}" class="nav-link btn-sheet" aria-expanded="false" data-sheet-title="{{ keySheet }}">{{ keySheet }}</a>
+		    </li>
+	    {% endfor %}
+	</ul>
+	<div class="tab-content">
+	    {% for keySheet, sheet in data %}
+	    	<div id="table-tab-tab-{{ keySheet }}" class="tab-pane ">
+	    		{{ table_me(sheet) }}
+	    	</div>
+	    {% endfor %}
+	</div>
+</div>
