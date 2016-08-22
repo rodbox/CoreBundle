@@ -65,12 +65,12 @@ $.modal = {
           keyboard: data.keyboard
         })
         .on('shown.bs.modal', function (e) {
-          modal.initJq();
           modal.find('input[autofocus="true"]').first().focus();
         })
         .on('hidden.bs.modal', function (e) {
           modal.initJq('destroy');
-        });
+        })
+        .initJq();
 
         $('.modal-backdrop').last().css('z-index', $.modal.zindex - 1);
 
