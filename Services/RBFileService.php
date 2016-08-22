@@ -3,7 +3,6 @@
 namespace RB\CoreBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Dumper;
 
@@ -75,18 +74,6 @@ class RBFileService
         return fclose($file);
     }
 
-    public function rename($name)
-    {
-        return strtolower(preg_replace('/(\s)/', "_", $name));
-    }
-    public function toJson($data, $dir, $opt = JSON_PRETTY_PRINT)
-    {
-        if(!file_exists(dirname($dir))){
-            $fs = new Filesystem();
-            $fs->mkdir(dirname($dir));
-        }
-        file_put_contents($dir, json_encode($data, $opt));
-    }
 
     public function paginate($page = 1, $per = 50)
     {
@@ -119,3 +106,4 @@ class RBFileService
     // END : EXCEL
 }
 
+?>
