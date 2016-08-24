@@ -1,8 +1,3 @@
-/**
-* TODO : Gestion des heures et de minutes a vérifié
-**/
-
-
 $.terms = [
 	{
 		comment	: "a l'instant",
@@ -109,12 +104,12 @@ $.date = {
 		var tmp     = parseInt(date)  - now ;
 		var timeSec = Math.abs(tmp);
 		
-		var prefix  = tmp > 0 ? "Il y a " : "Dans ";
-		var prefix  = timeSec < 10 ? "" : prefix;
+		var prefix  = (tmp > 0) ? "Il y a " : "Dans ";
+		var prefix  = (timeSec < 10) ? "" : prefix;
 
-		for(term of $.terms){
+		for(term in $.terms){
 			if(timeSec < term.time)
-				break
+				break;
 	    }
 
 		var value = Math.ceil(timeSec / term.divide);

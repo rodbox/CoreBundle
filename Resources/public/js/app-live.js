@@ -121,13 +121,22 @@ $(document).ready(function(){
 
 
 
-  $(document).on("submit","form.form-live",function (e){
+  $(document).on("submit","form.form-live", function (e){
     e.preventDefault();
     var t    = $(this);
 
     $.live.post(t.attr('action'), t.serialize(), t, e);
-  })
+  });
 
+  $(document).on("submit","form.form-live-target", function (e){
+    e.preventDefault();
+    var t    = $(this);
+
+    $.live.target(t.attr('action'), t.serialize(), t, e);
+  });
+  $(document).on("change","form.form-live-target input, form.form-live-target select, form.form-live-target textarea",function (e){
+    $(this).parents("form.form-live-target").trigger('submit');
+  })
 
 
   $(document).on("click",".btn-del-li",function (e){
