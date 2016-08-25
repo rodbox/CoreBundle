@@ -74,7 +74,15 @@ class RBFileService
         return fclose($file);
     }
 
-
+    public function toJson($data, $dir, $opt = JSON_PRETTY_PRINT)
+    {
+        if(!file_exists(dirname($dir))){
+            $fs = new Filesystem();
+            $fs->mkdir(dirname($dir));
+        }
+        file_put_contents($dir, json_encode($data, $opt));
+    }
+    
     public function paginate($page = 1, $per = 50)
     {
         $pages      = count($this->arr);
