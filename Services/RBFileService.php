@@ -87,7 +87,10 @@ class RBFileService
         return array_slice($this->arr, $rowFirst, $rowLast);
     }
 
-
+    public function rename($name)
+    {
+        return strtolower(preg_replace('/(\s)/', "_", trim($name)));
+    }    
 
     // EXCEL
     function cellXls($cell='A1'){
