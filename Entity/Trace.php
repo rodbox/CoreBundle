@@ -137,5 +137,52 @@ class Trace
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set dateInput
+     *
+     * @param \DateTime $dateInput
+     *
+     * @return Trace
+     */
+    public function setDateInput($dateInput)
+    {
+        $this->dateInput = $dateInput;
+
+        return $this;
+    }
+
+    /**
+     * Get dateInput
+     *
+     * @return \DateTime
+     */
+    public function getDateInput()
+    {
+        return $this->dateInput;
+    }
+
+    /**
+     * Set user
+     *
+     * @param integer $user
+     *
+     * @return Trace
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

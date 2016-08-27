@@ -52,7 +52,7 @@ class CoreController extends Controller
     public function tAction(Request $request)
     {
         $traces = $request->query->get("t",[]);
-        $this->get('rb.trace')->traces($traces);
+        $this->get('rb.trace')->traces($traces, new \Datetime());
 
         return new Response('');
     }

@@ -111,6 +111,8 @@ $(document).ready(function($) {
       return map;
     }
 
+
+
     $.img = function (url,size, cssClass){
       return $("<div>",{"class":"cover img img-"+size+" "+cssClass}).css('background-image','url('+url+')');
     }
@@ -129,8 +131,9 @@ $(document).ready(function($) {
     }
 
 
+
     $.t = {
-      tmp : {},
+      tmp : new Array(),
       push : function(ref, msg){
         $.t.tmp.push({
           ref : ref,
@@ -139,6 +142,7 @@ $(document).ready(function($) {
         });
       },
       sync : function(){
+        $.get(Routing.generate('t'),{t:$.t.tmp},function(){$.t.tmp = [];});
       },
       a:function(ref, msg){
         $.t.push(ref, msg);
@@ -146,7 +150,7 @@ $(document).ready(function($) {
       }
     }
 
-    $.t.a('def','test');
+
 
     $.counter = function (){
         $.get('/c/ct', function(json) {
@@ -157,6 +161,8 @@ $(document).ready(function($) {
             });
         },'json');
     }
+
+
 
     $.loadlock = {
         on : function (msg){
