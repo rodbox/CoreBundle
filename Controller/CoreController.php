@@ -4,72 +4,85 @@ namespace RB\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class CoreController extends Controller
 {
-        /**
-        * @Route("/c",name="input_me")
-        */
-        public function input_meAction(Request $request)
-            {
-                $action = $request->request->get("action");
+    /**
+    * @Route("/c",name="input_me")
+    */
+    public function input_meAction(Request $request)
+    {
+        $action = $request->request->get("action");
 
-                $pos    = strpos($action, "fix");
+        $pos    = strpos($action, "fix");
 
-                if($pos === 0){
-                    // $msg = "status fix - ok";
-                    /* SERVICE : rb.fix */
-                    $msg      = $this->get('rb.fix')->setStatus($action);
-                    $callback = 'setFixStatus';
-                    /* END SERVICE :  rb.fix */
-                }
-                else{
-                    $msg      = "recherche un produit";
-                    $callback = '';
-                }
-
-                $list = [];
-
-                $r    = [
-                    'infotype' => 'success',
-                    'msg'      => $msg,
-                    'cb'       => $callback,
-                    'app'      => $this->renderView('::base.html.twig', [
-                        'list' => $list
-                    ])
-                ];
-
-                return new JsonResponse($r);
-            }
-
-
-
-        /**
-        * @Route("/ct",name="ct")
-        */
-        public function ctAction(Request $request)
-        {
-
-            /* SERVICE : rb.counter */
-            $counter = $this->get('rb.counter');
-            /* END SERVICE :  rb.counter */
-
-            $list = [];
-            $r    = [
-                'infotype' => 'success',
-                'msg'      => 'action : ok',
-                'cb'       => 'setCounter',
-                'cbapp'    => 'core',
-                'counter'  => $counter->getCounter(),
-                'app'      => $this->renderView('::base.html.twig', [
-                'list'     => $list
-                ])
-            ];
-            return new JsonResponse($r);
+        if($pos === 0){
+            /* SERVICE : rb.fix */
+            $msg      = $this->get('rb.fix')->setStatus($action);
+            $callback = 'setFixStatus';
+            /* END SERVICE :  rb.fix */
         }
+        else{
+            $msg      = "recherche un produit";
+            $callback = '';
+        }
+
+        $list = [];
+
+        $r    = [
+            'infotype' => 'success',
+            'msg'      => $msg,
+            'cb'       => $callback,
+            'app'      => $this->renderView('::base.html.twig', [
+                'list' => $list
+            ])
+        ];
+
+        return new JsonResponse($r);
+    }
+
+
+    /**
+    * @Route("/t",name="t", options={"expose"=true})
+    */
+    public function tAction(Request $request)
+    {
+        $traces = $request->query->get("t",[]);
+        $this->get('rb.trace')->traces($traces);
+
+        return new Response('');
+    }
+            
+
+
+
+    /**
+    * @Route("/ct",name="ct")
+    */
+    public function ctAction(Request $request)
+    {
+
+        /* SERVICE : rb.counter */
+        $counter = $this->get('rb.counter');
+        /* END SERVICE :  rb.counter */
+
+        $list = [];
+        $r    = [
+            'infotype' => 'success',
+            'msg'      => 'action : ok',
+            'cb'       => 'setCounter',
+            'cbapp'    => 'core',
+            'counter'  => $counter->getCounter(),
+            'app'      => $this->renderView('::base.html.twig', [
+            'list'     => $list
+            ])
+        ];
+        return new JsonResponse($r);
+    }
 
 
     /**

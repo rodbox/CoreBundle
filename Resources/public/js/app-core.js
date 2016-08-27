@@ -121,13 +121,32 @@ $(document).ready(function($) {
     // la clés est le selecteur de la destination de son contenue
     // json.a est le type d'insertion (append, prepend, html, ...)
     $.a = function (t, json){
-        if (json.target != undefined) {
+      if (json.target != undefined) {
         $.each(json.target, function(index, val) {
             $(index)[json.a](val);
         });
-        }
+      }
     }
 
+
+    $.t = {
+      tmp : {},
+      push : function(ref, msg){
+        $.t.tmp.push({
+          ref : ref,
+          msg : msg,
+          date: new Date()
+        });
+      },
+      sync : function(){
+      },
+      a:function(ref, msg){
+        $.t.push(ref, msg);
+        $.t.sync();
+      }
+    }
+
+    $.t.a('def','test');
 
     $.counter = function (){
         $.get('/c/ct', function(json) {

@@ -8,6 +8,9 @@ services:
     rb.file:
         class: RB\CoreBundle\Services\RBFileService
         arguments: ["@service_container","@twig"]
+    rb.trace:
+        class: RB\CoreBundle\Services\RBTraceService
+        arguments: ["@service_container","@doctrine"]
     rb.serializer:
         class: RB\CoreBundle\Services\RBSerializerService
         arguments: []
