@@ -1,8 +1,6 @@
 {# default Sliding pagination control implementation #}
 
 <nav>
-
-
 {% if pageCount > 1 %}
 <ul class="pagination">
     {% if first is defined and current != first %}
@@ -27,18 +25,13 @@
             <a class="page-link " href="#"><i class="fa fa-angle-left "></i></a>
         </li>
     {% endif %}
-
-    {% for page in pagesInRange %}
-        {% if page != current %}
-            <li class=" page-item">
-                <a class="page-link" href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
-            </li>
-        {% else %}
-            <li class="page-item active"><span class="page-link">{{ page }}</span></li>
-        {% endif %}
-
-    {% endfor %}
-
+    <li class="page-item">
+        <select name="page" data-url="{{ path(route, query) }}" class="page-link c-select">
+        {% for index in 1..pageCount %}
+            <option value="{{ index }}" {% if index == current %}selected{% endif %} >{{ index }}</option>   
+        {% endfor %}
+        </select>
+    </li>
 
     {% if next is defined %}
         <li class=" page-item">
