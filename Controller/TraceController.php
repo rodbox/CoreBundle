@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * @Route("/admin/traces"
+ * Trace controller.
+ *
+ * @Route("/admin/traces")
  */
 class TraceController extends Controller
 {
