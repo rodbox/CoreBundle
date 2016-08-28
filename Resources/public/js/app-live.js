@@ -128,23 +128,49 @@ $(document).ready(function(){
     $.live.post(t.attr('action'), t.serialize(), t, e);
   });
 
+
+
   $(document).on("submit","form.form-live-target", function (e){
     e.preventDefault();
     var t    = $(this);
 
     $.live.target(t.attr('action'), t.serialize(), t, e);
   });
+
+
+
   $(document).on("change","form.form-live-target input, form.form-live-target select, form.form-live-target textarea",function (e){
     $(this).parents("form.form-live-target").trigger('submit');
   })
 
 
+
+  $(document).on("change",".input-live",function (e){
+    var t = $(this);
+    var data = t.data();
+    data['value'] = t.val();
+
+    if(data.url != undefined){
+      var url = data.url;
+      delete data['url'];
+    }
+    else{
+      var url = Routing.generate(data.route);
+      delete data['route'];
+    }
+
+    $.get(url,data,function(json){
+      $.cbt.this(t, json, e);
+    });
+  })
+
+
+
   $(document).on("click",".btn-del-li",function (e){
     e.preventDefault();
-    var t = $(this);
-
-    var li = t.parents('li').first().remove();
-    if(t.data('confirm') !=undefined){
+    var t   = $(this);
+    var li  = t.parents('li').first().remove();
+    if(t.data('confirm') != undefined){
       if(confirm(t.data('confirm')))
         li.remove();
     }

@@ -81,10 +81,10 @@ $.suggest = {
     on:function(t){
         var container = $("<div>",{"id":t.attr('id')+"-suggest","class":"suggest list-group"}).css({
             position: 'absolute',
-            top: t.position().top + 34,
+            top: t.position().top + t.outerHeight(),
             left: 0,
             width: t.parents('form').outerWidth()
-        });
+        }).hide();
         $.suggest.container = container;
         t.after(container);
         t.trigger('keyup')
@@ -120,6 +120,7 @@ $.suggest = {
                 var eval = name.match(patt);
                
                 if(eval){
+                    c.show();
                     var listitem = $.mustache(t.data('view'),val);
                     c.append(listitem);
                 }
@@ -130,7 +131,7 @@ $.suggest = {
         if (t.data('live') != undefined) {
 
             if (t.val().length >= 3) {
-
+                c.show();
                 clearTimeout($.timer);
                 $.timer = setTimeout(function(){
                     var url = Routing.generate(t.data('live'));
@@ -154,11 +155,10 @@ $.suggest = {
                             }
                         })  
                     });    
-
-
                 },300)
-
             }
+            else
+                c.hide();
         }
 
         c.find('.list-group-item').first().addClass('active');
