@@ -8,10 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
+ * @Route("/admin/traces"
  */
 class TraceController extends Controller
 {
     /**
+     * @Route("/index", name="trace_index")
      */
     public function indexAction(Request $request)
     {
@@ -31,6 +33,7 @@ class TraceController extends Controller
       );
       return $this->render('RBCoreBundle:Trace:index.html.twig', [
         'traces'  => $traces,
+        'refs'     => ['stock','fixprocess']
       ]);
     }
 
