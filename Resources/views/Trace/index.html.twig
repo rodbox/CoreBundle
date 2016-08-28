@@ -1,0 +1,42 @@
+{% extends app.request.isxmlhttprequest ? '::base.html.twig' : 'AdminBundle::index.html.twig' %}
+    {% set crudEntity = "FixBundle:FixProduct" %}
+{% block body %}
+            <div id="live-content">
+<div class="col-md-12 col-lg-12 ">
+    <div class="panel panel-default panel-index">
+                 <form action="#" id="product-list" class="batch-form">
+                    <table class="records_list table table-sm">
+                        <thead class="thead-inverse">
+                              <tr class="sc-1">
+                                	<th>ref</th>
+									<th>msg</th>
+									<th>date</th>
+									<th>dateInput</th>
+									<th>user</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for trace in traces %}
+                            <tr id="trace-{{ trace.id }}" class="trace-{{ trace.ref }}">
+                             	<td>{{ trace.ref }}</td>
+								<td>{{ trace.msg }}</td>
+								<td>{{ trace.date }}</td>
+								<td>{{ trace.dateInput }}</td>
+								<td>{{ trace.user }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="navigation text-center">
+                                    {{ knp_pagination_render(traces) }}
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
