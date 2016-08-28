@@ -20,8 +20,8 @@
                             <tr id="trace-{{ trace.id }}" class="trace-{{ trace.ref }}">
                              	<td>{{ trace.ref }}</td>
 								<td>{{ trace.msg }}</td>
-								<td>{{ trace.date }}</td>
-								<td>{{ trace.dateInput }}</td>
+								<td><span data-time="{{ trace.date | date(U)}}">{{ trace.date | date(d m Y H:i)}}</span></td>
+								<td><span data-time="{{ trace.dateInput | date(U)}}">{{ trace.dateInput | date(d m Y H:i)}}</span></td>
 								<td>{{ trace.user }}</td>
                             </tr>
                         {% endfor %}

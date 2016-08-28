@@ -34,6 +34,7 @@ class RBTraceService {
 		$this->em->persist($trace);
 		$this->em->flush();
 
+        return $trace;
     }
 
 

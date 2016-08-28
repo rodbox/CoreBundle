@@ -23,8 +23,9 @@ class TraceController extends Controller
       $per     = 30;
       $query   = $em->createQueryBuilder();
       
-      $query->select('p')
-         ->from('RBCoreBundle:Trace', 't');
+      $query->select('t')
+         ->from('RBCoreBundle:Trace', 't')
+         ->orderBy('t.date','DESC');
        //  ->where("p.type = '".$type."'");
         
       $paginator = $this->get('knp_paginator');
