@@ -344,6 +344,14 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
+    public function traces($traces)
+    {
+        echo $this->twig->render('RBCoreBundle:Trace:table.html.twig',[
+            'traces' => $traces
+        ]);
+    }
+
+
     public function getName(){
         return 'rb_core_extension';
     }
@@ -352,6 +360,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
+            new \Twig_SimpleFunction("traces"             , [$this , 'traces']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("char_me"             , [$this , 'char_me']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_me"            , [$this , 'table_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_sheet_me"      , [$this , 'table_sheet_me']      , ['is_safe' => ['html']]) ,
