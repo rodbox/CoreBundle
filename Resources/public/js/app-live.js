@@ -145,23 +145,26 @@ $(document).ready(function(){
 
 
 
-  $(document).on("change",".input-live",function (e){
-    var t = $(this);
-    var data = t.data();
-    data['value'] = t.val();
+  $(document).on("keypress focusout",".input-live",function (e){
+    var t         = $(this);
 
-    if(data.url != undefined){
-      var url = data.url;
-      delete data['url'];
-    }
-    else{
-      var url = Routing.generate(data.route);
-      delete data['route'];
-    }
+    if(e.keyCode == "13" || e.eventType =='focusout' ){
+      var data      = t.data();
+      data['value'] = t.val();
 
-    $.get(url,data,function(json){
-      $.cbt.this(t, json, e);
-    });
+      if(data.url != undefined){
+        var url = data.url;
+        delete data['url'];
+      }
+      else{
+        var url = Routing.generate(data.route);
+        delete data['route'];
+      }
+
+      $.get(url,data,function(json){
+        $.cbt.this(t, json, e);
+      });
+    }
   })
 
 
