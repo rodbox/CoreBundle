@@ -17,6 +17,7 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
+
     public function char_me($id = 0)
     {
         $num    = floor($id / 26);
@@ -27,6 +28,7 @@ class RBCoreExtension  extends \Twig_Extension{
         if ($num>1)
             echo $num-1;
     }
+
 
 
     public function input_me($route='input_me',$data=[],$class='', $datainput = [])
@@ -56,6 +58,8 @@ class RBCoreExtension  extends \Twig_Extension{
             'class' => $class
         ]);
     }
+
+
 
     public function table_sheet_me($data, $name = 'table', $class = '')
     {
@@ -100,8 +104,6 @@ class RBCoreExtension  extends \Twig_Extension{
             'class'     => $class
         ]);
     }
-
-
 
 
 
@@ -218,6 +220,16 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
+    public function tabslive_me($routes, $id)
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:tablive-me.html.twig',[
+            'id'      => $id,
+            'routes'  => $routes
+        ]);
+    }
+
+
+
     public function nav_me($id="nav_me", $target="#app-cotent")
     {
         $routeCollection = $this->router->getRouteCollection()->all();
@@ -252,6 +264,7 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
+
     public function pane_me_lazy($id, $route, $dataRoute='', $class='col-md-6 col-xs-6 col-lg-3 col-xl-3 ', $paneClass='', $submenu = '')
     {
         echo $this->twig->render('RBCoreBundle:Twig:pane-me-lazy.html.twig',[
@@ -263,6 +276,7 @@ class RBCoreExtension  extends \Twig_Extension{
             'submenu'   => $submenu
         ]);
     }
+
 
 
     /**
@@ -360,7 +374,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function getFunctions(){
         return array(
-            new \Twig_SimpleFunction("traces"             , [$this , 'traces']             , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("traces"              , [$this , 'traces']              , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("char_me"             , [$this , 'char_me']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_me"            , [$this , 'table_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_sheet_me"      , [$this , 'table_sheet_me']      , ['is_safe' => ['html']]) ,
@@ -376,6 +390,7 @@ class RBCoreExtension  extends \Twig_Extension{
             new \Twig_SimpleFunction("context_me_select"   , [$this , 'context_me_select']   , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("setter_me"           , [$this , 'setter_me']           , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("tab_me"              , [$this , 'tab_me']              , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("tabslive_me"         , [$this , 'tabslive_me']         , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("nav_me"              , [$this , 'nav_me']              , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("pane_me"             , [$this , 'pane_me']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("pane_me_lazy"        , [$this , 'pane_me_lazy']        , ['is_safe' => ['html']]) ,

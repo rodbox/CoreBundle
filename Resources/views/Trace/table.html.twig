@@ -15,7 +15,7 @@
                 <tbody>
                 {% for trace in traces %}
                     <tr id="trace-{{ trace.id }}" class="trace-{{ trace.ref }}">
-                     	<td><span class="label label-default label-{{ trace.ref }}">{{ trace.ref }}</span></td>
+                     	<td><span class="label label-default label-trace label-trace-{{ trace.ref }}">{{ trace.ref }}</span></td>
                 		<td><strong>{{ trace.msg }}</strong></td>
                 		<td><span data-time="{{ trace.date | date('U') }}">  <span class="small">{{ trace.date | date('d-m-Y')}}</span> <span class="strong">{{ trace.date | date('H:i:s')}}</span></span></td>
                 		<td>{{ trace.user }}</td>
