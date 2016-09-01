@@ -56,7 +56,7 @@ class CoreController extends Controller
 
         return new Response('');
     }
-            
+
 
 
 
@@ -212,5 +212,15 @@ class CoreController extends Controller
         }
 
         return new JsonResponse($r);
+    }
+
+
+    /**
+    * @Route("/rb_codebar",name="rb_codebar")
+    */
+    public function rb_codebarAction(Request $request)
+    {
+        $code = $request->query->get("code",'');
+        return $this->render('RBCoreBundle:Twig:codebar.html.twig',['code'=>$code]);
     }
 }
