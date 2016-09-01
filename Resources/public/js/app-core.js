@@ -266,27 +266,40 @@ $(document).ready(function($) {
         var t         = $(this);
         var val       = t.data('val');
         var target    = t.parents('.input-group-increment').find('.increment-me');
-        var targetVal = parseInt(target.val())+val;
+
+        var increment = parseInt(target.data('increment'));
+
+        if(t.hasClass('btn-increment-minus'))
+          var targetVal = parseInt(target.val())-increment;
+        else
+          var targetVal = parseInt(target.val())+increment;
 
         target.val(targetVal);
 
         clearTimeout($.timer.tmp);
         $.timer.tmp = setTimeout(function(){
-          target.trigger('focusout');
+          target.trigger('change');
         },500);
       });
 
 
 
       $(document).on("keypress",".increment-me",function (e){
-        e.preventDefault();
         var t = $(this);
-        var p = t.parent('.input-group-increment');
+        var p = t.parents('.input-group-increment');
 
-        if (e.keyCode == '38')
+        if (e.keyCode == '38'){
+          e.preventDefault();
           p.find('.btn-increment-minus').trigger('click');
-        else if (e.keyCode == '40')
+        }
+        else if (e.keyCode == '40'){
+          e.preventDefault();
           p.find('.btn-increment-plus').trigger('click');
+        }
 
       })
+
+
+
+
 });

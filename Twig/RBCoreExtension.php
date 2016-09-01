@@ -42,11 +42,12 @@ class RBCoreExtension  extends \Twig_Extension{
     }
 
 
-    public function increment_me($name='', $value='0', $id='', $attr, $increment=1)
+    public function increment_me($name='', $value='0', $id='', $class='', $attr, $increment=1)
     {
         echo $this->twig->render('RBCoreBundle:Twig:increment-me.html.twig',[
             'increment' => $increment,
             'id'        => $id,
+            'class'     => $class,
             'value'     => $value,
             'name'      => $name,
             'attr'      => $attr
@@ -400,6 +401,7 @@ class RBCoreExtension  extends \Twig_Extension{
             new \Twig_SimpleFunction("table_sheet_me"      , [$this , 'table_sheet_me']      , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("pagin_me"            , [$this , 'pagin_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("alert_me"            , [$this , 'alert_me']            , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("attr_me"             , [$this , 'attr_me']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("counter_me"          , [$this , 'counter_me']          , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("input_me"            , [$this , 'input_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("increment_me"        , [$this , 'increment_me']        , ['is_safe' => ['html']]) ,

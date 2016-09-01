@@ -143,27 +143,37 @@ $(document).ready(function(){
     $(this).parents("form.form-live-target").trigger('submit');
   })
 
+  $.timer = {
+    tmp:{}
+  };
 
-
-  $(document).on("keypress focusout",".input-live",function (e){
+  $(document).on("keypress focusout change",".input-live",function (e){
     var t         = $(this);
 
     if(e.keyCode == "13" || e.eventType =='focusout' ){
-      var data      = t.data();
-      data['value'] = t.val();
 
-      if(data.url != undefined){
-        var url = data.url;
-        delete data['url'];
-      }
-      else{
-        var url = Routing.generate(data.route);
-        delete data['route'];
-      }
+      clearTimeout($.timer.tmp);
+      $.timer.tmp = setTimeout(function(){
 
-      $.get(url,data,function(json){
-        $.cbt.this(t, json, e);
-      });
+        var data      = t.data();
+        data['value'] = t.val();
+
+        if(data.url != undefined){
+          var url = data.url;
+          delete data['url'];
+        }
+        else{
+          var url = Routing.generate(data.route);
+          delete data['route'];
+        }
+
+        t.addClass('onLoad')
+        $.get(url,data,function(json){
+          $.cbt.this(t, json, e);
+          t.removeClass('onLoad')
+          alert('ok');
+        });
+      },500);
     }
   })
 
