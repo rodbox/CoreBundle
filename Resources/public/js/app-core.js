@@ -17,7 +17,7 @@
     $.fn.initJq = function(opt) {
 
       var chosen = $(this.selector +' select.form-control');
-      
+
 
       if(opt == 'destroy'){
         chosen.chosen('destroy');
@@ -254,5 +254,17 @@ $(document).ready(function($) {
         var t = $(this);
 
         t.parents('tr').first().remove();
+      })
+
+
+      $(document).on("click",".btn-increment",function (e){
+        e.preventDefault();
+        var t         = $(this);
+        var val       = t.data('val');
+        var target    = t.parents('.input-group-increment').find('.increment-me');
+        var targetVal = ParseInt(target.val())+val;
+
+        target.val(targetVal);
+        target.trigger('change');
       })
 });

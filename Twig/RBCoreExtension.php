@@ -31,13 +31,25 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-    public function input_me($route='input_me',$data=[],$class='', $datainput = [])
+    public function input_me($route='input_me', $data=[], $class='', $datainput = [])
     {
         echo $this->twig->render('RBCoreBundle:Twig:input-me.html.twig',[
             'route'     => $route,
             'data'      => $data,
             'class'     => $class,
             'datainput' => $datainput
+        ]);
+    }
+
+
+    public function increment_me($name='', $value='0', $id='', $attr, $increment=1)
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:increment-me.html.twig',[
+            'increment' => $increment,
+            'id'        => $id,
+            'value'     => $value,
+            'name'      => $name,
+            'attr'      => $attr
         ]);
     }
 
@@ -116,6 +128,14 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
+    public function attr_me($attr)
+    {
+        foreach ($attr as $key => $value)
+            echo ' '. $key.'="'.$value.'" ';
+    }
+
+
+
     public function context_me_radio($keyContext="H", $valueSetter="true", $content="<i class='fa fa-question'></i>")
     {
         echo $this->twig->render('RBCoreBundle:Twig:btn-context-me.html.twig',[
@@ -128,7 +148,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-    public function setter_me($data,$id="")
+    public function setter_me($data, $id="")
     {
         $data = json_encode($data);
         echo $this->twig->render('RBCoreBundle:Twig:btn-setter-me.html.twig',[
@@ -139,7 +159,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-    public function context_me_checkbox($keyContext="H", $valueSetter="true", $content="<i class='fa fa-question'></i>",$class="")
+    public function context_me_checkbox($keyContext="H", $valueSetter="true", $content="<i class='fa fa-question'></i>", $class="")
     {
         echo $this->twig->render('RBCoreBundle:Twig:btn-context-me.html.twig',[
             'context' => $keyContext,
@@ -152,7 +172,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-    public function context_me_select($keyContext="H", $valueSetter="true",$class="")
+    public function context_me_select($keyContext="H", $valueSetter="true", $class="")
     {
         echo $this->twig->render('RBCoreBundle:Twig:select-context-me.html.twig',[
             'context' => $keyContext,
@@ -236,12 +256,12 @@ class RBCoreExtension  extends \Twig_Extension{
 
         foreach($routeCollection as $route => $routeMeta){
             $path     = $routeMeta->getPath();
-            preg_match_all('[\{[{a-zA-Z0-9]{1,}\}]',$path , $matches);
+            preg_match_all('[\{[{a-zA-Z0-9]{1,}\}]', $path , $matches);
             $routes[] = [
                 'name'   => $route,
                 'path'   => $path,
                 'req'    => json_encode($matches[0]),
-                'reqStr' => implode(',',$matches[0])
+                'reqStr' => implode(',', $matches[0])
             ];
         }
 
@@ -319,7 +339,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function mustache_tpl($id='', $view='@RBCoreBundle')
     {
-        $dirTpl      = explode(':',$view);
+        $dirTpl      = explode(':', $view);
 
         $fileLocator = $this->container->get('file_locator');
         $path        = $fileLocator->locate($dirTpl[0]);
