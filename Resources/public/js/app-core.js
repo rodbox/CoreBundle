@@ -257,14 +257,36 @@ $(document).ready(function($) {
       })
 
 
-      $(document).on("click",".btn-increment",function (e){
+
+      $.timer = {
+        tmp:{}
+      };
+      $(document).on("mousedown",".btn-increment",function (e){
         e.preventDefault();
         var t         = $(this);
         var val       = t.data('val');
         var target    = t.parents('.input-group-increment').find('.increment-me');
-        var targetVal = ParseInt(target.val())+val;
+        var targetVal = parseInt(target.val())+val;
 
         target.val(targetVal);
-        target.trigger('change');
+
+        clearTimeout($.timer.tmp);
+        $.timer.tmp = setTimeout(function(){
+          target.trigger('focusout');
+        },500);
+      });
+
+
+
+      $(document).on("keypress",".increment-me",function (e){
+        e.preventDefault();
+        var t = $(this);
+        var p = t.parent('.input-group-increment');
+
+        if (e.keyCode == '38')
+          p.find('.btn-increment-minus').trigger('click');
+        else if (e.keyCode == '40')
+          p.find('.btn-increment-plus').trigger('click');
+
       })
 });

@@ -402,6 +402,7 @@ class RBCoreExtension  extends \Twig_Extension{
             new \Twig_SimpleFunction("alert_me"            , [$this , 'alert_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("counter_me"          , [$this , 'counter_me']          , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("input_me"            , [$this , 'input_me']            , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("increment_me"        , [$this , 'increment_me']        , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("clip_me"             , [$this , 'clip_me']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("context_me"          , [$this , 'context_me']          , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("context_me_attr"     , [$this , 'context_me_attr']     , ['is_safe' => ['html']]) ,
