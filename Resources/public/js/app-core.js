@@ -17,7 +17,7 @@
     $.fn.initJq = function(opt) {
 
       var chosen = $(this.selector +' select.form-control');
-
+      var inputSpin = $(this.selector +' input.input-spin');
 
       if(opt == 'destroy'){
         chosen.chosen('destroy');
@@ -26,6 +26,15 @@
         chosen.chosen();
         $(this.selector +' [autofocus="true"]').focus();
       }
+
+     $.each(inputSpin, function(key, val){
+        $(val).TouchSpin({
+          verticalbuttons: true,
+          verticalupclass: 'fa fa-plus',
+          verticaldownclass: 'fa fa-minus'
+        });
+      })
+
 
       return this;
     };

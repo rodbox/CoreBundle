@@ -1,9 +1,25 @@
-<div class="input-group input-group-increment">
-      <span class="input-group-btn">
-        <button class="btn btn-sm btn-increment btn-increment-minus" data-increment="{{ increment }}" type="button"><i class="fa fa-minus"></i></button>
-      </span>
-      <input type="text" id="{{ id }}" value="{{ value }}" name="{{ name }}" data-increment="{{ increment }}" class="increment-me form-control {{ class }}" {{ attr_me(attr | default({})) }}>
-      <span class="input-group-btn">
-        <button class="btn btn btn-sm btn-increment btn-increment-plus" data-increment="{{ increment }}" type="button"><i class="fa fa-plus"></i></button>
-      </span>
-</div>
+<input
+    id="{{ id }}"
+    type="text"
+    value="{{ value }}"
+    name="{{ id }}"
+    class="input-spin {{ class }}" 
+    {{ attr_me(attr | default({})) }}
+    data-bts-min="0"
+    data-bts-init-val="{{ value }}"
+    data-bts-step="{{ increment }}"
+    data-bts-decimal="0"
+    data-bts-step-interval="100"
+    data-bts-force-step-divisibility="round"
+    data-bts-step-interval-delay="500"
+    data-bts-prefix=""
+    data-bts-postfix=""
+    data-bts-prefix-extra-class=""
+    data-bts-postfix-extra-class=""
+    data-bts-booster="true"
+    data-bts-boostat="10"
+    data-bts-max-boosted-step="false"
+    data-bts-mousewheel="true"
+    data-bts-button-down-class="btn btn-input bootstrap-touchspin"
+    data-bts-button-up-class="btn btn-input bootstrap-touchspin"
+/>
