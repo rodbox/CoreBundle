@@ -289,7 +289,6 @@ $.cbt = {
 
         if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined){
           $.cb[cbapp][cb](t, json, e);
-          console.log('cb this ok');
         }
 
     },
@@ -306,6 +305,8 @@ $.cbt = {
             else
                 $.modal.html(json.modal.content, json.modal.modal, json.modal.title, json.modal.data);
         }
+
+        $.counter();
     }
 }
 

@@ -164,7 +164,7 @@ $(document).ready(function($) {
 
 
     $.counter = function (){
-        $.get('/c/ct', function(json) {
+        $.get((Routing.generate('ct'), function(json) {
             $.each(json.counter, function(index, val) {
                 var counter =$('.counter.counter-'+index);
                 counter.attr("data-count",val);

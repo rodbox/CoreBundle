@@ -61,7 +61,7 @@ class CoreController extends Controller
 
 
     /**
-    * @Route("/ct",name="ct")
+    * @Route("/ct",name="ct", options={"expose"=true})
     */
     public function ctAction(Request $request)
     {
