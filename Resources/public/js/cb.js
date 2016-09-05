@@ -300,8 +300,8 @@ $.cbt = {
         if($.cb[cbapp] != undefined && $.cb[cbapp][cb] != undefined)
             $.cb[cbapp][json.cb](t, json, e);
 
-        if(json.modal !undefined){
-            if(json.modal.url !undefined)
+        if(json.modal != undefined){
+            if(json.modal.url != undefined)
                 $.modal.set(json.modal.url, json.modal.data, json.modal.modal, json.modal.title, json.modal.data);  
             else
                 $.modal.html(json.modal.content, json.modal.modal, json.modal.title, json.modal.data);
