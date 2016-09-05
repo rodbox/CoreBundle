@@ -93,6 +93,32 @@ $(document).ready(function(){
       $.post(url, data, function(html, textStatus, xhr) {
         $(t.data('target')).removeClass('onLoad').html(html)
       });
+    },
+    input: function(t){
+      clearTimeout($.timer.tmp);
+      t.addClass('onLoad');
+      t.attr('disabled');
+      $.timer.tmp = setTimeout(function(){
+        var data      = t.data();
+        data['value'] = t.val();
+
+        if(data.url != undefined){
+          var url = data.url;
+          delete data['url'];
+        }
+        else{
+          var url = Routing.generate(data.route);
+          delete data['route'];
+        }
+
+
+        $.get(url,data,function(json){
+          $.setFlash(json.msg, json.infotype);
+          t.removeClass('onLoad');
+          t.removeAttr('disabled');
+          $.cbt.this(t, json, e);
+        });
+      },500);
     }
   };
 
@@ -147,33 +173,11 @@ $(document).ready(function(){
     tmp:{}
   };
 
-  $(document).on("keypress focusout change",".input-live",function (e){
+  $(document).on("keypress",".input-live",function (e){
     var t         = $(this);
 
-    if(e.keyCode == "13" || e.eventType =='focusout' ){
-
-      clearTimeout($.timer.tmp);
-      $.timer.tmp = setTimeout(function(){
-
-        var data      = t.data();
-        data['value'] = t.val();
-
-        if(data.url != undefined){
-          var url = data.url;
-          delete data['url'];
-        }
-        else{
-          var url = Routing.generate(data.route);
-          delete data['route'];
-        }
-
-        t.addClass('onLoad')
-        $.get(url,data,function(json){
-          $.cbt.this(t, json, e);
-          t.removeClass('onLoad')
-          alert('ok');
-        });
-      },500);
+    if(e.keyCode == "13"){
+      $.live.input(t);
     }
   })
 
