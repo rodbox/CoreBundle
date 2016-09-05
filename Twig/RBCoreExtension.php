@@ -243,7 +243,7 @@ class RBCoreExtension  extends \Twig_Extension{
 
     public function tabslive_me($routes, $id)
     {
-        echo $this->twig->render('RBCoreBundle:Twig:tablive-me.html.twig',[
+        echo $this->twig->render('RBCoreBundle:Twig:tabslive-me.html.twig',[
             'id'      => $id,
             'routes'  => $routes
         ]);

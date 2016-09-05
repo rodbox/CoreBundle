@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs p-c-h" id="tabslive-{{ id }}">
+	{% for key, route in routes %}
+  <li class="nav-item ">
+      <a class="nav-link tab-live {% if route.open | default('false') == 'true' %}active{% endif %} {{ route.class | default('') }}" data-toggle="tab" href="#tabslive-{{ id }}-tab-{{ key }}" data-url="{{ path(route.route,route.data|default({})) }}" aria-expanded="{{ route.open | default('false') }}" title="{{ route.title }}">{{ route.title | raw}} {% if route.counter is defined %}{{ counter_me(route.counter) }}{% endif %}
+      </a>
+  </li>
+  {% endfor %}
+</ul>
+<div class="tab-content bg-5 p-c-t">
+	{% for key, route in routes %}
+  <div id="tabslive-{{ id }}-tab-{{ key }}" class="tab-pane {% if route.open | default('false') == 'true' %}active{% endif %}
+    ">  
+  </div>
+  {% endfor %}
+  <div class="clearfix"></div>
+</div>

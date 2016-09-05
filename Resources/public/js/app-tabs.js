@@ -1,15 +1,18 @@
-$(document).on("click",".tab-live",function (e){
+$(document).on("click dblclick",".tab-live",function (e){
     var t = $(this);
-    if(!t.hasClass('loaded') || $.force()){
+    if(!t.hasClass('loaded') || $.force() || e.type=='dblclick'){
         $.btnLoad.on(t);
         var url = t.attr("data-url");
         var target = $(t.attr('href'));
         target.addClass('onLoad');
-        $.get(url,function(){
+        $.get(url,function(html){
             t.addClass('loaded');
-            target.html(json.html);
-            $.btnLoad.off(t,json);
+            target.html(html);
+            target.initJq();
+            $.btnLoad.off(t,{});
             target.removeClass('onLoad');
-        },'json')
+        })
     }
 })
+
+$('a.tab-live').first().trigger('dblclick');
