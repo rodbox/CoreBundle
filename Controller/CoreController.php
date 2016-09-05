@@ -223,4 +223,23 @@ class CoreController extends Controller
         $code = $request->query->get("code",'');
         return $this->render('RBCoreBundle:Twig:codebar.html.twig',['code'=>$code]);
     }
+
+
+    /**
+    * @Route("/rb_filter",name="rb_filter")
+    */
+    public function rb_filterAction(Request $request)
+    {
+           $list = [];
+
+        $r    = [
+            'infotype' => 'success',
+            'msg'      => 'action : ok',
+            'app'      => $this->renderView('::base.html.twig', [
+            'list' => $list
+            ])
+        ];
+
+        return new JsonResponse($r);
+    }
 }

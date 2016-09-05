@@ -27,14 +27,16 @@
         $(this.selector +' [autofocus="true"]').focus();
       }
 
-     $.each(inputSpin, function(key, val){
-        $(val).TouchSpin({
+      $.each(inputSpin, function(key, val){
+        var t = $(val);
+        t.TouchSpin({
           verticalbuttons: true,
           verticalupclass: 'fa fa-plus',
           verticaldownclass: 'fa fa-minus'
+        }).on('touchspin.on.stopspin',function () {
+           $.live.input(t);
         });
       })
-
 
       return this;
     };
@@ -267,7 +269,7 @@ $(document).ready(function($) {
 
 
 
-      $.timer = {
+      $.timer2 = {
         tmp:{}
       };
       $(document).on("mousedown",".btn-increment",function (e){
@@ -285,9 +287,9 @@ $(document).ready(function($) {
 
         target.val(targetVal);
 
-        clearTimeout($.timer.tmp);
-        $.timer.tmp = setTimeout(function(){
-          target.trigger('change');
+        clearTimeout($.timer2.tmp);
+        $.timer2.tmp = setTimeout(function(){
+          $.live.input(target);
         },500);
       });
 
