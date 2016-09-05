@@ -82,7 +82,7 @@
 
 
 
-$(document).on("click",".pagination a.page-link, th.sorted a, th a.sortable",function (e){
+$(document).on("click",":not(.form-live-target) .pagination a.page-link, th.sorted a, th a.sortable",function (e){
   e.preventDefault();
   var t = $(this);
   var url = t.attr('href');

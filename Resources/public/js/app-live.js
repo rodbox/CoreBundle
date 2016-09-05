@@ -97,7 +97,7 @@ $(document).ready(function(){
     input: function(t){
       clearTimeout($.timer.tmp);
       t.addClass('onLoad');
-      t.attr('disabled');
+      t.attr('disabled',true);
       $.timer.tmp = setTimeout(function(){
         var data      = t.data();
         data['value'] = t.val();
@@ -110,7 +110,6 @@ $(document).ready(function(){
           var url = Routing.generate(data.route);
           delete data['route'];
         }
-
 
         $.get(url,data,function(json){
           $.setFlash(json.msg, json.infotype);
@@ -165,7 +164,7 @@ $(document).ready(function(){
 
 
 
-  $(document).on("change","form.form-live-target input, form.form-live-target select, form.form-live-target textarea",function (e){
+  $(document).on("change","form.form-live-target input, form.form-live-target select:not(.page-link), form.form-live-target textarea",function (e){
     $(this).parents("form.form-live-target").trigger('submit');
   })
 
@@ -176,9 +175,8 @@ $(document).ready(function(){
   $(document).on("keypress",".input-live",function (e){
     var t         = $(this);
 
-    if(e.keyCode == "13"){
+    if(e.keyCode == "13")
       $.live.input(t);
-    }
   })
 
 

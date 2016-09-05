@@ -35,7 +35,7 @@
           verticaldownclass: 'fa fa-minus'
         }).on('touchspin.on.stopspin',function () {
            $.live.input(t);
-        });
+        })
       })
 
       return this;
