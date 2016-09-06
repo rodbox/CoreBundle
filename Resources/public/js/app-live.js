@@ -8,7 +8,7 @@ $(document).ready(function(){
         t = t.find('button[type="submit"]');
 
       var textAlt = t.attr('data-loading-text');
-      textAlt = (textAlt==undefined)?"<i class='fa fa-refresh fa-spin'></i>":textAlt;
+      textAlt = (textAlt==undefined)?"<i class='fa fa-refresh fa-spin'></i> "+ t.text():textAlt;
       t.css({
         'min-width':t.outerWidth()
       });
@@ -20,8 +20,14 @@ $(document).ready(function(){
     off:function (t, json, err){
       t.removeClass('onLoad');
 
-      if(t.is('form'))
+      if(t.is('form')){
+        if(json.autoclose)
+          t.parents('.modal').modal('hide');
+        if(json.autoclear)
+          t.find('.autoclear').val('');
+          
         t = t.find('button[type="submit"]');
+      }
 
       t.removeAttr('disabled');
       t.removeClass('onLoad');
@@ -37,7 +43,6 @@ $(document).ready(function(){
 
       $.btnLoad.on(t);
       $.post(url, data, function(json, textStatus, xhr) {
-        // if error
         if(json.infotype == "error"){
           if(!t.hasClass('no-flash') || json.infotype=='error')
             $.setFlash(json.msg, json.infotype);
@@ -141,6 +146,7 @@ $(document).ready(function(){
     e.preventDefault();
     var t    = $(this);
     $(".btn-live-target").removeClass('active');
+
     $.live.target(t.attr('href'), t.data(), t, e);
   })
 
@@ -149,8 +155,9 @@ $(document).ready(function(){
   $(document).on("submit","form.form-live", function (e){
     e.preventDefault();
     var t    = $(this);
-
-    $.live.post(t.attr('action'), t.serialize(), t, e);
+    var data = t.serialize();
+    console.log(data);
+    $.live.post(t.attr('action'),data , t, e);
   });
 
 
@@ -158,8 +165,9 @@ $(document).ready(function(){
   $(document).on("submit","form.form-live-target", function (e){
     e.preventDefault();
     var t    = $(this);
+    var data = t.serialize();
 
-    $.live.target(t.attr('action'), t.serialize(), t, e);
+    $.live.target(t.attr('action'), data, t, e);
   });
 
 

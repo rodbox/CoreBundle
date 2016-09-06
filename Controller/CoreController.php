@@ -215,6 +215,7 @@ class CoreController extends Controller
     }
 
 
+
     /**
     * @Route("/rb_codebar",name="rb_codebar")
     */
@@ -225,12 +226,13 @@ class CoreController extends Controller
     }
 
 
+
     /**
     * @Route("/rb_filter",name="rb_filter")
     */
     public function rb_filterAction(Request $request)
     {
-           $list = [];
+        $list = [];
 
         $r    = [
             'infotype' => 'success',
@@ -241,5 +243,19 @@ class CoreController extends Controller
         ];
 
         return new JsonResponse($r);
+    }
+
+
+    /**
+    * @Route("/err",name="err", options={"expose"=true})
+    */
+    public function errAction(Request $request)
+    {
+        $html = $request->query->get("html",'');
+        $err = [
+            'ref'=>'404',
+            'html'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem eaque ratione perferendis sed, blanditiis minima nam, sint doloremque, officia voluptates nulla soluta? Labore nostrum aliquid vitae iusto deserunt eveniet autem.'
+        ]
+        return $this->render('RBCoreBundle:Debug:err.html.twig',['err'=>$err]);
     }
 }
