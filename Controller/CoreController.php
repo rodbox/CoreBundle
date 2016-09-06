@@ -46,6 +46,7 @@ class CoreController extends Controller
     }
 
 
+
     /**
     * @Route("/t",name="t", options={"expose"=true})
     */
@@ -85,6 +86,7 @@ class CoreController extends Controller
     }
 
 
+
     /**
     * @Route("/data", name="data")
     * charge toute les données d'une entité
@@ -113,6 +115,8 @@ class CoreController extends Controller
             ];
             return new JsonResponse($r);
     }
+
+
 
     /**
     * @Route("/session",name="session", options={"expose"=true})
@@ -144,6 +148,7 @@ class CoreController extends Controller
     }
 
 
+
     /**
     * @Route("/session_view/{route}/{view}",name="session_view")
     */
@@ -167,6 +172,7 @@ class CoreController extends Controller
         ];
         return new JsonResponse($r);
     }
+
 
 
     /**
@@ -255,7 +261,7 @@ class CoreController extends Controller
         $err = [
             'ref'=>'404',
             'html'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem eaque ratione perferendis sed, blanditiis minima nam, sint doloremque, officia voluptates nulla soluta? Labore nostrum aliquid vitae iusto deserunt eveniet autem.'
-        ]
+        ];
         return $this->render('RBCoreBundle:Debug:err.html.twig',['err'=>$err]);
     }
 }
