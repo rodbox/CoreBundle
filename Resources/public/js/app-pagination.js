@@ -54,7 +54,9 @@
                     val.key   = key;
                     var item  = $.mustache(p.id, { item: val });
                     s.container.append(item);
-                }) 
+                })
+
+
             }
         }
 
@@ -89,10 +91,12 @@ $(document).on("click",":not(.form-live-target) .pagination a.page-link, th.sort
 
   $.get(url, function(html) {
       $("#app-content").html(html);
-      history.pushState(null, t.attr('title'), url);
-      var url = location.href;
+      window.history.pushState(t.attr('title'), t.attr('title'), url);
+      $("#app-content").initJq();
   });
 });
+
+
 
 $(document).on("change",".pagination select.page-link",function (e){
   e.preventDefault();
@@ -104,7 +108,7 @@ $(document).on("change",".pagination select.page-link",function (e){
 
   $.get(url,data, function(html) {
       $("#app-content").html(html);
-      history.pushState(null, t.attr('title'), url);
-      var url = location.href;
+      window.history.pushState(t.attr('title'), t.attr('title'), url);
+      $("#app-content").initJq();
   });
 });
