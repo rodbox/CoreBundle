@@ -30,9 +30,9 @@
       $.each(inputSpin, function(key, val){
         var t = $(val);
         t.TouchSpin({
-          'verticalbuttons': true,
-          'verticalupclass': 'fa fa-plus',
-          'verticaldownclass': 'fa fa-minus'
+          "verticalbuttons": true,
+          "verticalupclass": 'fa fa-plus',
+          "verticaldownclass": 'fa fa-minus'
         }).on('touchspin.on.stopspin',function () {
            $.live.input(t);
         })
@@ -164,13 +164,13 @@ $(document).ready(function($) {
 
 
     $.counter = function (){
-        $.get((Routing.generate('ct'), function(json) {
-            $.each(json.counter, function(index, val) {
-                var counter =$('.counter.counter-'+index);
-                counter.attr("data-count",val);
-                counter.html(val);
-            });
-        },'json');
+      $.get(Routing.generate('ct'), function(json) {
+          $.each(json.counter, function(index, val) {
+              var counter =$('.counter.counter-'+index);
+              counter.attr("data-count",val);
+              counter.html(val);
+          });
+      },'json');
     }
 
 

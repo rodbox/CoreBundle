@@ -8,13 +8,13 @@ $(document).ready(function($) {
   }, 3000);
 
   $.setFlash =  function (msg,type){
-  	var type   = (type == undefined)?"info":type;
-  	var div    = $("<div>",{"class":"flash flash-"+type})
-  	var a      = $("<a>",{"class":"pull-right close-flash big"}).html("<i class='fa fa-remove'></i>");
-  	var p      = $("<p>").html(msg);
+    var type   = (type == undefined)?"info":type;
+    var div    = $("<div>",{"class":"flash flash-"+type})
+    var a      = $("<a>",{"class":"pull-right close-flash big"}).html("<i class='fa fa-remove'></i>");
+    var p      = $("<p>").html(msg);
 
-  	div.append(a).append(p);
-	  	$('div.flash-container').prepend(div);
+    div.append(a).append(p);
+      $('div.flash-container').prepend(div);
       if (type!='error') {  
         setTimeout(function (){
           div.addClass("outro");
