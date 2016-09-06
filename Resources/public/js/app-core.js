@@ -30,9 +30,9 @@
       $.each(inputSpin, function(key, val){
         var t = $(val);
         t.TouchSpin({
-          verticalbuttons: true,
-          verticalupclass: 'fa fa-plus',
-          verticaldownclass: 'fa fa-minus'
+          'verticalbuttons': true,
+          'verticalupclass': 'fa fa-plus',
+          'verticaldownclass': 'fa fa-minus'
         }).on('touchspin.on.stopspin',function () {
            $.live.input(t);
         })

@@ -4,8 +4,8 @@ $(document).ready(function($) {
     $('.flash').addClass("outro");
     setTimeout(function (){
       $('.flash').remove();
-    },1000)
-  },3000);
+    }, 1000)
+  }, 3000);
 
   $.setFlash =  function (msg,type){
   	var type   = (type == undefined)?"info":type;
@@ -20,9 +20,9 @@ $(document).ready(function($) {
           div.addClass("outro");
           setTimeout(function (){
               div.remove();
-          },1000)
-        },3000);
-      },
+          }, 1000)
+        }, 3000);
+      }
       else{
         var urlErrPage = Routing.generate('err');
         div.append('iframe ERROR page:'+urlErrPage);
