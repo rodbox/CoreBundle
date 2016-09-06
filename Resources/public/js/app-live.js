@@ -25,6 +25,9 @@ $(document).ready(function(){
           t.parents('.modal').modal('hide');
         if(json.autoclear)
           t.find('.autoclear').val('');
+
+        if(json.refresh)
+          $.refresh();
           
         t = t.find('button[type="submit"]');
       }

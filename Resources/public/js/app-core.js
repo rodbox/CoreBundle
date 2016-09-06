@@ -175,6 +175,14 @@ $(document).ready(function($) {
 
 
 
+    $.refresh = function(){
+      setTimeout(function(){
+        $.setFlash('patientez 1sec SVP');
+        window.location.href = window.location.href;
+      },1000);
+    }
+
+
     $.loadlock = {
         on : function (msg){
             $('body').addClass('load-lock');
