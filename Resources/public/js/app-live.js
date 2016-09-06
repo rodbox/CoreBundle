@@ -38,6 +38,35 @@ $(document).ready(function(){
     }
   }
 
+
+
+  $.target = {
+    json : function(json){
+      if(json.target != undefined){
+        $.each(json.target,function(key, val){
+          $.target[key](json);
+        });
+      }
+    },
+    append : function(json){
+      $.each(json.target.append,function(key, val){
+        $(key).append(val);
+      })
+    },
+    prepend : function(json){
+      $.each(json.target.prepend,function(key, val){
+        $(key).prepend(val);
+      })
+    },
+    html : function(json){
+      $.each(json.target.html,function(key, val){
+        $(key).html(val);
+      })
+    }
+  }
+
+
+
   $.live = {
     post : function(url, data, t, e){
 
@@ -61,6 +90,8 @@ $(document).ready(function(){
              $.cbt.this(t, json, e);
              $.cbt.json(t, json, e);
 
+             $.target.json(json);
+             
              $.btnLoad.off(t, json);
             }).error(function(err){
               $.btnLoad.off(t, '', err);
