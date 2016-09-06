@@ -24,8 +24,10 @@ $(document).ready(function($) {
         }, 3000);
       }
       else{
-        var urlErrPage = Routing.generate('err');
+        var urlErrPage = Routing.generate('err',{html:msg});
         div.append('iframe ERROR page:'+urlErrPage);
+        var iframe = $("<iframe>",{"src":urlErrPage}).css({width:'100%', height:'50vh', border:'0px solid transparent'});
+        div.append(iframe);
       }
 
   }

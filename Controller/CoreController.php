@@ -253,14 +253,14 @@ class CoreController extends Controller
 
 
     /**
-    * @Route("/err",name="err", options={"expose"=true})
+    * @Route("/err", name="error_page", options={"expose"=true})
     */
     public function errAction(Request $request)
     {
-        $html = $request->query->get("html",'');
-        $err = [
-            'ref'=>'404',
-            'html'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem eaque ratione perferendis sed, blanditiis minima nam, sint doloremque, officia voluptates nulla soluta? Labore nostrum aliquid vitae iusto deserunt eveniet autem.'
+        $html   = $request->query->get("html",'');
+        $err    = [
+            'ref'   => '404',
+            'html'  => $html
         ];
         return $this->render('RBCoreBundle:Debug:err.html.twig',['err'=>$err]);
     }
