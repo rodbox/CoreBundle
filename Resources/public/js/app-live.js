@@ -21,13 +21,18 @@ $(document).ready(function(){
       t.removeClass('onLoad');
 
       if(t.is('form')){
-        if(json.autoclose)
-          t.parents('.modal').modal('hide');
-        if(json.autoclear)
-          t.find('.autoclear').val('');
+        if (json != undefined) {
 
-        if(json.refresh)
-          $.refresh();
+          if(json.autoclose)
+            t.parents('.modal').modal('hide');
+
+          if(json.autoclear)
+            t.find('.autoclear').val('');
+
+          if(json.refresh)
+            $.refresh();
+
+        }
           
         t = t.find('button[type="submit"]');
       }
@@ -54,16 +59,19 @@ $(document).ready(function(){
     append : function(json){
       $.each(json.target.append,function(key, val){
         $(key).append(val);
+        $(key).initJq();
       })
     },
     prepend : function(json){
       $.each(json.target.prepend,function(key, val){
         $(key).prepend(val);
+        $(key).initJq();
       })
     },
     html : function(json){
       $.each(json.target.html,function(key, val){
         $(key).html(val);
+        $(key).initJq();
       })
     }
   }
@@ -110,6 +118,7 @@ $(document).ready(function(){
           $.cbt.this(t, json, e);
           $.cbt.json(t, json, e);
           $.btnLoad.off(t, json);
+          $.target.json(json);
         }
         if(!t.hasClass('no-flash') || json.infotype=='error')
           $.setFlash(json.msg,json.infotype);
@@ -127,10 +136,16 @@ $(document).ready(function(){
       });
     },
     target: function(url, data, t, e){
-      $(t.data('target')).addClass('onLoad');
+      var target = $(t.data('target'));
+      target.addClass('onLoad');
       t.addClass('active');
+
+      // push History
+      window.history.pushState(t.attr('title'), t.attr('title'), url);
+      
       $.post(url, data, function(html, textStatus, xhr) {
-        $(t.data('target')).removeClass('onLoad').html(html)
+        target.removeClass('onLoad').html(html);
+        target.initJq();
       });
     },
     input: function(t){
@@ -190,8 +205,8 @@ $(document).ready(function(){
     e.preventDefault();
     var t    = $(this);
     var data = t.serialize();
-    console.log(data);
-    $.live.post(t.attr('action'),data , t, e);
+
+    $.live.post(t.attr('action'), data, t, e);
   });
 
 
@@ -210,9 +225,13 @@ $(document).ready(function(){
     $(this).parents("form.form-live-target").trigger('submit');
   })
 
+
+
   $.timer = {
     tmp:{}
   };
+
+
 
   $(document).on("keypress",".input-live",function (e){
     var t         = $(this);
