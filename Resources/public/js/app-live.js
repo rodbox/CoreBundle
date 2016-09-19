@@ -149,6 +149,7 @@ $(document).ready(function(){
       });
     },
     input: function(t){
+      var e = null;
       clearTimeout($.timer.tmp);
       t.addClass('onLoad');
       t.attr('disabled',true);

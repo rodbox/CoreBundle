@@ -13,7 +13,7 @@
       return this;
     };
 
-
+    // init Jquery
     $.fn.initJq = function(opt) {
 
       var chosen = $(this.selector +' select.form-control');
@@ -37,6 +37,30 @@
            $.live.input(t);
         })
       })
+
+      return this;
+    };
+
+    // system de mini notification
+    $.fn.tnoty = function(type) {
+      var t       = $(this);
+      var tnotyID = "tnoty-"+Math.random().toString(36).substring(2);
+      var tnoty   = $("<span>",{"id":tnotyID, "class":"tnoty label"});
+      
+      if (t.attr('data-tnoty')!= undefined)
+        $('#'+t.attr('data-tnoty')).remove();
+
+      t.attr('data-tnoty',tnotyID);
+
+      if (type=='loader')
+        var noty = $("<i>",{"class":"fa fa-refresh fa-spin"});
+      else if (type=='success')
+        var noty = $("<i>",{"class":"fa fa-checkmark"});
+      else
+        var noty = $("<i>",{"class":"fa fa-remove"});
+
+      tnoty.html(noty);
+      t.after(tnoty);
 
       return this;
     };
@@ -276,47 +300,6 @@ $(document).ready(function($) {
       })
 
 
-
-      $.timer2 = {
-        tmp:{}
-      };
-      $(document).on("mousedown",".btn-increment",function (e){
-        e.preventDefault();
-        var t         = $(this);
-        var val       = t.data('val');
-        var target    = t.parents('.input-group-increment').find('.increment-me');
-
-        var increment = parseInt(target.data('increment'));
-
-        if(t.hasClass('btn-increment-minus'))
-          var targetVal = parseInt(target.val())-increment;
-        else
-          var targetVal = parseInt(target.val())+increment;
-
-        target.val(targetVal);
-
-        clearTimeout($.timer2.tmp);
-        $.timer2.tmp = setTimeout(function(){
-          $.live.input(target);
-        },500);
-      });
-
-
-
-      $(document).on("keypress",".increment-me",function (e){
-        var t = $(this);
-        var p = t.parents('.input-group-increment');
-
-        if (e.keyCode == '38'){
-          e.preventDefault();
-          p.find('.btn-increment-minus').trigger('click');
-        }
-        else if (e.keyCode == '40'){
-          e.preventDefault();
-          p.find('.btn-increment-plus').trigger('click');
-        }
-
-      })
 
 
 
