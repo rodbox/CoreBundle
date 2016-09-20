@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  
+  $.timer.tmp = {};
 
   $.btnLoad = {
     on:function (t){
@@ -154,20 +156,21 @@ $(document).ready(function(){
       t.addClass('onLoad');
       t.attr('disabled',true);
       $.timer.tmp = setTimeout(function(){
-        var data      = t.data();
-        data['value'] = t.val();
+        var data  = t.data();
+        var route =  t.attr('data-route');
+        var url   =  t.attr('data-url');
 
-        if(data.url != undefined){
-          var url = data.url;
+        if(url != undefined){
+          var url = url;
           delete data['url'];
         }
         else{
-          var url = Routing.generate(data.route);
+          var url = Routing.generate(route);
+          t.attr('data-url',url);
           delete data['route'];
         }
 
-        $.get(url,data,function(json){
-          $.setFlash(json.msg, json.infotype);
+        $.get(url,t.data(),function(json){
           t.removeClass('onLoad');
           t.removeAttr('disabled');
           $.cbt.this(t, json, e);

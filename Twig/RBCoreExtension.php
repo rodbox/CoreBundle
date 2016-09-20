@@ -251,6 +251,16 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
+    public function toggle_me($url, $id)
+    {
+        echo $this->twig->render('RBCoreBundle:Twig:toggle-me.html.twig',[
+            'id'   => $id,
+            'url'  => $url
+        ]);
+    }
+
+
+
     public function nav_me($id="nav_me", $target="#app-cotent")
     {
         $routeCollection = $this->router->getRouteCollection()->all();
@@ -397,6 +407,7 @@ class RBCoreExtension  extends \Twig_Extension{
         return array(
             new \Twig_SimpleFunction("traces"              , [$this , 'traces']              , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("char_me"             , [$this , 'char_me']             , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("toggle_me"           , [$this , 'toggle_me']           , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_me"            , [$this , 'table_me']            , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("table_sheet_me"      , [$this , 'table_sheet_me']      , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("pagin_me"            , [$this , 'pagin_me']            , ['is_safe' => ['html']]) ,

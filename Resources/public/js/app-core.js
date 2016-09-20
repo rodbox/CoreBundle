@@ -256,6 +256,18 @@ $(document).ready(function($) {
 
 
 
+    $(document).on("change",".toggle-me",function (e){
+      e.preventDefault();  
+      var t     = $(this);
+      var data  = {
+        active : t.prop('checked')
+      }
+
+      $.get(t.attr('data-route'), data);      
+    })
+
+
+
     $(document).on("click",".btn-nav",function (e){
         e.preventDefault();
         var t      = $(this);
