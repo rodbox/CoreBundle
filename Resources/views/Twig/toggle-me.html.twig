@@ -1,1 +1,1 @@
-<input data-route="{{ url }}"  type="checkbox" value="true" class="toggle-me"  id="{{ id }}"/><label for="" class="forcheckbox "> </label>
+<label for="{{ id }}" class="custom-control custom-checkbox "><input data-url="{{ url }}" {% if checked|default(false) %}checked{% endif %} type="checkbox" value="true" class="toggle-me custom-control-input" name="{{ id }}[]"  id="{{ id }}"/><span class="custom-control-indicator"></span> <span class="custom-control-description">{{ content }}</span></label>

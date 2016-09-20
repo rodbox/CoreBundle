@@ -263,7 +263,7 @@ $(document).ready(function($) {
         active : t.prop('checked')
       }
 
-      $.get(t.attr('data-route'), data);      
+      $.get(t.attr('data-url'), data);      
     })
 
 

@@ -251,11 +251,13 @@ class RBCoreExtension  extends \Twig_Extension{
 
 
 
-    public function toggle_me($url, $id)
+    public function toggle_me($url, $content='', $checked=false, $id='')
     {
         echo $this->twig->render('RBCoreBundle:Twig:toggle-me.html.twig',[
-            'id'   => $id,
-            'url'  => $url
+            'id'      => $id,
+            'url'     => $url,
+            'content' => $content,
+            'checked' => $checked
         ]);
     }
 
