@@ -69,7 +69,11 @@
 
 $(document).ready(function($) {
 
-    $.init = function(container){
+
+  $.timer = {
+    tmp:{}
+  };
+  $.init = function(container){
 
         if (container == undefined)
           var container = 'html';
