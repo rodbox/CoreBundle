@@ -75,7 +75,7 @@
         var span = $("<span>",{"id":"loadme-"+rand,"class":"loadme"})
           .css({
             width: t.outerWidth(),
-            heigth: t.outerheight(),
+            heigth: t.outerHeight(),
             position:'absolute',
             'text-align':'center',
             'z-index':'5000'
