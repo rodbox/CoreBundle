@@ -66,28 +66,29 @@
     };
 
     $.fn.loadme = function(action){
-      var t       = $(this);
-      
-      if(action) {
-        var rand = Math.random().toString(36).substring(2);
-        t.attr('disabled',true);
-        t.addClass('onLoad');
-        var span = $("<span>",{"id":"loadme-"+rand,"class":"loadme"})
-          .css({
-            width: t.outerWidth(),
-            heigth: t.outerHeight(),
-            position:'absolute',
-            'text-align':'center',
-            'z-index':'5000'
-          })
-          .html('<i class="fa fa-refresh fa-spin"></i>');
-          t.before(span);
-      }
-      else {
-        t.removeClass('onLoad');
-        t.removeAttr('disabled');
-        t.prev('.loadme').remove();
-      }
+        // Var          
+        var t       = $(this);
+        console.log(t);
+        if(action) {
+          var rand = Math.random().toString(36).substring(2);
+          t.attr('disabled',true);
+          t.addClass('onLoad');
+          var div = $("<div>",{"id":"loadme-"+rand,"class":"loadme"})
+            .css({
+              width: t.outerWidth(),
+              heigth: t.outerHeight(),
+              position:'absolute',
+              'text-align':'center',
+              'z-index':'5000'
+            })
+            .html('<i class="fa fa-refresh fa-spin" style="margin-top:'+(parseInt(t.outerHeight()) / 2)+'px"></i>');
+            t.before(div);
+        }
+        else {
+          t.removeClass('onLoad');
+          t.removeAttr('disabled');
+          t.prev('.loadme').remove();
+        }
 
       return this;
     }

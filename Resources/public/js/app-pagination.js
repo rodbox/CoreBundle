@@ -88,7 +88,7 @@ $(document).on("click",":not(.form-live-target) .pagination a.page-link, th.sort
   e.preventDefault();
   var t   = $(this);
   var url = t.attr('href');
-  if (t.attr('data-target')==undefined)
+  if (t.attr('data-target')!=undefined)
     var target = $(t.attr('data-target'));
   else
     var target = $("#app-content");
@@ -112,13 +112,15 @@ $(document).on("change",".pagination select.page-link",function (e){
     page:t.val()
   };
 
-  if (t.attr('data-target')==undefined)
+  if (t.attr('data-target')!=undefined)
     var target = $(t.attr('data-target'));
   else
     var target = $("#app-content");
 
+  target.loadme(true);
   $.get(url,data, function(html) {
       target.html(html);
+      target.loadme(false);
       window.history.pushState(t.attr('title'), t.attr('title'), url);
       target.initJq();
   });

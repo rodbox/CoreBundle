@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
   $.btnLoad = {
     on:function (t){
       t.addClass('onLoad');
@@ -78,9 +78,8 @@ $(document).ready(function(){
 
 
 
-  $.live = {
+$.live = {
     post : function(url, data, t, e){
-
       $.btnLoad.on(t);
       $.post(url, data, function(json, textStatus, xhr) {
         if(json.infotype == "error"){
@@ -137,46 +136,42 @@ $(document).ready(function(){
     },
     target: function(url, data, t, e){
       var target = $(t.data('target'));
-      target.addClass('onLoad');
+      target.loadme(true);
       t.addClass('active');
 
       // push History
       window.history.pushState(t.attr('title'), t.attr('title'), url);
       
       $.post(url, data, function(html, textStatus, xhr) {
-        target.removeClass('onLoad').html(html);
+        target.html(html);
+        target.loadme(false);
         target.initJq();
       });
     },
     input: function(t){
       var e = null;
       clearTimeout($.timer.tmp);
-      if(!t.hasClass('onLoad')){
-        t.addClass('onLoad');
-        t.attr('disabled',true);
-        $.timer.tmp = setTimeout(function(){
-          var data  = t.data();
-          data.value = t.val();
-          var route =  t.attr('data-route');
-          var url   =  t.attr('data-url');
+      t.loadme(true);
+      $.timer.tmp = setTimeout(function(){
+        var data  = t.data();
+        var route =  t.attr('data-route');
+        var url   =  t.attr('data-url');
 
-          if(url != undefined){
-            var url = url;
-            delete data['url'];
-          }
-          else{
-            var url = Routing.generate(route);
-            t.attr('data-url',url);
-            delete data['route'];
-          }
+        if(url != undefined){
+          var url = url;
+          delete data['url'];
+        }
+        else{
+          var url = Routing.generate(route);
+          t.attr('data-url',url);
+          delete data['route'];
+        }
 
-          $.get(url, data, function(json){
-            t.removeClass('onLoad');
-            t.removeAttr('disabled');
-            $.cbt.this(t, json, e);
-          });
-        },1000);
-      }
+        $.get(url,t.data(),function(json){
+          t.loadme(false);
+          $.cbt.this(t, json, e);
+        });
+      },500);
     }
   };
 
