@@ -86,13 +86,19 @@
 
 $(document).on("click",":not(.form-live-target) .pagination a.page-link, th.sorted a, th a.sortable",function (e){
   e.preventDefault();
-  var t = $(this);
+  var t   = $(this);
   var url = t.attr('href');
+  if (t.attr('data-target')==undefined)
+    var target = $(t.attr('data-target'));
+  else
+    var target = $("#app-content");
 
+  target.loadme(true);
   $.get(url, function(html) {
-      $("#app-content").html(html);
+      target.html(html);
+      target.loadme(false);
       window.history.pushState(t.attr('title'), t.attr('title'), url);
-      $("#app-content").initJq();
+      target.initJq();
   });
 });
 
@@ -100,15 +106,20 @@ $(document).on("click",":not(.form-live-target) .pagination a.page-link, th.sort
 
 $(document).on("change",".pagination select.page-link",function (e){
   e.preventDefault();
-  var t = $(this);
-  var url = t.data('url');
-  var data = {
+  var t     = $(this);
+  var url   = t.data('url');
+  var data  = {
     page:t.val()
   };
 
+  if (t.attr('data-target')==undefined)
+    var target = $(t.attr('data-target'));
+  else
+    var target = $("#app-content");
+
   $.get(url,data, function(html) {
-      $("#app-content").html(html);
+      target.html(html);
       window.history.pushState(t.attr('title'), t.attr('title'), url);
-      $("#app-content").initJq();
+      target.initJq();
   });
 });
