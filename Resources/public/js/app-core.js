@@ -77,16 +77,16 @@
           var div = $("<div>",{"id":"loadme-"+rand,"class":"loadme"})
             .css({
               width        : t.outerWidth(),
-              heigth       : t.outerHeight(),
+              height       : t.outerHeight(),
               position     : 'absolute',
               'text-align' : 'center',
+              'vertical-align': 'middle'
             })
             .html('<i class="fa fa-refresh fa-spin"></i>');
             t.before(div);
         }
         else {
           var lm = t.prev('.loadme');
-          
 
           if (json == undefined)
             json = {'infotype':'success'}
@@ -361,4 +361,10 @@ $(document).ready(function($) {
 
         t.parents('tr').first().remove();
       })
+
+
+
+
+
+
 });
