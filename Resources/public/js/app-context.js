@@ -41,7 +41,7 @@ $(document).ready(function($) {
 
 		// $.context[id](context, val);
 		var url       = Routing.generate('session');
-		var data={
+		var data = {
 			key 	: context,
 			value 	: val,
 			checked : checked
@@ -49,10 +49,12 @@ $(document).ready(function($) {
 		$.get(url,data, function(json) {
 
 			$.context.set(t.data('context'),(checked)?val:false);
-			$('#app-content').loadme(true);
+			var target = $('#app-content');
+			target.loadme(true);
 			$.get(window.location.href, function(html){
-				$('#app-content').html(html);
-				$('#app-content').loadme(false);
+				target.html(html);
+				target.loadme(false);
+				target.initJq();
 			})
 
 			if (t.attr('data-cb'))

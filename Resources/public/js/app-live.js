@@ -150,7 +150,6 @@ $.live = {
     },
     input: function(t){
       var e = null;
-      t.loadme(true);
       
       var data  = t.data();
       var route = t.attr('data-route');
