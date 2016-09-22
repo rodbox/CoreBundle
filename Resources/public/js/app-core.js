@@ -87,7 +87,14 @@
         }
         else {
           var lm = t.prev('.loadme');
-          lm.html(json.infotype);
+
+          var info = json.infotype;
+          if (info=='success'||info==undefined)
+            var content = $("<i>",{"class":"fa fa-checkmark"});
+          else
+            var content = $("<i>",{"class":"fa fa-remove"});
+
+          lm.html(content);
 
           setTimeout(function(){
             t.removeClass('onLoad');
