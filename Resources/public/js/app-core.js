@@ -34,7 +34,10 @@
           "verticalupclass": 'fa fa-plus',
           "verticaldownclass": 'fa fa-minus'
         }).on('touchspin.on.stopspin',function () {
-           $.live.input(t);
+          clearTimeout($.timer.tmp);
+          $.timer.tmp = setTimeout(function(){
+            $.live.input(t);
+          },500)
         })
       })
 

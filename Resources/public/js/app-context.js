@@ -49,13 +49,14 @@ $(document).ready(function($) {
 		$.get(url,data, function(json) {
 
 			$.context.set(t.data('context'),(checked)?val:false);
-
+			$('#app-content').loadme(true);
 			$.get(window.location.href, function(html){
 				$('#app-content').html(html);
+				$('#app-content').loadme(false);
 			})
 
 			if (t.attr('data-cb'))
-				$.callback[t.attr('data-cb')](t,e,json);
+				$.cb[t.attr('data-cb')](t,e,json);
 
 		},'json');
 	});

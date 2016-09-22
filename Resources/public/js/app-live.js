@@ -150,28 +150,27 @@ $.live = {
     },
     input: function(t){
       var e = null;
-      clearTimeout($.timer.tmp);
       t.loadme(true);
-      $.timer.tmp = setTimeout(function(){
-        var data  = t.data();
-        var route =  t.attr('data-route');
-        var url   =  t.attr('data-url');
+      
+      var data  = t.data();
+      var route = t.attr('data-route');
+      var url   = t.attr('data-url');
 
-        if(url != undefined){
-          var url = url;
-          delete data['url'];
-        }
-        else{
-          var url = Routing.generate(route);
-          t.attr('data-url',url);
-          delete data['route'];
-        }
+      if(url != undefined){
+        var url = url;
+        delete data['url'];
+      }
+      else{
+        var url = Routing.generate(route);
+        t.attr('data-url',url);
+        delete data['route'];
+      }
 
-        $.get(url,t.data(),function(json){
-          t.loadme(false);
-          $.cbt.this(t, json, e);
-        });
-      },500);
+      data.value = t.val();
+      $.get(url, data, function(json){
+        t.loadme(false);
+        $.cbt.this(t, json, e);
+      });
     }
   };
 
