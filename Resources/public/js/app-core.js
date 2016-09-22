@@ -80,6 +80,7 @@
               heigth       : t.outerHeight(),
               position     : 'absolute',
               'text-align' : 'center',
+              'z-index'    : '5000'
             })
             .html('<i class="fa fa-refresh fa-spin"></i>');
             t.before(div);
