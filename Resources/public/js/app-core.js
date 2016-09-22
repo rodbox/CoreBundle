@@ -74,13 +74,13 @@
           var rand = Math.random().toString(36).substring(2);
           t.attr('disabled',true);
           t.addClass('onLoad');
+          var pos = t.position();
           var div = $("<div>",{"id":"loadme-"+rand,"class":"loadme"})
             .css({
               width        : t.outerWidth(),
               height       : t.outerHeight(),
-              position     : 'absolute',
-              'text-align' : 'center',
-              'vertical-align': 'middle'
+              top          : pos.top,
+              left         : pos.left
             })
             .html('<i class="fa fa-refresh fa-spin"></i>');
             t.before(div);
