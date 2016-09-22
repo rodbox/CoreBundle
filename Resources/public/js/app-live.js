@@ -149,25 +149,22 @@ $.live = {
       });
     },
     input: function(t){
-      var e = null;
+      var e     = null;
       
       var data  = t.data();
       var route = t.attr('data-route');
       var url   = t.attr('data-url');
 
-      if(url != undefined){
-        var url = url;
-        delete data['url'];
-      }
-      else{
+      if(url == undefined){
         var url = Routing.generate(route);
         t.attr('data-url',url);
-        delete data['route'];
       }
 
       data.value = t.val();
+      
+      t.loadme(true);
       $.get(url, data, function(json){
-        t.loadme(false);
+        t.loadme(false, json);
         $.cbt.this(t, json, e);
       });
     }
