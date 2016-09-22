@@ -76,20 +76,19 @@
           t.addClass('onLoad');
           var div = $("<div>",{"id":"loadme-"+rand,"class":"loadme"})
             .css({
-              width: t.outerWidth(),
-              heigth: t.outerHeight(),
-              position:'absolute',
-              'text-align':'center',
-              'z-index':'5000'
+              width        : t.outerWidth(),
+              heigth       : t.outerHeight(),
+              position     : 'absolute',
+              'text-align' : 'center',
             })
             .html('<i class="fa fa-refresh fa-spin"></i>');
             t.before(div);
         }
         else {
           var lm = t.prev('.loadme');
-
+ 
           var info = json.infotype;
-          if (info=='success'||info==undefined)
+          if (info=='success' || info==undefined)
             var content = $("<i>",{"class":"fa fa-checkmark"});
           else
             var content = $("<i>",{"class":"fa fa-remove"});
