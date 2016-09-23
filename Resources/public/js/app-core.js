@@ -58,7 +58,7 @@
       if (type=='loader')
         var noty = $("<i>",{"class":"fa fa-refresh fa-spin"});
       else if (type=='success')
-        var noty = $("<i>",{"class":"fa fa-checkmark"});
+        var noty = $("<i>",{"class":"fa fa-check"});
       else
         var noty = $("<i>",{"class":"fa fa-remove"});
 
@@ -94,7 +94,7 @@
           var info = json.infotype;
 
           if (info =='success')
-            var content = $("<i>",{"class":"fa fa-checkmark"});
+            var content = $("<i>",{"class":"fa fa-check"});
           else
             var content = $("<i>",{"class":"fa fa-remove"});
 
@@ -308,13 +308,21 @@ $(document).ready(function($) {
 
 
     $(document).on("change",".toggle-me",function (e){
-      e.preventDefault();  
-      var t     = $(this);
-      var data  = {
-        active : t.prop('checked')
-      }
+      e.preventDefault();
+      
+      var t       = $(this);
+      var p       = t.parents('.btn-group');
+      var checked = t.prop('checked');
+      var data    = {
+        active : checked
+      };
 
-      $.get(t.attr('data-url'), data);      
+      $.get(t.attr('data-url'), data,function(){
+        if(checked)
+          p.addClass('active');
+        else
+          p.removeClass('active');
+      });      
     })
 
 
@@ -361,10 +369,4 @@ $(document).ready(function($) {
 
         t.parents('tr').first().remove();
       })
-
-
-
-
-
-
 });
