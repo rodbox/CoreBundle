@@ -47,9 +47,17 @@
     // system de mini notification
     $.fn.tnoty = function(type) {
       var t       = $(this);
+
+      var pos     = t.position();
+
       var tnotyID = "tnoty-"+Math.random().toString(36).substring(2);
       var tnoty   = $("<span>",{"id":tnotyID, "class":"tnoty label"});
       
+      tnoty.css({
+        top:pos.top,
+        left:pos.left
+      });
+
       if (t.attr('data-tnoty')!= undefined)
         $('#'+t.attr('data-tnoty')).remove();
 
@@ -58,12 +66,18 @@
       if (type=='loader')
         var noty = $("<i>",{"class":"fa fa-refresh fa-spin"});
       else if (type=='success')
-        var noty = $("<i>",{"class":"fa fa-check"});
+        var noty = $("<i>",{"class":"fa fa-checkmark"});
       else
         var noty = $("<i>",{"class":"fa fa-remove"});
 
       tnoty.html(noty);
       t.after(tnoty);
+      
+      if (type!='loader'){
+        setTimeout(function(){
+          tnoty.remove();
+        },3500)
+      }
 
       return this;
     };
@@ -74,15 +88,38 @@
           var rand = Math.random().toString(36).substring(2);
           t.attr('disabled',true);
           t.addClass('onLoad');
-          var pos = t.position();
+          var pos   = t.offset();
+
+          console.log(t);
+
+          var clone = t.clone();
+          clone.append('<div class="clearfix"></div>');
+          clone.css({
+            position:'relative',
+            top: -10000
+          });
+          $('body').append(clone);
+          var h = t.outerHeight();
+          var w = t.outerWidth();
+          clone.remove();
+
           var div = $("<div>",{"id":"loadme-"+rand,"class":"loadme"})
             .css({
-              width        : t.outerWidth(),
-              height       : t.outerHeight(),
-              top          : pos.top,
-              left         : pos.left
+              width        : w,
+              height       : h
             })
             .html('<i class="fa fa-refresh fa-spin"></i>');
+
+            if (t.is('#app-content')) {
+              $('body').addClass('noScroll');
+              div.css({
+                'height':'100vh',
+                'width':'100vw',
+                'top':'0',
+                'position':'fixed !important'
+              })
+            }
+
             t.before(div);
         }
         else {
@@ -94,7 +131,7 @@
           var info = json.infotype;
 
           if (info =='success')
-            var content = $("<i>",{"class":"fa fa-check"});
+            var content = $("<i>",{"class":"fa fa-checkmark"});
           else
             var content = $("<i>",{"class":"fa fa-remove"});
 
@@ -104,6 +141,8 @@
             t.removeClass('onLoad');
             t.removeAttr('disabled');
             
+            if (t.is('#app-content'))
+              $('body').removeClass('noScroll');
             lm.remove();
           },1000)
         }
@@ -309,9 +348,9 @@ $(document).ready(function($) {
 
     $(document).on("change",".toggle-me",function (e){
       e.preventDefault();
-      
+
       var t       = $(this);
-      var p       = t.parents('.btn-group');
+      var p       = t.parents('.btn');
       var checked = t.prop('checked');
       var data    = {
         active : checked
