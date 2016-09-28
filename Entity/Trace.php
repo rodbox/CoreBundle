@@ -48,10 +48,11 @@ class Trace
      * @ORM\Column(name="dateInput", type="datetime")
      */
     private $dateInput;
+    
+
     /**
-     * @var integer
      *
-     * @ORM\Column(name="user", type="integer")
+     * @ORM\ManyToOne(targetEntity="RB\UserBundle\Entity\User", cascade={"persist"})
      */
     private $user;
 

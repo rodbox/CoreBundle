@@ -82,15 +82,14 @@
       return this;
     };
 
+    // loader
     $.fn.loadme = function(action, json){
         var t       = $(this);
-        if(action) {
+        if(action && !t.hasClass('onLoad')) {
           var rand = Math.random().toString(36).substring(2);
           t.attr('disabled',true);
           t.addClass('onLoad');
           var pos   = t.offset();
-
-          console.log(t);
 
           var clone = t.clone();
           clone.append('<div class="clearfix"></div>');
@@ -148,6 +147,54 @@
         }
       return this;
     }
+
+
+    // serialise object
+    $.fn.serializeObject = function()
+    {
+       var o = {};
+       var a = this.serializeArray();
+
+       $.each(a, function() {
+           if (o[this.name]) {
+               if (!o[this.name].push)
+                   o[this.name] = [o[this.name]];
+
+               o[this.name].push(this.value || '');
+           }
+           else
+              o[this.name] = this.value || '';
+
+       });
+
+       return o;
+    };
+
+
+    $.query = {
+      string : function(url) {
+        var params = {};
+        if (url != null) {
+            var url     = url.split('?');
+            var parts   = url[1].split('&');
+        }
+        else {
+            var url     = location.search;
+            var parts   = url.substring(1).split('&');
+        }
+        for (var i = 0; i < parts.length; i++) {
+            var nv = parts[i].split('=');
+            if (!nv[0]) continue;
+            params[nv[0]] = nv[1] || true;
+        }
+
+        return params;
+      },
+      array : function(url) {
+        
+      }
+    }
+
 
 })(jQuery);
 
@@ -295,6 +342,7 @@ $(document).ready(function($) {
     }
 
 
+
     $.loadlock = {
         on : function (msg){
             $('body').addClass('load-lock');
@@ -315,7 +363,29 @@ $(document).ready(function($) {
         }
     }
 
-    
+
+
+    $.history = {
+      push : function(url, data){
+        if (data != undefined) {
+
+          if($.isArray(data) || typeof data === "object")
+            data =$.param(data);
+
+          if (url.indexOf('?') == -1)
+            url +='?'+data;
+          else
+            url +='&'+data;
+        }
+
+        //console.log(data);
+        //console.log($.query.string(url));
+        
+
+        history.pushState({}, '', url);
+      }
+    }
+
 
 
     $(document).on("keydown","textarea[data-tab=true]",function (e){
