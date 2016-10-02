@@ -25,12 +25,14 @@ class RBTraceService {
         $date = ($date=='')? new \DateTime() : $date;
         $trace = new Trace();
 
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
         $trace
             ->setRef($ref)
-            ->setMsg($msg)
+            ->setMsg($user->getId().$msg)
             ->setDate($date)
             ->setDateInput(new \DateTime())
-            ->setUser(0);
+            ->setUser($user);
 
         $this->em->persist($trace);
         $this->em->flush();

@@ -1,0 +1,214 @@
+@typeName: 	default,	success,	danger,		loader,    star;
+@typeBG: 	#196ca7,	#009e4d,	#dc3522,	rgba(36,36,36,0.8),#d9bb69;
+@typeC: 	#fff,		#fff,		#fff,		#fff,    	#fff;
+@typeIco: 	"\e086",	"\e013",	"\e083",	"\e030",    "\e006";
+
+@cDefault :extract(@typeC,1);
+@bgDefault : extract(@typeBG,1);
+
+.type-loop (@i:1) when (@i <= length(@typeName)){
+
+	@name 	: extract(@typeName,@i);
+	@bg 	: extract(@typeBG,@i);
+	@ico 	: extract(@typeIco,@i);
+	@color 	: extract(@typeC,@i);
+
+	&.appinfo-type-@{name}{
+		background-color:@bg;
+		color:@color;
+		&:before{
+				content:@ico;
+			}
+			& a{
+				color: @color;
+			}
+
+	}
+
+	.type-loop(@i + 1);
+}
+
+
+.appinfo-container{
+	position: fixed;
+	top:5px;
+	right: 5px;
+	text-align: left;
+	z-index: 600;
+	overflow: hidden;
+	
+	& .appinfo-msg{
+		padding: 0px;
+		background-color: @bgDefault;
+		color: @cDefault;
+		margin-bottom: 5px;
+
+		float: right;
+		width: 250px;
+
+		clear:both;
+		
+		.translateX(204);
+		.animate();
+		& a {
+			color: @cDefault;
+		}
+		& p {margin: 0px;}
+		&:before{
+			content:"\e086";
+			font-family: "Glyphicons Halflings";
+			.appinfoHeader();
+			margin-left: 16px;
+			position: absolute;
+
+		}
+		&.appinfo-content-active {
+			& a.appinfo-content-meta-toggle{
+				
+
+				
+				font-size: 0.8em;
+				line-height: 1em;
+				display: block;
+				text-align: center;
+				background-color: rgba(0,0,0,0.1);
+				padding: 5px;
+				&:after{
+					content:"\e080";
+					font-family: "Glyphicons Halflings";
+					font-size: 0.8em;
+					margin-left: 5px;
+					line-height: 1em;
+					padding-top: 0.7em;
+				}
+				&.toggle-open:after{
+					content:"\e114";
+				}
+				&:hover{
+					text-decoration: none;
+				}
+			}
+		}
+		& .appinfo-content {
+			display: block;
+		    line-height: 20px;
+		    margin: 0 0 0 46px;
+		    min-height: 40px;
+		    padding: 8px;
+		    vertical-align: middle;
+		    width: 70%;
+		}
+		& .appinfo-content-meta{
+			.opacity();
+			padding: 15px;
+			margin:0px;
+			display: none;
+			background-color: rgba(0,0,0,0.1);
+			& a {
+				text-decoration: underline;
+				font-weight: bolder;
+			}
+		}
+		& .appinfo-id{
+			margin-left: 10px;
+			.opacity();
+			margin-right: 5px;
+			font-size: 0.8em;
+		}
+
+		& .bt-close{
+			color: @cDefault;
+			margin: 0px 15px;
+			display: none;
+			font-weight: bolder;
+			position: absolute;
+			right: 0px;
+			.opacity();
+			.appinfoHeader();
+		}
+
+		&:hover {
+			.bt-close{
+				display: block;
+			}
+		}
+		&.appinfo-open,
+		&:hover {
+			.translateX(0);
+		}
+
+		.type-loop();
+		&.appinfo-type-loader{
+			&:before{
+				.spin();
+			}
+		}
+	}
+
+
+.appinfoHeader(){
+	line-height: 40px;
+	min-height: 40px;
+}
+
+.animate(@time : 125){
+	-webkit-transition: all unit(@time,ms) linear;
+	-moz-transition: all unit(@time,ms) linear;
+	-ms-transition: all unit(@time,ms) linear;
+	-o-transition: all unit(@time,ms) linear;
+	transition: all unit(@time,ms) linear;
+}
+
+.spin(){
+
+	-webkit-animation: spin 0.6s infinite linear;
+    -o-animation: spin 0.6s infinite linear;
+    -ms-animation: spin 0.6s infinite linear;
+    -moz-animation: spin 0.6s infinite linear;
+    animation: spin 0.6s infinite linear;
+
+    -webkit-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes spin {
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-ms-keyframes spin {
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}
+@-o-keyframes spin {
+    to {
+        -o-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.opacity(@opacity:0.7){
+	opacity: @opacity;
+}
+
+.translateX(@value:200){
+	-moz-transform: translateX(unit(@value,px));
+	-webkit-transform: translateX(unit(@value,px));
+	-o-transform: translateX(unit(@value,px));
+	-ms-transform: translateX(unit(@value,px));
+	transform: translateX(unit(@value,px));
+}
+}

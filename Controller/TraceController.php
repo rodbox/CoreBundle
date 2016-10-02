@@ -23,10 +23,14 @@ class TraceController extends Controller
       $per     = 30;
       $query   = $em->createQueryBuilder();
       
+      $ref = $request->request->get("ref",'all');
+      
       $query->select('t')
          ->from('RBCoreBundle:Trace', 't')
          ->orderBy('t.date','DESC');
-       //  ->where("p.type = '".$type."'");
+      
+      if ($ref != 'all')
+        $query->where("t.ref = '".$ref."'");
         
       $paginator = $this->get('knp_paginator');
       $traces  = $paginator->paginate(
@@ -39,6 +43,41 @@ class TraceController extends Controller
         'refs'     => ['stock','fixprocess']
       ]);
     }
+
+
+    /**
+    * @Route("/trace_purge",name="trace_purge")
+    */
+    public function trace_purgeAction(Request $request)
+    {
+
+      $em     = $this->getDoctrine()->getManager();
+      $ref    = $request->request->get("ref",'all');
+      $traces = $em
+        ->getRepository('RBCoreBundle:Trace');
+      
+      if ($ref == 'all')
+        $traces->findAll();
+      else
+        $traces->findByRef($ref);
+
+      foreach ($traces as $key => $trace)
+        $em->remove($trace);
+
+      $em->flush();
+
+      $list = [];
+
+      $r    = [
+          'infotype' => 'success',
+          'msg'      => 'action : ok',
+          'app'      => $this->renderView('::base.html.twig', [
+            'list' => $list
+          ])
+      ];
+
+      return new JsonResponse($r);
+      }
 
 }
 

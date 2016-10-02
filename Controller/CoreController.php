@@ -46,7 +46,6 @@ class CoreController extends Controller
     }
 
 
-
     /**
     * @Route("/t",name="t", options={"expose"=true})
     */
@@ -57,12 +56,12 @@ class CoreController extends Controller
 
         return new Response('');
     }
-
+            
 
 
 
     /**
-    * @Route("/ct",name="ct", options={"expose"=true})
+    * @Route("/ct",name="ct")
     */
     public function ctAction(Request $request)
     {
@@ -84,7 +83,6 @@ class CoreController extends Controller
         ];
         return new JsonResponse($r);
     }
-
 
 
     /**
@@ -116,8 +114,6 @@ class CoreController extends Controller
             return new JsonResponse($r);
     }
 
-
-
     /**
     * @Route("/session",name="session", options={"expose"=true})
     */
@@ -148,7 +144,6 @@ class CoreController extends Controller
     }
 
 
-
     /**
     * @Route("/session_view/{route}/{view}",name="session_view")
     */
@@ -172,7 +167,6 @@ class CoreController extends Controller
         ];
         return new JsonResponse($r);
     }
-
 
 
     /**
@@ -218,50 +212,5 @@ class CoreController extends Controller
         }
 
         return new JsonResponse($r);
-    }
-
-
-
-    /**
-    * @Route("/rb_codebar",name="rb_codebar")
-    */
-    public function rb_codebarAction(Request $request)
-    {
-        $code = $request->query->get("code",'');
-        return $this->render('RBCoreBundle:Twig:codebar.html.twig',['code'=>$code]);
-    }
-
-
-
-    /**
-    * @Route("/rb_filter",name="rb_filter")
-    */
-    public function rb_filterAction(Request $request)
-    {
-        $list = [];
-
-        $r    = [
-            'infotype' => 'success',
-            'msg'      => 'action : ok',
-            'app'      => $this->renderView('::base.html.twig', [
-            'list' => $list
-            ])
-        ];
-
-        return new JsonResponse($r);
-    }
-
-
-    /**
-    * @Route("/err", name="error_page", options={"expose"=true})
-    */
-    public function errAction(Request $request)
-    {
-        $html   = $request->query->get("html",'');
-        $err    = [
-            'ref'   => '404',
-            'html'  => $html
-        ];
-        return $this->render('RBCoreBundle:Debug:err.html.twig',['err'=>$err]);
     }
 }

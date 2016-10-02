@@ -1,0 +1,198 @@
+.appinfo-container {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  text-align: left;
+  z-index: 3600;
+  overflow: hidden;
+}
+.appinfo-container .appinfo-msg {
+  padding: 0px;
+  background-color: #196ca7;
+  color: #ffffff;
+  margin-bottom: 5px;
+  float: right;
+  width: 250px;
+  clear: both;
+  -moz-transform: translateX(204px);
+  -webkit-transform: translateX(204px);
+  -o-transform: translateX(204px);
+  -ms-transform: translateX(204px);
+  transform: translateX(204px);
+  -webkit-transition: all 125ms linear;
+  -moz-transition: all 125ms linear;
+  -ms-transition: all 125ms linear;
+  -o-transition: all 125ms linear;
+  transition: all 125ms linear;
+}
+.appinfo-container .appinfo-msg a {
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg p {
+  margin: 0px;
+}
+.appinfo-container .appinfo-msg:before {
+  content: "\e086";
+  font-family: "Glyphicons Halflings";
+  line-height: 40px;
+  min-height: 40px;
+  margin-left: 16px;
+  position: absolute;
+}
+.appinfo-container .appinfo-msg.appinfo-content-active a.appinfo-content-meta-toggle {
+  font-size: 0.8em;
+  line-height: 1em;
+  display: block;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+.appinfo-container .appinfo-msg.appinfo-content-active a.appinfo-content-meta-toggle:after {
+  content: "\e080";
+  font-family: "Glyphicons Halflings";
+  font-size: 0.8em;
+  margin-left: 5px;
+  line-height: 1em;
+  padding-top: 0.7em;
+}
+.appinfo-container .appinfo-msg.appinfo-content-active a.appinfo-content-meta-toggle.toggle-open:after {
+  content: "\e114";
+}
+.appinfo-container .appinfo-msg.appinfo-content-active a.appinfo-content-meta-toggle:hover {
+  text-decoration: none;
+}
+.appinfo-container .appinfo-msg .appinfo-content {
+  display: block;
+  line-height: 20px;
+  margin: 0 0 0 46px;
+  min-height: 40px;
+  padding: 8px;
+  vertical-align: middle;
+  width: 70%;
+}
+.appinfo-container .appinfo-msg .appinfo-content-meta {
+  opacity: 0.7;
+  padding: 15px;
+  margin: 0px;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.appinfo-container .appinfo-msg .appinfo-content-meta a {
+  text-decoration: underline;
+  font-weight: bolder;
+}
+.appinfo-container .appinfo-msg .appinfo-id {
+  margin-left: 10px;
+  opacity: 0.7;
+  margin-right: 5px;
+  font-size: 0.8em;
+}
+.appinfo-container .appinfo-msg .bt-close {
+  color: #ffffff;
+  margin: 0px 15px;
+  display: none;
+  font-weight: bolder;
+  position: absolute;
+  right: 0px;
+  opacity: 0.7;
+  line-height: 40px;
+  min-height: 40px;
+}
+.appinfo-container .appinfo-msg:hover .bt-close {
+  display: block;
+}
+.appinfo-container .appinfo-msg.appinfo-open,
+.appinfo-container .appinfo-msg:hover {
+  -moz-transform: translateX(0px);
+  -webkit-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  transform: translateX(0px);
+}
+.appinfo-container .appinfo-msg.appinfo-type-default {
+  background-color: #196ca7;
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-default:before {
+  content: "\e086";
+}
+.appinfo-container .appinfo-msg.appinfo-type-default a {
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-success {
+  background-color: #009e4d;
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-success:before {
+  content: "\e013";
+}
+.appinfo-container .appinfo-msg.appinfo-type-success a {
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-danger {
+  background-color: #dc3522;
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-danger:before {
+  content: "\e083";
+}
+.appinfo-container .appinfo-msg.appinfo-type-danger a {
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-loader {
+  background-color: rgba(36, 36, 36, 0.8);
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-loader:before {
+  content: "\e030";
+}
+.appinfo-container .appinfo-msg.appinfo-type-loader a {
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-star {
+  background-color: #d9bb69;
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-star:before {
+  content: "\e006";
+}
+.appinfo-container .appinfo-msg.appinfo-type-star a {
+  color: #ffffff;
+}
+.appinfo-container .appinfo-msg.appinfo-type-loader:before {
+  -webkit-animation: spin 0.6s infinite linear;
+  -o-animation: spin 0.6s infinite linear;
+  -ms-animation: spin 0.6s infinite linear;
+  -moz-animation: spin 0.6s infinite linear;
+  animation: spin 0.6s infinite linear;
+  -webkit-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spin {
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-ms-keyframes spin {
+  to {
+    -ms-transform: rotate(360deg);
+  }
+}
+@-o-keyframes spin {
+  to {
+    -o-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

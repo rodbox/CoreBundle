@@ -1,5 +1,0 @@
-<form action="{{path('rb_filter,{route:route}') }}" class="form-inline">
-	{% for filter in filters %}
-		<input type="text" name="filter[{{ filter.name }}]" value="{{ filter.value }}" class="form-control">
-	{% endfor %}
-</form>
