@@ -49,13 +49,16 @@ $(document).ready(function($) {
 		$.get(url,data, function(json) {
 
 			$.context.set(t.data('context'),(checked)?val:false);
-			var target = $('#app-content');
-			target.loadme(true);
-			$.get(window.location.href, function(html){
-				target.html(html);
-				target.loadme(false);
-				target.initJq();
-			})
+
+			if(t.attr('data-refresh')=='true'){
+				var target = $('#app-content');
+				target.loadme(true);
+				$.get(window.location.href, function(html){
+					target.html(html);
+					target.loadme(false);
+					target.initJq();
+				})
+			}
 
 			if (t.attr('data-cb'))
 				$.cb[t.attr('data-cb')](t,e,json);

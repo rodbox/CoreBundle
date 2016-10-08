@@ -2,27 +2,35 @@ services:
     rb.alert:
         class: RB\CoreBundle\Services\RBAlertService
         arguments: ["@service_container","@doctrine"]
+
     rb.scan:
         class: RB\CoreBundle\Services\RBScanService
         arguments: ["@service_container"]
+
     rb.file:
         class: RB\CoreBundle\Services\RBFileService
         arguments: ["@service_container","@twig"]
+
     rb.trace:
         class: RB\CoreBundle\Services\RBTraceService
         arguments: ["@service_container","@doctrine"]
+
     rb.serializer:
         class: RB\CoreBundle\Services\RBSerializerService
         arguments: []
+
     rb.serializer_extension:
         class: RB\CoreBundle\Twig\RBSerializerExtension
         arguments: []
+
     rb.templates:
         class: RB\CoreBundle\Services\RBTemplatesService
         arguments: ["@service_container"]
+
     rb.upload:
         class: RB\CoreBundle\Services\RBUploadService
         arguments: ["@service_container"]
+ 
     rb.barcode.extension:
         class: RB\CoreBundle\Twig\RBBarcodeExtension
         arguments: ["@service_container"]

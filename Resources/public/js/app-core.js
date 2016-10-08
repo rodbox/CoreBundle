@@ -85,8 +85,12 @@
     // loader
     $.fn.loadme = function(action, json){
         var t       = $(this);
+
         if(action && !t.hasClass('onLoad')) {
           var rand = Math.random().toString(36).substring(2);
+
+          t.attr('data-loadme','loadme-'+rand);
+
           t.attr('disabled',true);
           t.addClass('onLoad');
           var pos   = t.offset();
@@ -122,28 +126,40 @@
             t.before(div);
         }
         else {
-          var lm = t.prev('.loadme');
+          var id = t.attr('data-loadme');
 
-          if (json == undefined)
-            json = {'infotype':'success'}
-          
-          var info = json.infotype;
+          var lm = $('#'+id);
 
-          if (info =='success')
-            var content = $("<i>",{"class":"fa fa-checkmark"});
-          else
-            var content = $("<i>",{"class":"fa fa-remove"});
-
-          lm.html(content);
-
-          setTimeout(function(){
+          // si il n y a pas de json on supprime le loader simplement  
+          if (json == undefined){
             t.removeClass('onLoad');
             t.removeAttr('disabled');
-            
-            if (t.is('#app-content'))
-              $('body').removeClass('noScroll');
             lm.remove();
-          },1000)
+          }
+
+          // si il y a un retour json on change le loader
+          else {
+
+            var info = json.infotype;
+
+            if (info =='success')
+              var content = $("<i>",{"class":"fa fa-check"});
+            else
+              var content = $("<i>",{"class":"fa fa-remove"});
+
+            lm.html(content);
+
+            setTimeout(function(){
+              t.removeClass('onLoad');
+              t.removeAttr('disabled');
+              
+              if (t.is('#app-content'))
+                $('body').removeClass('noScroll');
+
+              lm.remove();
+            },250)
+          }
+          t.removeAttr('data-loadme');
         }
       return this;
     }
@@ -477,5 +493,10 @@ $(document).ready(function($) {
         var t = $(this);
 
         t.parents('tr').first().remove();
-      })
+      });
+
+
+      setTimeout(function(){
+        $('.autoclick').trigger('click');
+      },250);
 });

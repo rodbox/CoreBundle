@@ -13,9 +13,20 @@ $(document).ready(function($) {
     */
 
     $.form = {
-        set : function(data){
-            $.each(data,function(key, val){
-                var input = $('[name^="'+key+'"]');
+        filter : function (filterContent, form){
+            form.attr('data-form-filter-content',filterContent);
+            
+            form.find('.form-filter-content').hide();
+            form.find('[data-form-filter-content="'+filterContent+'"]').show();
+        },
+        set : function(data, suffix){
+
+            $.each(data, function(key, val){
+                if (suffix == undefined)
+                    var input = $('[name^="'+key+'"]');
+                else
+                    var input = $('[name^="'+suffix+'['+key+']"]');
+
                 if(input.is('input:checkbox')){
                     input.prop('checked',false);
                     input.val(val);
@@ -27,8 +38,10 @@ $(document).ready(function($) {
                 else
                     input.val(val);
                 input.trigger('change');
-                if (input.is('select'))
+                if (input.is('select')){
                     input.trigger('chosen:updated');
+
+                }
             })
         }
     }

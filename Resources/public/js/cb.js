@@ -157,7 +157,7 @@ $.cb['core'] = {
     setEditMe: function (t,e,json){
         $(t.data('target')).find('.input-value').html(json.value);
         t.parents('.edit_me_group').toggleClass('open');
-        alert(json.msg);
+        
     },
     setAction: function (t,e,json){
 
