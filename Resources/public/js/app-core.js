@@ -83,7 +83,9 @@
     };
 
     // loader
-    $.fn.loadme = function(action, json){
+    $.fn.loadme = function(action, json, color){
+        var color  = (color == undefined)?'default':color;
+
         var t       = $(this);
 
         if(action && !t.hasClass('onLoad')) {
@@ -113,6 +115,8 @@
             })
             .html('<i class="fa fa-refresh fa-spin"></i>');
 
+            div.addClass('loadme-'+color);
+            
             if (t.is('#app-content')) {
               $('body').addClass('noScroll');
               div.css({
@@ -131,7 +135,7 @@
           var lm = $('#'+id);
 
           // si il n y a pas de json on supprime le loader simplement  
-          if (json == undefined){
+          if (json == undefined || json == ''){
             t.removeClass('onLoad');
             t.removeAttr('disabled');
             lm.remove();
@@ -499,4 +503,6 @@ $(document).ready(function($) {
       setTimeout(function(){
         $('.autoclick').trigger('click');
       },250);
+
+      $.appInfo.init();
 });

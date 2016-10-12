@@ -4,6 +4,9 @@ $(document).ready(function(){
     on:function (t){
       t.addClass('onLoad');
 
+      var rand = Math.random().toString(36).substring(2);
+      t.attr('data-rand','rand-'+rand);
+      
       if(t.is('form'))
         t = t.find('button[type="submit"]');
 
@@ -19,7 +22,6 @@ $(document).ready(function(){
     },
     off:function (t, json, err){
       t.removeClass('onLoad');
-
       if(t.is('form')){
         if (json != undefined) {
 
@@ -29,20 +31,24 @@ $(document).ready(function(){
           if(json.autoclear)
             t.find('.autoclear').val('');
 
+          if($.isArray(json.click)){
+            $.each(json.clik, function(key, val){
+              $(key).trigger('click');
+            });
+          }
+
           if(json.refresh)
             $.refresh();
-
         }
           
         t = t.find('button[type="submit"]');
       }
 
+      t.removeAttr('data-rand');
       t.removeAttr('disabled');
       t.removeClass('onLoad');
       t.html(t.attr('data-text'));
 
-      if (err != undefined)
-        $.noty.reponse(err);
     }
   }
 
@@ -81,21 +87,32 @@ $(document).ready(function(){
 $.live = {
     post : function(url, data, t, e){
       $.btnLoad.on(t);
+
+      $.info = $.appInfo.add({
+        'type':'loader'
+      })
+
       $.post(url, data, function(json, textStatus, xhr) {
         if(json.infotype == "error"){
           if(!t.hasClass('no-flash') || json.infotype=='error')
-            $.setFlash(json.msg, json.infotype);
+             $.appInfo.upd($.info,{'type':json.infotype, 'msg':json.msg});
+             
+            //$.setFlash(json.msg, json.infotype);
 
           // confirm forcer
           if(confirm('forcer ?')){
             // envois forcer
+             $.info = $.appInfo.add({
+              'type':'loader'
+            })
             data.force = $.force();
             $.post(url, data, function(json, textStatus, xhr) {
 
               $.modal.json(json);
 
               if(!t.hasClass('no-flash') || json.infotype=='error')
-                $.setFlash(json.msg, json.infotype)
+                $.appInfo.upd($.info,{'msg':json.msg});
+                //$.setFlash(json.msg, json.infotype)
 
              $.cbt.this(t, json, e);
              $.cbt.json(t, json, e);
@@ -103,9 +120,10 @@ $.live = {
              $.target.json(json);
              
              $.btnLoad.off(t, json);
-            }).error(function(err){
+            }).fail(function(err){
               $.btnLoad.off(t, '', err);
-              $.setFlash('erreur '+ err.status,'error');
+              $.appInfo.del($.info);
+              $.setFlash('erreur '+ err.status,'error', err.responseText);
             });
           }
         }
@@ -120,13 +138,15 @@ $.live = {
           $.target.json(json);
         }
         if(!t.hasClass('no-flash') || json.infotype=='error')
-          $.setFlash(json.msg,json.infotype);
+          $.appInfo.upd($.info,{'type':json.infotype, 'msg':json.msg});
+          //$.setFlash(json.msg,json.infotype);
 
         $.btnLoad.off(t, json);
       }, 'json')
-      .error(function(err){
+      .fail(function(err){
         $.btnLoad.off(t);
-        $.setFlash('erreur '+ err.status,'error');
+        $.appInfo.del($.info);
+        $.setFlash('erreur '+ err.status,'error', err.responseText);
       });
     },
     reload: function(){

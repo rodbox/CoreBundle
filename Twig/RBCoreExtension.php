@@ -11,7 +11,7 @@ class RBCoreExtension  extends \Twig_Extension{
         $this->container = $container;
         $this->twig      = $twig;
         $this->router    = $router;
-        $this->router    = $router;
+
         $this->session   = $session;
         $this->doctrine  = $doctrine;
     }

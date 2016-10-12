@@ -1,7 +1,7 @@
 @typeName: 	default,	success,	danger,		loader,    star;
 @typeBG: 	#196ca7,	#009e4d,	#dc3522,	rgba(36,36,36,0.8),#d9bb69;
 @typeC: 	#fff,		#fff,		#fff,		#fff,    	#fff;
-@typeIco: 	"\e086",	"\e013",	"\e083",	"\e030",    "\e006";
+@typeIco: 	"\f05a",	"\f00c",	"\f00d",	"\f021",    "\f005";
 
 @cDefault :extract(@typeC,1);
 @bgDefault : extract(@typeBG,1);
@@ -34,7 +34,7 @@
 	top:5px;
 	right: 5px;
 	text-align: left;
-	z-index: 600;
+	z-index: 3600;
 	overflow: hidden;
 	
 	& .appinfo-msg{
@@ -50,13 +50,20 @@
 		
 		.translateX(204);
 		.animate();
+
+		&.appinfo-outro{
+			opacity: 0 !important;;
+			height: 0px !important;
+			overflow: hidden !important;
+		}
+
 		& a {
 			color: @cDefault;
 		}
 		& p {margin: 0px;}
 		&:before{
-			content:"\e086";
-			font-family: "Glyphicons Halflings";
+			content:"\f05a";
+			font-family: "FontAwesome";
 			.appinfoHeader();
 			margin-left: 16px;
 			position: absolute;
@@ -64,9 +71,6 @@
 		}
 		&.appinfo-content-active {
 			& a.appinfo-content-meta-toggle{
-				
-
-				
 				font-size: 0.8em;
 				line-height: 1em;
 				display: block;
@@ -74,8 +78,8 @@
 				background-color: rgba(0,0,0,0.1);
 				padding: 5px;
 				&:after{
-					content:"\e080";
-					font-family: "Glyphicons Halflings";
+					content:"\f05a";
+					font-family: "FontAwesome";
 					font-size: 0.8em;
 					margin-left: 5px;
 					line-height: 1em;
@@ -151,7 +155,7 @@
 	min-height: 40px;
 }
 
-.animate(@time : 125){
+.animate(@time : 175){
 	-webkit-transition: all unit(@time,ms) linear;
 	-moz-transition: all unit(@time,ms) linear;
 	-ms-transition: all unit(@time,ms) linear;
@@ -161,11 +165,11 @@
 
 .spin(){
 
-	-webkit-animation: spin 0.6s infinite linear;
-    -o-animation: spin 0.6s infinite linear;
-    -ms-animation: spin 0.6s infinite linear;
-    -moz-animation: spin 0.6s infinite linear;
-    animation: spin 0.6s infinite linear;
+	-webkit-animation: spin 1s infinite linear;
+    -o-animation: spin 1s infinite linear;
+    -ms-animation: spin 1s infinite linear;
+    -moz-animation: spin 1s infinite linear;
+    animation: spin 1s infinite linear;
 
     -webkit-transform-origin: 50% 50%;
     -o-transform-origin: 50% 50%;

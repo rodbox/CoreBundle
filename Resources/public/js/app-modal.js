@@ -7,9 +7,10 @@ $.modal = {
         $.modal.html(data, modal, title, data);
         $.loadlock.off();
 
-      },'html').error(function(err){
+      },'html').fail(function(err){
         $.loadlock.off();
-        $.setFlash('erreur '+ err.status,'error');
+        console.log(err);
+        $.setFlash('erreur '+ err.status,'error', err.responseText);
       })
     },
     html:function(content, modal, title, data){
@@ -17,7 +18,6 @@ $.modal = {
           var modal = $(".modal."+modal);
         else
           var modal = $(".modalM");
-
 
         var dataDefault ={
             vertical : false,

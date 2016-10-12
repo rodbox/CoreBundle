@@ -13,6 +13,10 @@ $(document).ready(function($) {
     */
 
     $.form = {
+        clear: function (form){
+            form.find('input:not([type=checkbox],[type=radio]), select, textarea ').val('');
+            form.find('[type=checkbox],[type=radio]').prop('checked',false);
+        },
         filter : function (filterContent, form){
             form.attr('data-form-filter-content',filterContent);
             
@@ -29,10 +33,12 @@ $(document).ready(function($) {
 
                 if(input.is('input:checkbox')){
                     input.prop('checked',false);
-                    input.val(val);
+                    input.prop('checked',(input.val() == val));
+    
                 }
                 else if(input.is('input:radio')){
                     input.prop('checked',false);
+                    input.prop('checked',(input.val() == val));
                     $('[name='+key+'][value='+val+']').prop('checked',true);
                 }
                 else

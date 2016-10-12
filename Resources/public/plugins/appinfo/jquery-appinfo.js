@@ -26,7 +26,8 @@ $.appInfo = {
                 timer   : 0,
                 open    : false,
                 showID  : false,
-                type    : "default",
+                type    : "loader",
+                msg     : "Chargement",
                 msgmeta : "",
                 showmsgmeta : true,
                 btClose : true
@@ -102,9 +103,10 @@ $.appInfo = {
             return infoMsg;
         },
         del: function (t){
-            t.slideUp(250, function() {
-                $(this).remove();
-            })
+            t.addClass('appinfo-outro');
+            setTimeout(function (){
+                t.remove();
+            },500);
         },
         upd: function(t,paramSend) {
             var defauts = {
@@ -112,9 +114,9 @@ $.appInfo = {
                 from        : "loader",
                 to          : "success",
                 msg         : "Opération validé",
-                msgmeta     : "<ul><li>Maecenas faucibus mollis interdum. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis.</p></li><li><p>Donec ullamcorper nulla non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna.</p></li></ul>",
-                showmsgmeta : true,
-                timer       : 0
+                msgmeta     : "",
+                showmsgmeta : false,
+                timer       : 3500
             }
 
             var param = $.extend(defauts, paramSend);

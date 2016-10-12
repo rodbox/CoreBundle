@@ -7,15 +7,19 @@ $(document).ready(function($) {
     }, 1000)
   }, 3000);
 
-  $.setFlash =  function (msg,type){
+  $.setFlash =  function (msg,type, err){
     var type   = (type == undefined)?"info":type;
     var div    = $("<div>",{"class":"flash flash-"+type})
-    var a      = $("<a>",{"class":"pull-right close-flash big"}).html("<i class='fa fa-remove'></i>");
+    var a      = $("<a>",{"href":"#","class":"pull-right close-flash big"}).html("<i class='fa fa-remove'></i>");
     var p      = $("<p>").html(msg);
+    var iframe = $("<iframe>",{'id':'ErrFrame',"src":'#'}).hide();
 
-    div.append(a).append(p);
+    div.append(a).append(p).append(iframe);
+
+
       $('div.flash-container').prepend(div);
       if (type!='error') {  
+      
         setTimeout(function (){
           div.addClass("outro");
           setTimeout(function (){
@@ -23,11 +27,22 @@ $(document).ready(function($) {
           }, 1000)
         }, 3000);
       }
-      else{
-        var urlErrPage = Routing.generate('err',{"html":msg});
-        var iframe = $("<iframe>",{"src":urlErrPage}).css({width:'100%', height:'50vh', border:'0px solid transparent'});
-        div.append(iframe);
+
+      if (type=='error') {
+          $('#ErrFrame').show().css({
+            'margin-top':'1rem',
+            'width':'100%',
+            'height':'70vh',
+            'border':'0px solid transparent'
+          });
+
+          var doc = document.getElementById('ErrFrame').contentWindow.document;
+          doc.open();
+          doc.write(err);
+          doc.close();
       }
+
+
 
   }
 
