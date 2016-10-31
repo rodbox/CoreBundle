@@ -11,6 +11,29 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class CoreController extends Controller
 {
+    
+    /**
+    * @Route("/cdn/{lib}",name="cdn", options={"expose"=true})
+    */
+    public function cdnAction(Request $request,$lib)
+    {        
+        
+        $url = $this->container->getParameter('web_cdn');
+        $json = $this->get('rb.curl')->json($url.'/assets/expose/index.php?lib='.$lib);
+
+
+       $list = [];
+
+        $r    = [
+            'infotype' => 'success',
+            'msg'      => 'action : ok',
+            'lib'      => $url.'/assets/expose/index.php?lib='.$lib
+        ];
+
+        return new JsonResponse($r);
+    }
+
+
     /**
     * @Route("/c",name="input_me")
     */

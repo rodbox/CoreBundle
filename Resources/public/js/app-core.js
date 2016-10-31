@@ -190,6 +190,7 @@
        return o;
     };
 
+    $.rand = function(){ return Math.random().toString(36).substring(2); }
 
     $.query = {
       string : function(url) {
