@@ -1,16 +1,43 @@
 $(document).ready(function(){
 $.appInfo = {
+        counters:{
+            loader:0,
+            error:0,
+            success:0,
+            show: function(){
+                $('counter-success').html($.appInfo.counters.success);
+                $('counter-loader').html($.appInfo.counters.loader);
+                console.log('show');
+            },
+            check:function(p){
+                var type = p.type;
+                $.appInfo.counters[type]++;
+                $('#counter-'+type).html($.appInfo.counters[type]);
+                console.log($.appInfo.counters);
+            }
+        },
         group: {
             mode:false,
             info: {},
             on:function(){
                 $.appInfo.group.mode = true;
-                var divGroup = $("<div>",{"id":"appinfo-group","class":"appinfo-msg appinfo-group"});
-                $('#'+this.infoContainerID).html(divGroup);
+                $.appInfo.counterss = {
+                    loader  : 0,
+                    error   : 0,
+                    success : 0
+                };
+                console.log('group on');
+                $.appInfo.group.info = $.appInfo.add({
+                    open:true,
+                    msg:'Chargement'
+                });
             },
             off: function(){        
+                console.log('group off');
                 $.appInfo.group.mode = false;
-                $('#appinfo-group').remove();
+                setTimeout(function(){
+                    $.appInfo.del($($.appInfo.group.info));
+                },3000);
             }
         },
         init: function(paramSend) {
@@ -48,10 +75,10 @@ $.appInfo = {
             this.i++;
             var appinfoID = "appinfo-" + this.i;
 
+            $.appInfo.counters.check(param);
             if ($.appInfo.group.mode) {
-            var msg = $('<p>').html(param.msg);
-                $('#appinfo-group').append(msg);
-                return msg;
+                console.log('add');
+                $.appInfo.counters.show();
             }
             else {
 

@@ -365,6 +365,21 @@ class RBCoreExtension  extends \Twig_Extension{
         ]);
     }
 
+    public function tpl($id='', $view='@RBCoreBundle')
+    {
+        $dirTpl      = explode(':', $view);
+
+        $fileLocator = $this->container->get('file_locator');
+        $path        = $fileLocator->locate($dirTpl[0]);
+
+        $data        = file_get_contents($path.'/Resources/views/'.$dirTpl[1].'/'.$dirTpl[2]);
+
+        echo $this->twig->render('RBCoreBundle:Twig:tpl.html.twig',[
+            'id'   => $id,
+            'data' => $data
+        ]);
+    }
+
 
 
     public function local_me($route, $index, $data = [])
@@ -435,6 +450,7 @@ class RBCoreExtension  extends \Twig_Extension{
             new \Twig_SimpleFunction("view_me"             , [$this , 'view_me']             , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("logo"                , [$this , 'logo']                , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("mustache_tpl"        , [$this , 'mustache_tpl']        , ['is_safe' => ['html']]) ,
+            new \Twig_SimpleFunction("tpl"        , [$this , 'tpl']        , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("btn_local"           , [$this , 'btn_local']           , ['is_safe' => ['html']]) ,
             new \Twig_SimpleFunction("local_me"          , [$this , 'local_me']          , ['is_safe' => ['html']])
         );
