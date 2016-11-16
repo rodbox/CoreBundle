@@ -12,6 +12,15 @@ $.cb['upload'] = {
             $(t.data('target')).append(file);
         })
     },
+    uploadUsers: function (json, t) {
+        $.each(json.file.valid, function(key, val){
+           /* var rand = Math.random().toString(36).substring(2);
+            val.id   = 'file-' + rand;
+            var file = $.mustache('file',{file : val});*/
+
+            $(t.data('target')).css('background-image','url('+val.url+')');
+        })
+    },
     uploadeds   : function(){
 
     },

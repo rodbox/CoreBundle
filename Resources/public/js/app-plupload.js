@@ -5,9 +5,9 @@ $.fn.initPlupload = function(options) {
 	param         	= {};
 
 	return this.each(function () {
-		var t        = $(this);
 
-		var id       = Math.random().toString(36).substring(2);
+		var t        = $(this);
+		var id       = t.attr('id')
 		var pourcent = 0;
 
 		param[id] = {};
@@ -155,7 +155,7 @@ $.fn.initPlupload = function(options) {
 				containers		: param[id].container,
 				multi_selection : param[id].multiple,
 				browse_button	: param[id].browse,
-				flash_swf_url	: "js/Moxie.swf                                            ",
+				flash_swf_url	: "js/Moxie.swf",
 				runtimes		: "html5,flash",
 				url				: param[id].url,
 				multipart_params: paramData,
@@ -209,7 +209,8 @@ $.fn.initPlupload = function(options) {
 				clear();
 				var cbs 	= param[id].cb+"s";
 				var cbapp 	= param[id].cbapp;
-
+				console.log(cbs);
+				console.log(cbapp);
 				$.cb[cbapp][cbs](files, param[id].t);
 			});
 

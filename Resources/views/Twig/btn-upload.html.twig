@@ -1,6 +1,6 @@
 <div id="{{id}}-dropdown-plupload-group" class="btn-group dropdown-plupload-group ">
-    <a href="{{path(route) }}" id="{{id}}-dropdown-plupload" data-target-list="#{{id}}-dropdown-plupload-menu"  class="btn btn-primary  btn-plupload radius" data-multiple="{{ data.multiple }}" data-rename="{{ data.rename }}" data-dest="{{ data.dest }}" data-index="{{ index }}" data-filter="{{ data.filter }}" data-loading-text="<i class='fa fa-refresh fa-spin'></i> {{ "action.upload" | trans }} <span id='{{id}}-dropdown-plupload-badge' class='label label-info hide' >0</span>" data-cb-app="{{ data.cbapp | default('upload') }}" data-cb="{{ data.cb  | default('uploaded')}}" data-target="#{{id}}-dropdown-plupload-uploaded">
-    	<i class="fa fa-cloud-upload"></i> 
+    <a href="{{path(route) }}" id="{{id}}-dropdown-plupload" data-target-list="#{{id}}-dropdown-plupload-menu"  class="btn btn-default  btn-plupload radius" data-multiple="{{ data.multiple }}" data-rename="{{ data.rename }}" data-dest="{{ data.dest }}" data-index="{{ index }}" data-filter="{{ data.filter }}" data-loading-text="<i class='fa fa-refresh fa-spin'></i> {{ "action.upload" | trans }} <span id='{{id}}-dropdown-plupload-badge' class='label label-info hide' >0</span>" data-cb-app="{{ data.cbapp | default('upload') }}" data-cb="{{ data.cb  | default('uploaded')}}" data-target="#{{id}}-dropdown-plupload-uploaded">
+    	<i class="fa fa-cloud-upload"></i> {{ data.rand | default('toto') }}
     	{{ "action.upload" | trans }} <span class="text-muted">{% set label %}label.{{data.dest}}{% endset %}
     	 {{ label | trans}}</span>
 		

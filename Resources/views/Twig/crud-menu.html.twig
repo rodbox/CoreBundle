@@ -1,18 +1,18 @@
 <!-- BEGIN DROPDOWN HOVER  -->
 <div class="btn-group crud-menu">
-    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-inverse btn-lg">
+    <a data-close-others="true" data-hover="dropdown" data-toggle="dropdown" href="#" class="btn btn-inverse btn-sm">
     <i class="fa fa-cog"></i>
     </a>
-    <div class="dropdown-menu pull-right">
-        <a href="{{path(entitySuffix~'_new') }}" class="dropdown-item " title="{{'route.'~entitySuffix~'_new.title'|trans}}"><i class="fa fa-plus"></i> {{'action.create'|trans}}</a>
+    <div class="dropdown-menu pull-right" style="margin-top:-1px; padding: 0.5rem 0 0.2rem">
+        <a href="{{path(entitySuffix~'_new') }}" class="dropdown-item btn-modal" data-modal="modalSm" title="{{'route.'~entitySuffix~'_new.title'|trans}}"><i class="fa fa-plus fa-fw"></i> {{'action.create'|trans}}</a>
         {# <div class="dropdown-divider"></div> #}
-        <a href="#" data-batch="{{target}}" class="dropdown-item toggle-batch-all"><i class="fa fa-check-square-o"></i> {{"action.select_all"|trans}}</a>
+        <a href="#" data-batch="{{target}}" class="dropdown-item toggle-batch-all"><i class="fa fa-check-square-o fa-fw"></i> {{"action.select_all"|trans}}</a>
         {# <div class="dropdown-divider"></div> #}
-        <div class="dropdown-item">
+        <div class="dropdown-item" style="padding: 0px 0.3rem ">
             <div class="input-group">
-                <input type="text" id="play-select{{entitySuffix}}" class="form-control" name="play-select">
+                <input type="text" id="play-select{{entitySuffix}}" class="form-control text-xs-left" name="play-select">
                 <span class="input-group-btn">
-                    <button class="btn btn-play-select" data-src="#play-select{{entitySuffix}}" data-suffix="{{entitySuffix}}" data-target="{{target}}" type="button"><i class="fa fa-play"></i></button>
+                    <button class="btn btn-play-select" style="border:0px;" data-src="#play-select{{entitySuffix}}" data-suffix="{{entitySuffix}}" data-target="{{target}}" type="button"><i class="fa fa-play"></i></button>
                 </span>
             </div>
         </div>

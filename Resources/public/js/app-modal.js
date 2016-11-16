@@ -2,7 +2,7 @@ $.modal = {
     zindex : 3000,
     set : function(url, dataSend, modal, title, data){
       $.loadlock.on();
-      $.post(url, dataSend, function(data) {
+      $.get(url, dataSend, function(data) {
 
         $.modal.html(data, modal, title, data);
         $.loadlock.off();
@@ -67,8 +67,17 @@ $.modal = {
         .on('shown.bs.modal', function (e) {
           modal.find('input[autofocus="true"]').first().focus();
         })
+        .on('hide.bs.modal',function(e){
+          modal.addClass('modal-outro');
+//alert('hide');
+          setTimeout(function(){
+            modal.removeClass('modal-outro');
+          },350);
+        })
         .on('hidden.bs.modal', function (e) {
+//alert('hiden');
           modal.initJq('destroy');
+           
         })
         .initJq();
 
@@ -99,10 +108,15 @@ $.modal = {
     },
     close: function(modal){
       if(modal)
-          var modal = $(".modal#"+modal);
-        else
-          var modal = $(".modal");
-      modal.modal('hide');
+        var modal = $(".modal#"+modal);
+      else
+        var modal = $(".modal");
+
+      modal.addClass('modal-outro');
+      setTimeout(function(){
+        modal.modal('hide');
+        modal.removeClass('modal-outro');
+      },350);
     },
     json: function(json){
       if (json.modal != undefined && json.modal.content != undefined)

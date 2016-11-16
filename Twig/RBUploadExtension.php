@@ -89,7 +89,7 @@ class RBUploadExtension  extends \Twig_Extension{
     }
 
 
-    public function btn_upload_user($id, $index = '/')
+    public function btn_upload_user($id, $index = '/',$rename=false)
     {
         $rand   = substr( md5(rand()), 0, 8);
         $data   = [
@@ -98,10 +98,12 @@ class RBUploadExtension  extends \Twig_Extension{
             'route'  => 'upload',
             'data'   => [
                 'filter'   =>  'all',
-                'dest'     => 'user',
-                'rename'   => false,
+                'rand'     => $rand,
+                'dest'     => 'users',
+                'rename'   => $rename,
                 'multiple' => true,
-                'cbapp'    => 'import',
+                'cbapp'    => 'upload',
+                'target'   => '.img-log-'.$id,
                 'cb'       => 'uploadUser'
             ]
         ];

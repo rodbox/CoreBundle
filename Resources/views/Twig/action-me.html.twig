@@ -1,4 +1,4 @@
-    {% set routeName1 %}route.{{entitySuffix}}_show.title{% endset %}
-    <a href="{{path(entitySuffix~'_show',{ id : id }) }}" class="btn btn-sm btn-secondary btn-modal" title="{{routeName1 | trans}}" data-modal="modalLg"><i class="fa fa-eye"></i></a>
+{% set routeName1 %}route.{{entitySuffix}}_show.title{% endset %}
+    <a href="{{path(entitySuffix~'_show',{ id : id }) }}" class="btn btn-sm btn-link btn-modal btn-sm" title="{{routeName1 | trans}}" data-modal="modalLg"><i class="fa fa-eye"></i></a>
     {% set routeName2 %}route.{{entitySuffix}}_edit.title{% endset %}
-    <a href="{{path(entitySuffix~'_edit',{ id : id }) }}" class="btn btn-sm btn-secondary btn-modal" title="{{routeName2 | trans}}" data-modal="modalLg"><i class="fa fa-pencil"></i></a>
+    <a href="{{path(entitySuffix~'_edit',{ id : id }) }}" class="btn btn-sm btn-link btn-modal btn-sm" title="{{routeName2 | trans}}" data-modal="modalLg"><i class="fa fa-pencil"></i></a>
